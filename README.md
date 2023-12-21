@@ -32,13 +32,13 @@ As developers navigate the intricacies of the CRUD POC, they pave the way for a 
 ## PREREQUISITES
 
 ```
-1. "docker": "24.0.7";
-2. "docker compose": "2.17.2";
+1. docker: 24.0.7;
+2. docker compose: 2.17.2;
 3. a postgres dbms server, as found in the https://github.com/rubenschagas/postgres project;
 4. run the ansible playbook rodaroda.yml from the https://github.com/rubenschagas/ansibleAutomatedPlaybooks project;
-5. a postgres dbms client, like "DBeaver": ">=23.x" (optional);
-6. "NPM": "^8.11.0";
-7. "Node": "^16.16.0".
+5. a postgres dbms client, like DBeaver: >=23.x (optional);
+6. NPM: ^8.11.0;
+7. Node: ^16.16.0.
 ```
 
 On the rodaroda project folder, open a terminal and run the following command:
