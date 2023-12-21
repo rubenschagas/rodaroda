@@ -71,16 +71,26 @@ Import the collection file available at assets/collections folder.
 
 Open the `Consulta de Produtos` request.
 
+---
+
 Send a GET request to list localities:
 
 Select the GET method.
-Enter the URL: http://localhost:3000/localidades.
+
+Enter the URL: http://localhost:3000/localidades
+
 Click "Send" to submit the request.
+
+---
+
 Send a POST request to create a locality:
 
 Select the POST method.
-Enter the URL: http://localhost:3000/localidades.
+
+Enter the URL: http://localhost:3000/localidades
+
 Go to the "Body" tab and select the raw format.
+
 Insert the locality data in the request body, json, for example:
 
 ```
@@ -91,6 +101,8 @@ Insert the locality data in the request body, json, for example:
 ```
 
 Click "Send" to submit the request.
+
+---
 
 ## REFERENCES
 
