@@ -1,0 +1,12 @@
+{
+  "name": "rodaroda",
+  "version": "1.0.0",
+  "description": "A CRUD project",
+  "main": "index.js",
+  "license": "public",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
+  }
+}
