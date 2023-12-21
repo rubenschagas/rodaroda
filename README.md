@@ -1,5 +1,8 @@
 # RODARODA - SIMPLY A CRUD POC
 
+Screenshot:
+![](./assets/readMeMd/env.png)
+
 ## TABLE OF CONTENTS
 
 [OVERVIEW](#overview)
@@ -79,5 +82,3 @@ Insert the locality data in the request body, json, for example:
 ```
 
 Click "Send" to submit the request.
-
-![](./assets/readMeMd/env.png)
