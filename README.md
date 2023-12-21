@@ -13,6 +13,8 @@ Screenshot:
 
 [SENDING DATA TO THE DATABASE THROUGH THE BACKEND SERVICE](#sending-data-to-the-database-through-the-backend-service)
 
+[REFERENCES](#references)
+
 ## OVERVIEW
 
 The objective of this README.md document file is to provide help on how to run the automated deployment of a [local] CRUD project, as a Proof of Concept (POC), running a backend service.
@@ -34,8 +36,9 @@ As developers navigate the intricacies of the CRUD POC, they pave the way for a 
 2. "docker compose": "2.17.2";
 3. a postgres dbms server, as found in the https://github.com/rubenschagas/postgres project;
 4. run the ansible playbook rodaroda.yml from the https://github.com/rubenschagas/ansibleAutomatedPlaybooks project;
-5. "NPM": "^8.11.0";
-6. "Node": "^16.16.0".
+5. a postgres dbms client, like "DBeaver": ">=23.x" (optional);
+6. "NPM": "^8.11.0";
+7. "Node": "^16.16.0".
 ```
 
 ## USE CASES
@@ -82,3 +85,17 @@ Insert the locality data in the request body, json, for example:
 ```
 
 Click "Send" to submit the request.
+
+## REFERENCES
+
+#### [Official Docker Daemon Documentation Install](https://docs.docker.com/engine/install/ubuntu/)
+
+#### [Official Docker Compose Documentation Install](https://docs.docker.com/compose/install/)
+
+#### [Official Ansible Documentation Install](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
+
+
+
+
+
+
