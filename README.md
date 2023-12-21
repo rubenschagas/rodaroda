@@ -41,6 +41,12 @@ As developers navigate the intricacies of the CRUD POC, they pave the way for a 
 7. "Node": "^16.16.0".
 ```
 
+On the rodaroda project folder, open a terminal and run the following command:
+
+```
+npm install
+```
+
 ## USE CASES
 
 Start the server:
