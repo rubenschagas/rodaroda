@@ -99,9 +99,3 @@ Click "Send" to submit the request.
 #### [Official Docker Compose Documentation Install](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually)
 
 #### [Official Ansible Documentation Install](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
-
-
-
-
-
-
