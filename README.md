@@ -53,6 +53,10 @@ Here are some steps to test the GET and POST endpoints for the `localidade` enti
 
 Open the Postman application.
 
+Import the collection file available at assets/collections folder.
+
+Open the `Consulta de Produtos` request.
+
 Send a GET request to list localities:
 
 Select the GET method.
