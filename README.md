@@ -30,7 +30,9 @@ As developers navigate the intricacies of the CRUD POC, they pave the way for a 
 1. "docker": "24.0.2";
 2. "docker compose": "2.18.1";
 3. a postgres dbms server, as found in the https://github.com/rubenschagas/postgres project;
-4. run the ansible playbook rodaroda.yml from the https://github.com/rubenschagas/ansibleAutomatedPlaybooks project.
+4. run the ansible playbook rodaroda.yml from the https://github.com/rubenschagas/ansibleAutomatedPlaybooks project;
+5. `NPM`: `^8.11.0`;
+6. `Node`: `^16.16.0`.
 ```
 
 ## USE CASES
