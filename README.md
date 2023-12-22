@@ -19,27 +19,22 @@ Screenshot:
 
 The objective of this README.md document file is to provide help on how to run the automated deployment of a [local] CRUD project, as a Proof of Concept (POC), running a backend service.
 
-A CRUD Proof of Concept (POC) serves as a foundational demonstration showcasing the essential operations of Create, Read, Update, and Delete within a software application or system. This pivotal phase not only validates the technical feasibility of these core functionalities but also lays the groundwork for the entire application's success.
+The purpose of this app is to build a basic structure for a backend application, along with an automated database, where, upon sending requests to the backend, we can query and insert data into it.
 
-The Create operation initiates the system's ability to generate new data, fostering an environment for innovation and growth. Reading data ensures seamless access to information, promoting efficiency and informed decision-making. Updates reflect the system's adaptability, allowing for real-time adjustments and improvements. Deletion, while seemingly straightforward, underscores the importance of data management and integrity.
-
-Beyond its technical implications, a CRUD POC symbolizes the inception of a robust and scalable application. It acts as a tangible representation of the development team's prowess, showcasing their ability to translate conceptual ideas into functional realities. This proof of concept is not merely a technical exercise but a strategic step towards building a reliable and user-centric solution.
-
-In the broader context of software development, a well-executed CRUD POC sets the stage for further feature enhancements, integrations, and overall system evolution. Its successful implementation not only assures stakeholders of the project's viability but also instills confidence in the development process.
-
-As developers navigate the intricacies of the CRUD POC, they pave the way for a comprehensive and sophisticated application that aligns with the needs of users and stakeholders alike. In essence, the CRUD POC is not just a technical milestone but a testament to the commitment to excellence in software development.
+The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and destination types), product, and carrier.
 
 ## PREREQUISITES
 
-```
 1. docker: 24.0.7;
 2. docker compose: 2.17.2;
-3. a postgres dbms server, as found in the https://github.com/rubenschagas/postgres project;
-4. run the ansible playbook rodaroda.yml from the https://github.com/rubenschagas/ansibleAutomatedPlaybooks project;
+3. a postgres dbms server, as found in the following project:
+https://github.com/rubenschagas/postgres
+4. run the ansible playbook rodaroda.yml from the project: 
+https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 5. a postgres dbms client, like DBeaver: >=23.x (optional);
-6. NPM: ^8.11.0;
-7. Node: ^16.16.0.
-```
+6. npm: ^8.11.0;
+7. node: ^16.16.0.
+
 
 On the rodaroda project folder, open a terminal and run the following command:
 
