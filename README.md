@@ -29,21 +29,16 @@ The master carrier's structure revolves around trips, with dependencies on entit
 
 2. docker compose: 2.17.2;
 
-3. a postgres dbms server, running the ansible playbook create-postgres-docker-container.yml,
-`ansible-playbook -vv -e "ansible_user=ansible" -K create-postgres-docker-container.yml`
-from the project:
-https://github.com/rubenschagas/ansibleAutomatedPlaybooks
-
-4. populate the database structure running the ansible playbook rodaroda.yml,
+3. a postgres dbms server and populate the database project structure, running the ansible playbook rodaroda.yml,
 `ansible-playbook -vv -e "ansible_user=ansible" rodaroda.yml`
 from the project:
 https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
-6. a postgres dbms client, like DBeaver: >=23.x (optional);
+4. a postgres dbms client, like DBeaver: >=23.x (optional);
 
-6. npm: ^8.11.0;
+5. npm: ^8.11.0;
 
-7. node: ^16.16.0.
+6. node: ^16.16.0.
 
 
 On the rodaroda project folder, open a terminal and run the following command:
