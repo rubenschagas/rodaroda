@@ -43,7 +43,7 @@ https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
 6. npm: ^8.11.0;
 
-7node: ^16.16.0.
+7. node: ^16.16.0.
 
 
 On the rodaroda project folder, open a terminal and run the following command:
