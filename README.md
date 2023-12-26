@@ -1,6 +1,6 @@
 # RODARODA - SIMPLY A CRUD POC
 
-Screenshot:
+App environment:
 ![](./assets/readMeMd/env.png)
 
 ## TABLE OF CONTENTS
@@ -49,6 +49,16 @@ On the rodaroda project folder, open a terminal and run the following command:
 
 ```
 npm install
+```
+
+Additionally, install the following dependencies:
+
+```
+npm install newman
+```
+
+```
+npm install newman-reporter-htmlextra
 ```
 
 ## USE CASES
@@ -107,6 +117,17 @@ Insert the locality data in the request body, json, for example:
 Click "Send" to submit the request.
 
 ---
+
+## TESTING COLLECTION APPLICATION
+
+Run the collection tests:
+
+```
+newman run assets/collections/rodaroda-postman-collection.json -r htmlextra --reporter-htmlextra-browserTitle "Rodaroda API Report Test" --reporter-htmlextra-title "Rodaroda API Report Test"
+```
+
+A newman folder will be created with a Html Extra Report file as follows:
+![](./assets/readMeMd/newman-html-extra-report.png)
 
 ## REFERENCES
 
