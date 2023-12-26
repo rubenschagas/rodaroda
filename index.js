@@ -23,7 +23,7 @@ app.get('/localidades', async (req, res) => {
 });
 
 app.post('/localidades', async (req, res) => {
-  const { nome, descricao } = req.body;
+  const { nome, tipo } = req.body;
   const result = await pool.query('INSERT INTO localidade (nome, tipo) VALUES ($1, $2) RETURNING *', [nome, tipo]);
   res.json(result.rows[0]);
 });
