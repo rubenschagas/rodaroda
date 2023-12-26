@@ -35,7 +35,7 @@ from the project:
 https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
 4. a postgres dbms server and populate the database project structure, running the ansible playbook rodaroda.yml,
-`ansible-playbook -vv -e "ansible_user=ansible" rodaroda.yml`
+`ansible-playbook -vv -e "ansible_user=ansible" -K rodaroda.yml`
 from the project:
 https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
