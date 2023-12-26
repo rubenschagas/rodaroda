@@ -11,13 +11,17 @@ App environment:
 
 [USE CASES](#use-cases)
 
-[SENDING DATA TO THE DATABASE THROUGH THE BACKEND SERVICE](#sending-data-to-the-database-through-the-backend-service)
+[API](#api)
+
+[TESTING](#testing)
+
+[LICENSE](#license)
 
 [REFERENCES](#references)
 
 ## OVERVIEW
 
-The objective of this README.md document file is to provide help on how to run the automated deployment of a [local] CRUD project, as a Proof of Concept (POC), running a backend service.
+The objective of this README.md document file is to provide help on how to run the automated deployment of a CRUD project, as a Proof of Concept (POC), running a backend service that supports CRUD operations.
 
 The purpose of this app is to build a basic structure for a backend application, along with an automated database, where, upon sending requests to the backend, we can query and insert data into it.
 
@@ -25,9 +29,9 @@ The master carrier's structure revolves around trips, with dependencies on entit
 
 ## PREREQUISITES
 
-1. docker: 24.0.7;
+1. docker: 24.0;
 
-2. docker compose: 2.17.2;
+2. docker compose: 2.17;
 
 3. install psycopg2 dependency, running the ansible playbook installs-psycopg2.yml,
 `ansible-playbook -vv -e "ansible_user=ansible" installs-psycopg2.yml`
@@ -38,6 +42,8 @@ https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 `ansible-playbook -vv -e "ansible_user=ansible" -K rodaroda.yml`
 from the project:
 https://github.com/rubenschagas/ansibleAutomatedPlaybooks
+
+Note: Ansible playbooks are used in automating infrastructure setup.
 
 5. a postgres dbms client, like DBeaver: >=23.x (optional);
 
@@ -54,11 +60,7 @@ npm install
 Additionally, install the following dependencies:
 
 ```
-npm install newman
-```
-
-```
-npm install newman-reporter-htmlextra
+npm install newman newman-reporter-htmlextra
 ```
 
 ## USE CASES
@@ -73,9 +75,11 @@ You can start the server by executing the following command in the terminal with
 node index.js
 ```
 
-## SENDING DATA TO THE DATABASE THROUGH THE BACKEND SERVICE
+## API
 
 It is possible to send requests through Postman to test the CRUD endpoints created in the previous example. 
+
+The default port is `3000`.
 
 Here are some steps to test the GET and POST endpoints for the `localidade` entity:
 
@@ -118,7 +122,11 @@ Click "Send" to submit the request.
 
 ---
 
-## TESTING COLLECTION APPLICATION
+## TESTING
+
+The tests cover the project endpoints, and users can interpret the results through a report. 
+
+For a description of what the Postman collection covers or what kind of scenarios it tests please open the collection file itself to see them, or see the visual evidence below.
 
 Run the collection tests:
 
@@ -126,8 +134,12 @@ Run the collection tests:
 newman run assets/collections/rodaroda-postman-collection.json -r htmlextra --reporter-htmlextra-browserTitle "Rodaroda API Report Test" --reporter-htmlextra-title "Rodaroda API Report Test"
 ```
 
-A newman folder will be created with a Html Extra Report file as follows:
+A folder named `Newman`will be created with a html report file as follows:
 ![](./assets/readMeMd/newman-html-extra-report.png)
+
+## LICENSE
+
+This project is release with a public license.
 
 ## REFERENCES
 
