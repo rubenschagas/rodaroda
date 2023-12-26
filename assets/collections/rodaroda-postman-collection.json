@@ -8,6 +8,42 @@
 	"item": [
 		{
 			"name": "Consulta de Produtos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Teste: status igual a OK\", function() {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Teste: response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"console.log(responseJson);",
+							"",
+							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+							"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -30,6 +66,20 @@
 		},
 		{
 			"name": "Consulta de Produtos por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+							"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -61,7 +111,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nome\": \"Produto Teste 3\",\n  \"descricao\": \"Descricao Produto Teste 3\"\n}\n",
+					"raw": "{\n  \"nome\": \"Produto Teste 2\",\n  \"descricao\": \"Descricao Produto Teste 2\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -115,7 +165,7 @@
 			"response": []
 		},
 		{
-			"name": "Atualização de Produtos por id Copy",
+			"name": "Exclusão de Produtos por id",
 			"request": {
 				"auth": {
 					"type": "noauth"
