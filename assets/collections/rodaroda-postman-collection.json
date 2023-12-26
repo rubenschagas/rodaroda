@@ -33,8 +33,6 @@
 							"     pm.response.to.be.json;",
 							"});",
 							"",
-							"console.log(responseJson);",
-							"",
 							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
 							"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
 							"});",
@@ -51,12 +49,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/produtos",
-					"protocol": "http",
+					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
 					"host": [
-						"localhost"
+						"{{APP_DOMAIN_AND_PORT}}"
 					],
-					"port": "3000",
 					"path": [
 						"produtos"
 					]
@@ -71,8 +67,28 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Teste: status igual a OK\", function() {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Teste: response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
 							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
+							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
 							"});",
 							""
 						],
@@ -87,12 +103,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/produtos/1",
-					"protocol": "http",
+					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/1",
 					"host": [
-						"localhost"
+						"{{APP_DOMAIN_AND_PORT}}"
 					],
-					"port": "3000",
 					"path": [
 						"produtos",
 						"1"
@@ -103,6 +117,40 @@
 		},
 		{
 			"name": "Inserção de Produtos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Teste: status igual a OK\", function() {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Teste: response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -111,7 +159,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nome\": \"Produto Teste 2\",\n  \"descricao\": \"Descricao Produto Teste 2\"\n}\n",
+					"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}}\",\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,12 +167,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/produtos",
-					"protocol": "http",
+					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
 					"host": [
-						"localhost"
+						"{{APP_DOMAIN_AND_PORT}}"
 					],
-					"port": "3000",
 					"path": [
 						"produtos"
 					]
@@ -134,6 +180,75 @@
 		},
 		{
 			"name": "Atualização de Produtos por id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const postProduct = {",
+							"  url: 'http://localhost:3000' + '/produtos',",
+							"  method: 'POST',",
+							"  header: {",
+							"    'Content-Type': 'application/json; charset=utf-8',",
+							"  },",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: JSON.stringify({",
+							"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
+							"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
+							"    })",
+							"  }",
+							"};",
+							"",
+							"pm.sendRequest(postProduct, function (err, response) {",
+							"  if (err){",
+							"      console.log(err);",
+							"      return false;",
+							"  }",
+							"  const responseJson = response.json();",
+							"  console.log(responseJson);",
+							"  let ID = responseJson.id;",
+							"  console.log(ID);",
+							"  pm.environment.set('PRODUCT_ID', ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Teste: status igual a OK\", function() {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Teste: response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -142,7 +257,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nome\": \"Produto Teste 5 atualizado\",\n  \"descricao\": \"Descricao Produto Teste atualizado\"\n}\n",
+					"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}} atualizado\",\n  \"descricao\": \"Descricao Produto {{RANDOM_NAME}} atualizado\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -150,15 +265,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/produtos/5",
-					"protocol": "http",
+					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
 					"host": [
-						"localhost"
+						"{{APP_DOMAIN_AND_PORT}}"
 					],
-					"port": "3000",
 					"path": [
 						"produtos",
-						"5"
+						"{{PRODUCT_ID}}"
 					]
 				}
 			},
@@ -166,6 +279,79 @@
 		},
 		{
 			"name": "Exclusão de Produtos por id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const postProduct = {",
+							"  url: 'http://localhost:3000' + '/produtos',",
+							"  method: 'POST',",
+							"  header: {",
+							"    'Content-Type': 'application/json; charset=utf-8',",
+							"  },",
+							"  body: {",
+							"    mode: 'raw',",
+							"    raw: JSON.stringify({",
+							"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
+							"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
+							"    })",
+							"  }",
+							"};",
+							"",
+							"pm.sendRequest(postProduct, function (err, response) {",
+							"  if (err){",
+							"      console.log(err);",
+							"      return false;",
+							"  }",
+							"  const responseJson = response.json();",
+							"  console.log(responseJson);",
+							"  let ID = responseJson.id;",
+							"  console.log(ID);",
+							"  pm.environment.set('PRODUCT_ID', ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"",
+							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Teste: status igual a OK\", function() {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+							"});",
+							"",
+							"pm.test(\"Teste: response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+							"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+							"});",
+							"",
+							"pm.test(\"Teste: Descrição de produto excluído\", function() {",
+							"    pm.expect(responseJson.message).to.eql(\"produto excluído com sucesso\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -173,19 +359,59 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/produtos/5",
-					"protocol": "http",
+					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
 					"host": [
-						"localhost"
+						"{{APP_DOMAIN_AND_PORT}}"
 					],
-					"port": "3000",
 					"path": [
 						"produtos",
-						"5"
+						"{{PRODUCT_ID}}"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"function generateANameGenerator() {",
+					"  const num = 10;",
+					"  const randomNameGenerator = (num) => {",
+					"    let res = '';",
+					"    for (let i = 0; i < num; i++) {",
+					"      const random = Math.floor(Math.random() * 27);",
+					"      res += String.fromCharCode(97 + random);",
+					"    }",
+					"    return res;",
+					"  };",
+					"  return randomNameGenerator(num);",
+					"}",
+					"",
+					"const randomName = generateANameGenerator();",
+					"pm.environment.set(\"RANDOM_NAME\", randomName);",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APP_DOMAIN_AND_PORT",
+			"value": "http://localhost:3000",
+			"type": "string"
 		}
 	]
 }
