@@ -45,7 +45,6 @@ https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
 7. node: ^16.16.0.
 
-
 On the rodaroda project folder, open a terminal and run the following command:
 
 ```
