@@ -79,7 +79,7 @@
 							"response": []
 						},
 						{
-							"name": "Consulta de Produtos por id",
+							"name": "Consulta de Produto por id",
 							"event": [
 								{
 									"listen": "test",
@@ -142,7 +142,7 @@
 							"response": []
 						},
 						{
-							"name": "Inserção de Produtos",
+							"name": "Inserção de Produto",
 							"event": [
 								{
 									"listen": "test",
@@ -213,7 +213,7 @@
 							"response": []
 						},
 						{
-							"name": "Atualização de Produtos por id",
+							"name": "Atualização de Produto por id",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -240,9 +240,7 @@
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
-											"  console.log(responseJson);",
 											"  let ID = responseJson.id;",
-											"  console.log(ID);",
 											"  pm.environment.set('PRODUCT_ID', ID);",
 											"});",
 											""
@@ -320,7 +318,7 @@
 							"response": []
 						},
 						{
-							"name": "Exclusão de Produtos por id",
+							"name": "Exclusão de Produto por id",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -347,9 +345,7 @@
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
-											"  console.log(responseJson);",
 											"  let ID = responseJson.id;",
-											"  console.log(ID);",
 											"  pm.environment.set('PRODUCT_ID', ID);",
 											"});",
 											""
