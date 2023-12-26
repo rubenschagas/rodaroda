@@ -7,409 +7,460 @@
 	},
 	"item": [
 		{
-			"name": "Consulta de Produtos",
-			"event": [
+			"name": "Success",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseJson = pm.response.json();",
-							"",
-							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
-							"    pm.expect(pm.response.code).to.equal(200);",
-							"});",
-							"",
-							"pm.test(\"Teste: status igual a OK\", function() {",
-							"    pm.response.to.have.status(\"OK\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
-							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
-							"    pm.response.to.be.ok;",
-							"    pm.response.to.be.withBody;",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
-							"});",
-							"",
-							"pm.test(\"Teste: resposta em formato JSON.\", function () {",
-							"      pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
-							"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
+					"name": "Localidades",
+					"item": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
-					"host": [
-						"{{APP_DOMAIN_AND_PORT}}"
-					],
-					"path": [
-						"produtos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Consulta de Produtos por id",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseJson = pm.response.json();",
-							"",
-							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
-							"    pm.expect(pm.response.code).to.equal(200);",
-							"});",
-							"",
-							"pm.test(\"Teste: status igual a OK\", function() {",
-							"    pm.response.to.have.status(\"OK\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
-							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
-							"    pm.response.to.be.ok;",
-							"    pm.response.to.be.withBody;",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
-							"});",
-							"",
-							"pm.test(\"Teste: resposta em formato JSON.\", function () {",
-							"      pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
-							"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/1",
-					"host": [
-						"{{APP_DOMAIN_AND_PORT}}"
-					],
-					"path": [
-						"produtos",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Inserção de Produtos",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseJson = pm.response.json();",
-							"",
-							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
-							"    pm.expect(pm.response.code).to.equal(200);",
-							"});",
-							"",
-							"pm.test(\"Teste: status igual a OK\", function() {",
-							"    pm.response.to.have.status(\"OK\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
-							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
-							"    pm.response.to.be.ok;",
-							"    pm.response.to.be.withBody;",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
-							"});",
-							"",
-							"pm.test(\"Teste: resposta em formato JSON.\", function () {",
-							"      pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
-							"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}}\",\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
+					"name": "Produtos",
+					"item": [
+						{
+							"name": "Consulta de Produtos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: resposta em formato JSON.\", function () {",
+											"      pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
+											"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Produtos por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: resposta em formato JSON.\", function () {",
+											"      pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
+											"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Produtos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: resposta em formato JSON.\", function () {",
+											"      pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
+											"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}}\",\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualização de Produtos por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: 'http://localhost:3000' + '/produtos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
+											"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  console.log(responseJson);",
+											"  let ID = responseJson.id;",
+											"  console.log(ID);",
+											"  pm.environment.set('PRODUCT_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: resposta em formato JSON.\", function () {",
+											"      pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
+											"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}} atualizado\",\n  \"descricao\": \"Descricao Produto {{RANDOM_NAME}} atualizado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos",
+										"{{PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exclusão de Produtos por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: 'http://localhost:3000' + '/produtos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
+											"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  console.log(responseJson);",
+											"  let ID = responseJson.id;",
+											"  console.log(ID);",
+											"  pm.environment.set('PRODUCT_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição de produto excluído\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"produto excluído com sucesso\");",
+											"});",
+											"",
+											"pm.test(\"Teste: resposta em formato JSON.\", function () {",
+											"      pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
+											"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos",
+										"{{PRODUCT_ID}}"
+									]
+								}
+							},
+							"response": []
 						}
-					}
-				},
-				"url": {
-					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos",
-					"host": [
-						"{{APP_DOMAIN_AND_PORT}}"
-					],
-					"path": [
-						"produtos"
 					]
+				},
+				{
+					"name": "Transportadoras",
+					"item": []
+				},
+				{
+					"name": "Veiculos",
+					"item": []
+				},
+				{
+					"name": "Viagens",
+					"item": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Atualização de Produtos por id",
-			"event": [
+			"name": "Failure",
+			"item": [
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"const postProduct = {",
-							"  url: 'http://localhost:3000' + '/produtos',",
-							"  method: 'POST',",
-							"  header: {",
-							"    'Content-Type': 'application/json; charset=utf-8',",
-							"  },",
-							"  body: {",
-							"    mode: 'raw',",
-							"    raw: JSON.stringify({",
-							"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
-							"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
-							"    })",
-							"  }",
-							"};",
-							"",
-							"pm.sendRequest(postProduct, function (err, response) {",
-							"  if (err){",
-							"      console.log(err);",
-							"      return false;",
-							"  }",
-							"  const responseJson = response.json();",
-							"  console.log(responseJson);",
-							"  let ID = responseJson.id;",
-							"  console.log(ID);",
-							"  pm.environment.set('PRODUCT_ID', ID);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
+					"name": "Localidades",
+					"item": []
 				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseJson = pm.response.json();",
-							"",
-							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
-							"    pm.expect(pm.response.code).to.equal(200);",
-							"});",
-							"",
-							"pm.test(\"Teste: status igual a OK\", function() {",
-							"    pm.response.to.have.status(\"OK\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
-							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
-							"    pm.response.to.be.ok;",
-							"    pm.response.to.be.withBody;",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
-							"});",
-							"",
-							"pm.test(\"Teste: resposta em formato JSON.\", function () {",
-							"      pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
-							"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}} atualizado\",\n  \"descricao\": \"Descricao Produto {{RANDOM_NAME}} atualizado\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
-					"host": [
-						"{{APP_DOMAIN_AND_PORT}}"
-					],
-					"path": [
-						"produtos",
-						"{{PRODUCT_ID}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Exclusão de Produtos por id",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"const postProduct = {",
-							"  url: 'http://localhost:3000' + '/produtos',",
-							"  method: 'POST',",
-							"  header: {",
-							"    'Content-Type': 'application/json; charset=utf-8',",
-							"  },",
-							"  body: {",
-							"    mode: 'raw',",
-							"    raw: JSON.stringify({",
-							"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
-							"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
-							"    })",
-							"  }",
-							"};",
-							"",
-							"pm.sendRequest(postProduct, function (err, response) {",
-							"  if (err){",
-							"      console.log(err);",
-							"      return false;",
-							"  }",
-							"  const responseJson = response.json();",
-							"  console.log(responseJson);",
-							"  let ID = responseJson.id;",
-							"  console.log(ID);",
-							"  pm.environment.set('PRODUCT_ID', ID);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
+					"name": "Produtos",
+					"item": []
 				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"const responseJson = pm.response.json();",
-							"",
-							"pm.test(\"Teste: status code igual a 200 (ok)\", function() {",
-							"    pm.expect(pm.response.code).to.equal(200);",
-							"});",
-							"",
-							"pm.test(\"Teste: status igual a OK\", function() {",
-							"    pm.response.to.have.status(\"OK\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
-							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-							"});",
-							"",
-							"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
-							"    pm.response.to.be.ok;",
-							"    pm.response.to.be.withBody;",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-							"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
-							"});",
-							"",
-							"pm.test(\"Teste: Descrição de produto excluído\", function() {",
-							"    pm.expect(responseJson.message).to.eql(\"produto excluído com sucesso\");",
-							"});",
-							"",
-							"pm.test(\"Teste: resposta em formato JSON.\", function () {",
-							"      pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Teste: header Content-Type igual não nulo.\", function () {",
-							"      pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
+					"name": "Transportadoras",
+					"item": []
 				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/{{PRODUCT_ID}}",
-					"host": [
-						"{{APP_DOMAIN_AND_PORT}}"
-					],
-					"path": [
-						"produtos",
-						"{{PRODUCT_ID}}"
-					]
+				{
+					"name": "Veiculos",
+					"item": []
+				},
+				{
+					"name": "Viagens",
+					"item": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
