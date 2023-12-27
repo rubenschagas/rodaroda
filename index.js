@@ -1,6 +1,6 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
-const express = require('express');
+    const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
@@ -47,7 +47,7 @@ app.get('/localidades/:id', async (req, res) => {
 app.put('/localidades/:id', async (req, res) => {
   const { id } = req.params;
   const { nome, tipo } = req.body;
-  const result = await pool.query('UPDATE localidade SET nome = $1, tipo = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
+  const result = await pool.query('UPDATE localidade SET nome = $1, tipo = $2 WHERE id = $3 RETURNING *', [nome, tipo, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Localidade não encontrada.' });
   }
@@ -182,3 +182,4 @@ app.listen(port, () => {
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
 // TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação
 // TODO: migrar os scripts para TypeScript
+// TODO: implementar autenticação por token
