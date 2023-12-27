@@ -117,7 +117,6 @@
 											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
 											"    pm.response.to.be.ok;",
 											"    pm.response.to.be.withBody;",
-											"    pm.response.to.be.json;",
 											"});",
 											"",
 											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
@@ -231,7 +230,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}}\",\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
+									"raw": "{\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -498,7 +497,86 @@
 				},
 				{
 					"name": "Produtos",
-					"item": []
+					"item": [
+						{
+							"name": "Consulta de Produto por id inexistente",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 404\", function() {",
+											"    pm.expect(pm.response.code).to.equal(404);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a Not Found\", function() {",
+											"    pm.response.to.have.status(\"Not Found\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.notFound;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.error).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.be.not.eql(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo descricao não nulo\", function () {",
+											"    pm.expect(responseJson.descricao).to.be.not.eql(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição de mensagem de produto não encontrado\", function() {",
+											"    pm.expect(responseJson.error).to.eql(\"Produto não encontrado.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/0",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"produtos",
+										"0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Transportadoras",
