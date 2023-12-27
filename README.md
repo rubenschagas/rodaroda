@@ -60,7 +60,7 @@ npm install
 Additionally, install the following dependencies:
 
 ```
-npm install newman newman-reporter-htmlextra
+npm install -g newman newman-reporter-htmlextra
 ```
 
 ## USE CASES
