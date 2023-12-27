@@ -1,6 +1,6 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
-    const express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
@@ -178,7 +178,7 @@ app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
 
-// TODO: criar um projeto de frontend. Base: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
 // TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação
 // TODO: migrar os scripts para TypeScript
