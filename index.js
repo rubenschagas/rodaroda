@@ -183,3 +183,5 @@ app.listen(port, () => {
 // TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação
 // TODO: migrar os scripts para TypeScript
 // TODO: implementar autenticação por token
+// TODO: implementar cadastro de usuários
+// TODO: implementar criptografia no password
