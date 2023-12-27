@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5dd6639a-1396-49a0-94b0-59ef5dbe9163",
+		"_postman_id": "cb74ed8f-7470-4929-af21-9d67f4276e67",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31900519"
@@ -38,8 +38,16 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-											"    pm.expect(responseJson[0].tipo).to.have.lengthOf.below(4096);",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.tipo).to.have.lengthOf.below(4096);",
+											"    });",
 											"});",
 											"",
 											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
@@ -113,6 +121,10 @@
 											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
 											"    pm.response.to.be.ok;",
 											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
 											"});",
 											"",
 											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
@@ -189,7 +201,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -275,7 +291,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -394,7 +414,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -517,7 +541,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -583,7 +611,7 @@
 							"response": []
 						},
 						{
-							"name": "Exclusão de Produto por id Copy",
+							"name": "Exclusão de Localidade por id",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -641,7 +669,7 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Mensagem abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -720,8 +748,16 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
-											"    pm.expect(responseJson[0].descricao).to.have.lengthOf.below(4096);",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.descricao).to.have.lengthOf.below(4096);",
+											"    });",
 											"});",
 											"",
 											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
@@ -797,7 +833,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -871,7 +911,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -986,7 +1030,11 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.descricao).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -1110,7 +1158,7 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Mensagem abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
 											"});",
 											"",
@@ -1162,11 +1210,684 @@
 				},
 				{
 					"name": "Transportadoras",
-					"item": []
+					"item": [
+						{
+							"name": "Consulta de Transportadoras",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.contato).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo contato não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.contato).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/transportadoras",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"transportadoras"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Transportadora por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.contato).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo contato não nulo\", function () {",
+											"    pm.expect(responseJson.contato).to.not.include(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/transportadoras/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"transportadoras",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Transportadora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.contato).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.contato).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato da transportadora cadastrada\", function() {",
+											"    pm.expect(responseJson.contato).to.eql(pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Nome da Transportadora {{RANDOM_NAME}}\",\n  \"contato\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/transportadoras",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"transportadoras"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualização de Transportadora por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/transportadoras',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Transportadora ' + pm.environment.get('RANDOM_NAME'),",
+											"    'contato': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('TRANSPORTADORA_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.contato).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo contato não nulo\", function () {",
+											"    pm.expect(responseJson.contato).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Contato da transportadora cadastrada\", function() {",
+											"    pm.expect(responseJson.contato).to.eql(pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com.br');",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome da transportadora atualizada\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Transportadora \" + pm.environment.get('RANDOM_NAME') + \" atualizada\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Transportadora {{RANDOM_NAME}} atualizada\",\n  \"contato\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com.br\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/transportadoras/{{TRANSPORTADORA_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"transportadoras",
+										"{{TRANSPORTADORA_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exclusão de Transportadora por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/transportadoras',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Transportadora ' + pm.environment.get('RANDOM_NAME'),",
+											"    'contato': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('TRANSPORTADORA_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Mensagem abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar message não nulo\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Mensagem de transportadora excluída\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Transportadora excluída com sucesso.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/transportadoras/{{TRANSPORTADORA_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"transportadoras",
+										"{{TRANSPORTADORA_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Veiculos",
-					"item": []
+					"item": [
+						{
+							"name": "Consulta de Veiculos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.modelo).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.placa).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.modelo).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.placa).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"veiculos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Veiculo por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.modelo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.placa).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo\", function () {",
+											"    pm.expect(responseJson.modelo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo\", function () {",
+											"    pm.expect(responseJson.placa).to.not.include(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"veiculos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Viagens",
@@ -1210,7 +1931,7 @@
 											"    pm.response.to.be.withBody;",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"pm.test(\"Teste: Descrição abaixo de 4096 caracteres\", function() {",
 											"    pm.expect(responseJson.error).to.have.lengthOf.below(4096);",
 											"});",
 											"",
