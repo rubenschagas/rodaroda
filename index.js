@@ -126,8 +126,8 @@ app.get('/transportadoras/:id', async (req, res) => {
 
 app.put('/transportadoras/:id', async (req, res) => {
   const { id } = req.params;
-  const { nome, descricao } = req.body;
-  const result = await pool.query('UPDATE transportadora SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
+  const { nome, contato } = req.body;
+  const result = await pool.query('UPDATE transportadora SET nome = $1, contato = $2 WHERE id = $3 RETURNING *', [nome, contato, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Transportadora não encontrada.' });
   }
@@ -150,12 +150,38 @@ app.get('/veiculos', async (req, res) => {
 });
 
 app.post('/veiculos', async (req, res) => {
-  const { modelo, placa } = req.body;
-  const result = await pool.query('INSERT INTO veiculo (modelo, placa) VALUES ($1, $2) RETURNING *', [modelo, placa]);
+  const { nome, modelo, placa } = req.body;
+  const result = await pool.query('INSERT INTO veiculo (nome, modelo, placa) VALUES ($1, $2, $3) RETURNING *', [nome, modelo, placa]);
   res.json(result.rows[0]);
 });
 
-// TODO: Adicione rotas semelhantes para atualização, exclusão e visualização individual para veiculo
+app.get('/veiculos/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM veiculo WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Veículo não encontrado.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/veiculos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { nome, modelo, placa } = req.body;
+  const result = await pool.query('UPDATE veiculo SET nome = $1, modelo = $2, placa = $3 WHERE id = $4 RETURNING *', [nome, modelo, placa, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Veículo não encontrado.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/veiculos/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM veiculo WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Veículo não encontrada.' });
+  }
+  res.json({ message: 'Veículo excluído com sucesso.' });
+});
 
 // CRUD para viagem
 app.get('/viagens', async (req, res) => {
