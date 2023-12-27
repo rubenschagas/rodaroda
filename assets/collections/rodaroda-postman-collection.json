@@ -446,7 +446,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Descrição de mensagem de produto excluído\", function() {",
-											"    pm.expect(responseJson.message).to.eql(\"produto excluído com sucesso\");",
+											"    pm.expect(responseJson.message).to.eql(\"Produto excluído com sucesso.\");",
 											"});",
 											""
 										],
