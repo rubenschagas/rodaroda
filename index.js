@@ -34,7 +34,7 @@ app.get('/localidades/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('SELECT * FROM localidade WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'localidade não encontrada' });
+    return res.status(404).json({ error: 'Localidade não encontrada.' });
   }
   res.json(result.rows[0]);
 });
@@ -44,7 +44,7 @@ app.put('/localidades/:id', async (req, res) => {
   const { nome, tipo } = req.body;
   const result = await pool.query('UPDATE localidade SET nome = $1, tipo = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'localidade não encontrada' });
+    return res.status(404).json({ error: 'Localidade não encontrada.' });
   }
   res.json(result.rows[0]);
 });
@@ -53,9 +53,9 @@ app.delete('/localidades/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('DELETE FROM localidade WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'localidade não encontrada' });
+    return res.status(404).json({ error: 'Localidade não encontrada.' });
   }
-  res.json({ message: 'localidade excluída com sucesso' });
+  res.json({ message: 'Localidade excluída com sucesso.' });
 });
 
 // CRUD para produto
@@ -74,7 +74,7 @@ app.get('/produtos/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('SELECT * FROM produto WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'produto não encontrado' });
+    return res.status(404).json({ error: 'Produto não encontrado.' });
   }
   res.json(result.rows[0]);
 });
@@ -84,7 +84,7 @@ app.put('/produtos/:id', async (req, res) => {
   const { nome, descricao } = req.body;
   const result = await pool.query('UPDATE produto SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'produto não encontrado' });
+    return res.status(404).json({ error: 'Produto não encontrado.' });
   }
   res.json(result.rows[0]);
 });
@@ -93,9 +93,9 @@ app.delete('/produtos/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('DELETE FROM produto WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'produto não encontrado' });
+    return res.status(404).json({ error: 'Produto não encontrado.' });
   }
-  res.json({ message: 'produto excluído com sucesso' });
+  res.json({ message: 'Produto excluído com sucesso.' });
 });
 
 // CRUD para transportadora
@@ -114,7 +114,7 @@ app.get('/transportadoras/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('SELECT * FROM transportadora WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'transportadora não encontrado' });
+    return res.status(404).json({ error: 'Transportadora não encontrada.' });
   }
   res.json(result.rows[0]);
 });
@@ -124,7 +124,7 @@ app.put('/transportadoras/:id', async (req, res) => {
   const { nome, descricao } = req.body;
   const result = await pool.query('UPDATE transportadora SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'transportadora não encontrado' });
+    return res.status(404).json({ error: 'Transportadora não encontrada.' });
   }
   res.json(result.rows[0]);
 });
@@ -133,9 +133,9 @@ app.delete('/transportadoras/:id', async (req, res) => {
   const { id } = req.params;
   const result = await pool.query('DELETE FROM transportadora WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'transportadora não encontrado' });
+    return res.status(404).json({ error: 'Transportadora não encontrada.' });
   }
-  res.json({ message: 'transportadora excluído com sucesso' });
+  res.json({ message: 'Transportadora excluída com sucesso.' });
 });
 
 // CRUD para veiculo
