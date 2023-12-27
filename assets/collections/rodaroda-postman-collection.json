@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cb74ed8f-7470-4929-af21-9d67f4276e67",
+		"_postman_id": "6e953ca5-5663-47ce-be11-08216c950a04",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31900519"
+		"_exporter_id": "14986445"
 	},
 	"item": [
 		{
@@ -1882,6 +1882,113 @@
 									"path": [
 										"veiculos",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Veiculo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo deve ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.modelo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.placa).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo\", function () {",
+											"    pm.expect(responseJson.modelo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo\", function () {",
+											"    pm.expect(responseJson.placa).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Nome do Veículo \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.modelo).to.eql(\"Modelo do Veículo \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.placa).to.eql(\"ABC1234\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Nome do Veículo {{RANDOM_NAME}}\",\n  \"modelo\": \"Modelo do Veículo {{RANDOM_NAME}}\",\n  \"placa\": \"ABC1234\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"veiculos"
 									]
 								}
 							},
