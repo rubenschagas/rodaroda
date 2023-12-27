@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
 const app = express();
+// TODO: dinamizar a porta
 const port = 3000;
 
 app.use(bodyParser.json());
 
+// TODO: modularizar e dinamizar as configurações com o banco de dados
 // Configuração do pool de conexão com o PostgreSQL
 const pool = new Pool({
   host: 'localhost',
@@ -17,6 +19,9 @@ const pool = new Pool({
   password: 'postgres',
   port: 5432,
 });
+
+// TODO: modularizar cada CRUD
+// TODO: refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
 
 // CRUD para localidade
 app.get('/localidades', async (req, res) => {
@@ -138,7 +143,7 @@ app.delete('/transportadoras/:id', async (req, res) => {
   res.json({ message: 'Transportadora excluída com sucesso.' });
 });
 
-// CRUD para veiculo
+// CRUD para veículo
 app.get('/veiculos', async (req, res) => {
   const result = await pool.query('SELECT * FROM veiculo');
   res.json(result.rows);
@@ -167,7 +172,11 @@ app.post('/viagens', async (req, res) => {
 
 // TODO: Adicione rotas semelhantes para atualização, exclusão e visualização individual para viagem
 
-// Inicie o servidor
+// TODO: modularizar a escuta
+// TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+// TODO: criar um projeto de frontend. Base: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: modularizar e separar os serviços de backend dos submódulos do frontend.
