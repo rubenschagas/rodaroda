@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b2e0c7a7-d60f-4229-85a1-a22757892be7",
+		"_postman_id": "5dd6639a-1396-49a0-94b0-59ef5dbe9163",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14986445"
+		"_exporter_id": "31900519"
 	},
 	"item": [
 		{
@@ -11,7 +11,685 @@
 			"item": [
 				{
 					"name": "Localidades",
-					"item": []
+					"item": [
+						{
+							"name": "Consulta de Localidades",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson[0].tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo descricao não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.tipo).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Localidade por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.tipo).to.not.include(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Localidade com tipo: origem",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.tipo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo da localidade cadastrada\", function() {",
+											"    pm.expect(responseJson.tipo).to.eql(\"origem\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Nome da Localidade {{RANDOM_NAME}}\",\n  \"tipo\": \"origem\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Localidade com tipo: destino",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.tipo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo da localidade cadastrada\", function() {",
+											"    pm.expect(responseJson.tipo).to.eql(\"destino\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Nome da Localidade {{RANDOM_NAME}}\",\n  \"tipo\": \"destino\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualização de Localidade por id do tipo destino para origem",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localidades',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Localidade ' + pm.environment.get('RANDOM_NAME'),",
+											"    'tipo': 'destino'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOCALIDADE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.tipo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo da localidade cadastrada\", function() {",
+											"    pm.expect(responseJson.tipo).to.eql(\"origem\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome da localidade atualizada\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Localidade \" + pm.environment.get('RANDOM_NAME') + \" atualizada\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Localidade {{RANDOM_NAME}} atualizada\",\n  \"tipo\": \"origem\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades/{{LOCALIDADE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades",
+										"{{LOCALIDADE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualização de Localidade por id do tipo origem para destino",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localidades',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Localidade ' + pm.environment.get('RANDOM_NAME'),",
+											"    'tipo': 'origem'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOCALIDADE_ID', ID);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixao de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.tipo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"    pm.expect(responseJson.tipo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo da localidade cadastrada\", function() {",
+											"    pm.expect(responseJson.tipo).to.eql(\"destino\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome da localidade atualizada\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Localidade \" + pm.environment.get('RANDOM_NAME') + \" atualizada\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Localidade {{RANDOM_NAME}} atualizada\",\n  \"tipo\": \"destino\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades/{{LOCALIDADE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades",
+										"{{LOCALIDADE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exclusão de Produto por id Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localidades',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Localidade ' + pm.environment.get('RANDOM_NAME'),",
+											"    'tipo': 'destino'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOCALIDADE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Tipo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar message não nulo\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Mensagem de localidade excluída\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Localidade excluída com sucesso.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/localidades/{{LOCALIDADE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"localidades",
+										"{{LOCALIDADE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Produtos",
@@ -51,7 +729,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
@@ -60,13 +738,13 @@
 											"",
 											"pm.test(\"Teste: Validar o campo nome não nulo para cada objeto\", function () {",
 											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.nome).to.not.be.null;",
+											"        pm.expect(obj.nome).to.not.include(null);",
 											"    });",
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo descricao não nulo para cada objeto\", function () {",
 											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.descricao).to.not.be.null;",
+											"        pm.expect(obj.descricao).to.not.include(null);",
 											"    });",
 											"});",
 											""
@@ -128,7 +806,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
@@ -136,11 +814,11 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
-											"    pm.expect(responseJson.nome).to.be.not.eql(null);",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo descricao não nulo\", function () {",
-											"    pm.expect(responseJson.descricao).to.be.not.eql(null);",
+											"    pm.expect(responseJson.descricao).to.not.include(null);",
 											"});",
 											""
 										],
@@ -202,7 +880,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
@@ -210,11 +888,11 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
-											"    pm.expect(responseJson.nome).to.be.not.eql(null);",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo descricao não nulo\", function () {",
-											"    pm.expect(responseJson.descricao).to.be.not.eql(null);",
+											"    pm.expect(responseJson.descricao).to.not.include(null);",
 											"});",
 											""
 										],
@@ -230,7 +908,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
+									"raw": "{\n  \"nome\": \"Nome do Produto {{RANDOM_NAME}}\",\n  \"descricao\": \"Descrição do Produto {{RANDOM_NAME}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -317,7 +995,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
@@ -325,11 +1003,19 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
-											"    pm.expect(responseJson.nome).to.be.not.eql(null);",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Validar o campo descricao não nulo\", function () {",
-											"    pm.expect(responseJson.descricao).to.be.not.eql(null);",
+											"    pm.expect(responseJson.descricao).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do produto atualizado\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Produto \" + pm.environment.get('RANDOM_NAME') + \" atualizado\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Descrição do produto atualizado\", function() {",
+											"    pm.expect(responseJson.descricao).to.eql(\"Descrição Produto \" + pm.environment.get('RANDOM_NAME') + \" atualizado\");",
 											"});",
 											""
 										],
@@ -345,7 +1031,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}} atualizado\",\n  \"descricao\": \"Descricao Produto {{RANDOM_NAME}} atualizado\"\n}\n",
+									"raw": "{\n  \"nome\": \"Produto {{RANDOM_NAME}} atualizado\",\n  \"descricao\": \"Descrição Produto {{RANDOM_NAME}} atualizado\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -433,7 +1119,7 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.be.not.eql(null);",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
 											"});",
 											"",
 											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
@@ -441,10 +1127,10 @@
 											"});",
 											"",
 											"pm.test(\"Teste: Validar message não nulo\", function () {",
-											"    pm.expect(responseJson.message).to.be.not.eql(null);",
+											"    pm.expect(responseJson.message).to.not.include(null);",
 											"});",
 											"",
-											"pm.test(\"Teste: Descrição de mensagem de produto excluído\", function() {",
+											"pm.test(\"Teste: Mensagem de produto excluído\", function() {",
 											"    pm.expect(responseJson.message).to.eql(\"Produto excluído com sucesso.\");",
 											"});",
 											""
