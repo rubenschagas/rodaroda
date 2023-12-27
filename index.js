@@ -179,4 +179,6 @@ app.listen(port, () => {
 });
 
 // TODO: criar um projeto de frontend. Base: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: modularizar e separar os serviços de backend dos submódulos do frontend.
+// TODO: modularizar e separar os serviços de backend dos submódulos do frontend
+// TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação
+// TODO: migrar os scripts para TypeScript
