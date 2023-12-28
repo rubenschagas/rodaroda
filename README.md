@@ -36,7 +36,7 @@ The master carrier's structure revolves around trips, with dependencies on entit
 ### App architecture
 ![](./assets/readMeMd/arc.png)
 
-### Data base diagram
+### Database diagram
 ![](./assets/readMeMd/db-diagram.png)
 
 ### Database structure
@@ -115,6 +115,8 @@ Additionally, install the following dependencies:
 ```
 npm install -g newman newman-reporter-htmlextra
 ```
+
+Newman will execute the Postman collection against the backend, and the newman-reporter-htmlextra will generate a beautiful HTML report for the test run.
 
 ## USE CASES
 
