@@ -3,6 +3,9 @@
 App environment:
 ![](./assets/readMeMd/env.png)
 
+App architecture:
+![](./assets/readMeMd/arc.png)
+
 ## TABLE OF CONTENTS
 
 [OVERVIEW](#overview)
