@@ -188,7 +188,9 @@ newman run assets/collections/rodaroda-postman-collection.json -r htmlextra --re
 ```
 
 A folder named `Newman`will be created with a html report file as follows:
-![](./assets/readMeMd/newman-html-extra-report.png)
+![](./assets/readMeMd/newman-html-extra-report1.png)
+![](./assets/readMeMd/newman-html-extra-report2.png)
+![](./assets/readMeMd/newman-html-extra-report3.png)
 
 ## LICENSE
 
