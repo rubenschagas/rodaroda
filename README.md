@@ -77,23 +77,19 @@ CREATE TABLE Viagem (
 
 2. docker compose: 2.17;
 
-3. install psycopg2 dependency, running the ansible playbook installs-psycopg2.yml,
-`ansible-playbook -vv -e "ansible_user=ansible" installs-psycopg2.yml`
-from the project:
-https://github.com/rubenschagas/ansibleAutomatedPlaybooks
+3. a postgres dbms server and populate the database project structure, running the ansible playbook rodaroda.yml,
 
-4. a postgres dbms server and populate the database project structure, running the ansible playbook rodaroda.yml,
 `ansible-playbook -vv -e "ansible_user=ansible" -K rodaroda.yml`
-from the project:
-https://github.com/rubenschagas/ansibleAutomatedPlaybooks
+
+from the project: https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
 Note: Ansible playbooks are used in automating infrastructure setup.
 
-5. a postgres dbms client, like DBeaver: >=23.x (optional);
+4. a postgres dbms client, like DBeaver: >=23.x (optional);
 
-6. npm: ^8.11.0;
+5. npm: ^8.11.0;
 
-7. node: ^16.16.0.
+6. node: ^16.16.0.
 
 On the rodaroda project folder, open a terminal and run the following command:
 
