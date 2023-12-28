@@ -6,6 +6,9 @@ App environment:
 App architecture:
 ![](./assets/readMeMd/arc.png)
 
+Data base diagram:
+![](./assets/readMeMd/db-diagram.png)
+
 ## TABLE OF CONTENTS
 
 [OVERVIEW](#overview)
