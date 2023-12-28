@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6e953ca5-5663-47ce-be11-08216c950a04",
+		"_postman_id": "6b0d3532-2e35-4e86-b74d-8f3e3927b0ab",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14986445"
+		"_exporter_id": "31900519"
 	},
 	"item": [
 		{
@@ -1424,7 +1424,7 @@
 											"    pm.expect(responseJson.nome).to.not.include(null);",
 											"});",
 											"",
-											"pm.test(\"Teste: Validar o campo tipo não nulo\", function () {",
+											"pm.test(\"Teste: Validar o campo contato não nulo\", function () {",
 											"    pm.expect(responseJson.contato).to.not.include(null);",
 											"});",
 											"",
@@ -1873,7 +1873,13 @@
 									"type": "noauth"
 								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos/1",
 									"host": [
@@ -1957,10 +1963,19 @@
 											"    pm.expect(responseJson.modelo).to.eql(\"Modelo do Veículo \" + pm.environment.get(\"RANDOM_NAME\"));",
 											"});",
 											"",
-											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
-											"    pm.expect(responseJson.placa).to.eql(\"ABC1234\");",
+											"pm.test(\"Teste: Placa do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.placa).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
 											"});",
 											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
 											""
 										],
 										"type": "text/javascript"
@@ -1975,7 +1990,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"nome\": \"Nome do Veículo {{RANDOM_NAME}}\",\n  \"modelo\": \"Modelo do Veículo {{RANDOM_NAME}}\",\n  \"placa\": \"ABC1234\"\n}\n",
+									"raw": "{\n  \"nome\": \"Nome do Veículo {{RANDOM_NAME}}\",\n  \"modelo\": \"Modelo do Veículo {{RANDOM_NAME}}\",\n  \"placa\": \"{{RANDOM_VEHICLEID}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1993,12 +2008,765 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Atualização de Veiculo por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/veiculos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome do Veiculo ' + pm.environment.get('RANDOM_NAME'),",
+											"    'modelo': 'Modelo do Veículo' + pm.environment.get('RANDOM_NAME'),",
+											"    'placa': pm.environment.get('RANDOM_VEHICLEID')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEICULOS_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.modelo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.placa).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo\", function () {",
+											"    pm.expect(responseJson.modelo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo\", function () {",
+											"    pm.expect(responseJson.placa).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Veiculo \" + pm.environment.get(\"RANDOM_NAME\") + \" atualizado\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.modelo).to.eql(\"Modelo \" + pm.environment.get(\"RANDOM_NAME\") + \" atualizado\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.placa).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Veiculo {{RANDOM_NAME}} atualizado\",\n  \"modelo\": \"Modelo {{RANDOM_NAME}} atualizado\",\n  \"placa\": \"{{RANDOM_VEHICLEID}}\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos/{{VEICULOS_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"veiculos",
+										"{{VEICULOS_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Exclusão de Veiculo por id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/veiculos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome do Veiculo ' + pm.environment.get('RANDOM_NAME'),",
+											"    'modelo': 'Modelo do Veículo' + pm.environment.get('RANDOM_NAME'),",
+											"    'placa': pm.environment.get('RANDOM_VEHICLEID')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEICULOS_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Mensagem abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar message não nulo\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Mensagem de transportadora excluída\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Veículo excluído com sucesso.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/veiculos/{{VEICULOS_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"veiculos",
+										"{{VEICULOS_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"function generateVehicleIdentification(){",
+									"  const ALPHABET = [",
+									"    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',",
+									"  ];",
+									"  let letter = [];",
+									"  for (let i = 0; i < 4; i++) {",
+									"    const number = (Math.random() * 100).toFixed(0);",
+									"    const numberResult = parseFloat(number);",
+									"    numberResult <= 25 ? letter.push(ALPHABET[numberResult]) : i--;",
+									"  }",
+									"  let number = [];",
+									"  for (let i = 0; i < 3; i++) {",
+									"    number.push(Math.floor(Math.random() * 9));",
+									"  }",
+									"  return `${letter[0]}${letter[1]}${letter[2]}${number[0]}${letter[3]}${number[1]}${number[2]}`;",
+									"}",
+									"",
+									"const randomVehicleId = generateVehicleIdentification();",
+									"pm.environment.set(\"RANDOM_VEHICLEID\", randomVehicleId);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					]
 				},
 				{
 					"name": "Viagens",
-					"item": []
+					"item": [
+						{
+							"name": "Consulta de Viagem por id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.modelo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.placa).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo\", function () {",
+											"    pm.expect(responseJson.modelo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo\", function () {",
+											"    pm.expect(responseJson.placa).to.not.include(null);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/viagens/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"viagens",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consulta de Viagens",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.modelo).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.placa).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.nome).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.modelo).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo para cada objeto\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.placa).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/viagens",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"viagens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserção de Viagem",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Teste: Status code igual a 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Status igual a OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Teste: Deve existir um body e o mesmo deve ser válido\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.nome).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.modelo).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa abaixo de 4096 caracteres\", function() {",
+											"    pm.expect(responseJson.placa).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Teste: Resposta em formato JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Teste: Header Content-Type igual não nulo\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Desempenho (tempo de resposta máximo)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo nome não nulo\", function () {",
+											"    pm.expect(responseJson.nome).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo modelo não nulo\", function () {",
+											"    pm.expect(responseJson.modelo).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Validar o campo placa não nulo\", function () {",
+											"    pm.expect(responseJson.placa).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.nome).to.eql(\"Nome do Veículo \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											"",
+											"pm.test(\"Teste: Modelo do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.modelo).to.eql(\"Modelo do Veículo \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											"",
+											"pm.test(\"Teste: Placa do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.placa).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"function generateVehicleIdentification(){",
+											"  const ALPHABET = [",
+											"    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',",
+											"  ];",
+											"  let letter = [];",
+											"  for (let i = 0; i < 4; i++) {",
+											"    const number = (Math.random() * 100).toFixed(0);",
+											"    const numberResult = parseFloat(number);",
+											"    numberResult <= 25 ? letter.push(ALPHABET[numberResult]) : i--;",
+											"  }",
+											"  let number = [];",
+											"  for (let i = 0; i < 3; i++) {",
+											"    number.push(Math.floor(Math.random() * 9));",
+											"  }",
+											"  return `${letter[0]}${letter[1]}${letter[2]}${number[0]}${letter[3]}${number[1]}${number[2]}`;",
+											"}",
+											"",
+											"const randomVehicleId = generateVehicleIdentification();",
+											"pm.environment.set(\"RANDOM_VEHICLEID\", randomVehicleId);",
+											"",
+											"const postVehicle = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/veiculos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome do Veiculo ' + pm.environment.get('RANDOM_NAME'),",
+											"    'modelo': 'Modelo do Veículo' + pm.environment.get('RANDOM_NAME'),",
+											"    'placa': pm.environment.get('RANDOM_VEHICLEID')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicle, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEICULO_ID', ID);",
+											"});",
+											"",
+											"// ----",
+											"",
+											"const postCarrier = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/transportadoras',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Transportadora ' + pm.environment.get('RANDOM_NAME'),",
+											"    'contato': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postCarrier, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('TRANSPORTADORA_ID', ID);",
+											"});",
+											"",
+											"// ----",
+											"",
+											"const postProduct = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/produtos',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Produto ' + pm.environment.get('RANDOM_NAME'),",
+											"    'descricao': 'Descrição do Produto ' + pm.environment.get('RANDOM_NAME')",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProduct, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('PRODUCT_ID', ID);",
+											"});",
+											"",
+											"// ----",
+											"",
+											"const postLocalityDestination = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localidades',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Localidade ' + pm.environment.get('RANDOM_NAME'),",
+											"    'tipo': 'destino'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLocalityDestination, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOCALIDADEDESTINO_ID', ID);",
+											"});",
+											"",
+											"// ----",
+											"",
+											"const postLocalityOrigin = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localidades',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'nome': 'Nome da Localidade ' + pm.environment.get('RANDOM_NAME'),",
+											"    'tipo': 'origem'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLocalityOrigin, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOCALIDADEORIGEM_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"origem_id\": \"{{LOCALIDADEORIGEM_ID}}\",\n  \"destino_id\": \"{{LOCALIDADEDESTINO_ID}}\",\n  \"produto_id\": \"{{PRODUCT_ID}}\",\n  \"transportadora_id\": \"{{TRANSPORTADORA_ID}}\",\n  \"veiculo_id\": \"{{VEICULO_ID}}\",\n  \"data_partida\": \"2024-08-20 08:00:00.000\",\n  \"data_chegada\": \"2024-08-25 08:00:00.000\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/viagens",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"viagens"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
