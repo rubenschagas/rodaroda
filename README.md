@@ -3,7 +3,7 @@
 App environment:
 ![](./assets/readMeMd/env.png)
 
-App architecture:
+App architecture (just a scratch :) ):
 ![](./assets/readMeMd/arc.png)
 
 Data base diagram:
