@@ -27,6 +27,50 @@ The purpose of this app is to build a basic structure for a backend application,
 
 The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and destination types), product, and carrier.
 
+Below is the code for the creation of the tables as automated in the Ansible Playbooks:
+
+```
+-- Criação da tabela Localidade
+CREATE TABLE Localidade (
+    localidade_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    tipo VARCHAR(10) CHECK (tipo IN ('origem', 'destino'))
+);
+
+-- Criação da tabela Produto
+CREATE TABLE Produto (
+    produto_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+-- Criação da tabela Transportadora
+CREATE TABLE Transportadora (
+    transportadora_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    contato VARCHAR(50)
+);
+
+-- Criação da tabela Veículo
+CREATE TABLE Veiculo (
+    veiculo_id SERIAL PRIMARY KEY,
+    modelo VARCHAR(100) NOT NULL,
+    placa VARCHAR(20)
+);
+
+-- Criação da tabela Viagem
+CREATE TABLE Viagem (
+    viagem_id SERIAL PRIMARY KEY,
+    origem_id INT REFERENCES Localidade(localidade_id) ON DELETE NO ACTION,
+    destino_id INT REFERENCES Localidade(localidade_id) ON DELETE NO ACTION,
+    produto_id INT REFERENCES Produto(produto_id),
+    transportadora_id INT REFERENCES Transportadora(transportadora_id),
+    veiculo_id INT REFERENCES Veiculo(veiculo_id),
+    data_partida TIMESTAMP,
+    data_chegada TIMESTAMP
+);
+```
+
 ## PREREQUISITES
 
 1. docker: 24.0;
