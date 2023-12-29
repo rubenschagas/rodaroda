@@ -196,7 +196,34 @@ app.post('/viagens', async (req, res) => {
   res.json(result.rows[0]);
 });
 
-// TODO: Adicione rotas semelhantes para atualização, exclusão e visualização individual para viagem
+app.get('/viagens/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM viagem WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Viagem não encontrada.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/viagens/:id', async (req, res) => {
+  const { id } = req.params;
+  const { origem_id, destino_id, produto_id, transportadora_id, veiculo_id, data_partida, data_chegada } = req.body;
+  const result = await pool.query('UPDATE viagem SET origem_id = $1, destino_id = $2, produto_id = $3, transportadora_id = $4, veiculo_id = $5, data_partida = $6, data_chegada = $7  WHERE id = $8 RETURNING *',
+  [origem_id, destino_id, produto_id, transportadora_id, veiculo_id, data_partida, data_chegada, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Viagem não encontrada.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/viagens/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM viagem WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Viagem não encontrada.' });
+  }
+  res.json({ message: 'Viagem excluída com sucesso.' });
+});
 
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) a escuta
 // TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
