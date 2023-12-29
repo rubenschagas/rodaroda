@@ -158,7 +158,7 @@ app.get('/transportadoras/:id', async (req, res) => {
 });
 
 app.put('/transportadoras/:id', async (req, res) => {
-  if(!req.body.nome || !req.body.descricao){
+  if(!req.body.nome || !req.body.contato){
     return res.status(404).json({ error: 'Falha ao atualizar transportadora.' });
   }
   const { id } = req.params;
