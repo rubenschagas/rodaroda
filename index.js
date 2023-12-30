@@ -297,4 +297,4 @@ app.listen(port, () => {
 // TODO: migrar os scripts para TypeScript
 // TODO: implementar autenticação por token
 // TODO: implementar cadastro de usuários
-// TODO: implementar criptografia no password
+// TODO: implementar hash no password
