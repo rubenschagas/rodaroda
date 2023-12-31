@@ -96,7 +96,7 @@ CREATE TABLE Viagem (
 
 from the project: https://github.com/rubenschagas/ansibleAutomatedPlaybooks
 
-Note: Ansible playbooks are used in automating infrastructure setup.
+Note: Ansible playbooks automate the infrastructure setup of the rodaroda application. This includes creating the DBMS running in a Docker container, creating the database, and finally, creating the tables.
 
 4. a postgres dbms client, like DBeaver: >=23.x (optional);
 
