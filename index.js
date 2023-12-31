@@ -43,17 +43,17 @@
 
 // Fase 6: Melhorias de aplicação e regras de negócio:
 // TODO: 21. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
-//   criar categorias de produtos e associa-las aos produtos;
-//   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
+//   criar uma tabela de placas e respectivo relacionamento com veículo
 //   criar tipos de veículos e associa-las aos veículos;
 //   criar uma frota de veículo e associá-la a uma transportadora;
+//   criar categorias de produtos e associa-las aos produtos;
 //   restrição de um único veículo por vez reservado para uma única viagem;
-//   geolocalização (utilizando um bd postgis) para cálculo de rota via API do Google, e;
-//   cálculo de duração da viagem;
+//   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 //   docas de carregamento e descarregamento nas localidades (dias de funcionamento?);
 //   restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo;
 //   cálculo de frete utilizando uma tabela por distancia);
-//   criar entidade de pedidos;
+//   geolocalização (utilizando um bd postgis) para cálculo de rota via API do Google, e;
+//   cálculo de duração da viagem;
 //   etc.
 
 const express = require('express');
