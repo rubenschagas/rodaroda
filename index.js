@@ -3,34 +3,35 @@
 // TODOs list
 //
 // Fase 1: New features and technical debits:
-// TODO: 0. manter o README.md constantemente atualizado!
-// TODO: 1. migrar esta lista de TODOs para um arquivo TODO.md
-// TODO: 2. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
-// TODO: 3. resolver os problemas de código do projeto (via Inspect Code)
-// TODO: 4. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
-// TODO: 5. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: 1. manter o README.md constantemente atualizado!
+// TODO: 2. migrar esta lista de TODOs para um arquivo TODO.md
+// TODO: 3. se abituar a criar branches separadas por features/melhorias
+// TODO: 4. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
+// TODO: 5. resolver os problemas de código do projeto (via Inspect Code)
+// TODO: 6. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
+// TODO: 7. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 
 // Fase 2: Standards:
-// TODO: 6. definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
-// TODO: 7. migrar os scripts para TypeScript
-// TODO: 8. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
+// TODO: 8. definir, documentar e implementar: Design Pattern, Code Formatters (ESLint, como nos projetos de automação), Testing Framework (e.g. Cypress) eventually for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
+// TODO: 9. migrar os scripts para TypeScript
+// TODO: 10. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
 
 // Fase 3: Autenticação:
-// TODO: 9. implementar autenticação por token
-// TODO: 10. implementar cadastro de usuários
-// TODO: 11. implementar hash no password
-// TODO: 12. implementar comms com o protocolo https
+// TODO: 11. implementar autenticação por token
+// TODO: 12. implementar cadastro de usuários
+// TODO: 13. implementar hash no password
+// TODO: 14. implementar comms com o protocolo https
 
 // Fase 4: Frontend:
-// TODO: 13. criar um projeto de frontend. Desenhar telas e fluxos. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: 14. separar os serviços de backend dos submódulos do frontend
+// TODO: 15. criar um projeto de frontend. Desenhar telas e fluxos. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: 16. separar os serviços de backend dos submódulos do frontend
 
 // Fase 5: CI/CD:
-// TODO: 15. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: 16. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+// TODO: 17. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 18. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 // Fase 6: Melhorias de aplicação e regras de negócio:
-// TODO: 17. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// TODO: 19. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar categorias de produtos e associa-las aos produtos;
 //   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 //   criar tipos de veículos e associa-las aos veículos;
