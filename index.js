@@ -1,26 +1,43 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
+// TODO: Technical Debits:
+// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta
+// TODO: refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
+// TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
+// TODO: definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
+// TODO: migrar os scripts para TypeScript
+// TODO: implementar autenticação por token
+// TODO: implementar cadastro de usuários
+// TODO: implementar hash no password
+// TODO: estudar a criação de uma imagem Docker contendo a aplicação, banco de dados, base de dados, um so Alpine, assim como as dependências técnicas
+// TODO: estudar o uso de pipelines CI, CD e publicação em Nuvem
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
+const applicationPort = process.env.APPLICATION_PORT || '3000';
+const databaseHostname = process.env.DATABASE_HOSTNAME || 'localhost';
+const databasePort = process.env.DATABASE_PORT || '5432';
+const databaseName = process.env.DATABASE_NAME || 'rodaroda';
+const databaseUsername = process.env.DATABASE_USER || 'postgres';
+const databasePassword = process.env.DATABASE_PASSWORD || 'postgres';
+
 const app = express();
-const port = process.env.APPLICATION_PORT;
+const port = applicationPort;
 
 app.use(bodyParser.json());
 
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e dinamizar as configurações com o banco de dados
 // Configuração do pool de conexão com o PostgreSQL
 const pool = new Pool({
-  host: process.env.DATABASE_HOSTNAME,
-  port: process.env.DATABASE_PORT,
-  database: process.env.DATABASE_NAME,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
+  host: databaseHostname,
+  port: databasePort,
+  database: databaseName,
+  user: databaseUsername,
+  password: databasePassword,
 });
-
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD
-// TODO: refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
 
 // CRUD para localidade
 app.get('/localidades', async (req, res) => {
@@ -284,15 +301,6 @@ app.delete('/viagens/:id', async (req, res) => {
   res.json({ message: 'Viagem excluída com sucesso.' });
 });
 
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) a escuta
-// TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
-
-// TODO: criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
-// TODO: migrar os scripts para TypeScript
-// TODO: implementar autenticação por token
-// TODO: implementar cadastro de usuários
-// TODO: implementar hash no password
