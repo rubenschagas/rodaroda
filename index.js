@@ -1,18 +1,20 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
 // TODO: Technical Debits:
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta
-// TODO: refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
-// TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
-// TODO: criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
-// TODO: definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
-// TODO: migrar os scripts para TypeScript
-// TODO: implementar autenticação por token
-// TODO: implementar cadastro de usuários
-// TODO: implementar hash no password
-// TODO: estudar a criação de uma imagem Docker contendo a aplicação, banco de dados, base de dados, um so Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: estudar o uso de pipelines CI, CD e publicação em Nuvem
+// TODO: 1. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
+// TODO: 2. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
+// TODO: 3. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: 4. criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: 5. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
+// TODO: 6. definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
+// TODO: 7. migrar os scripts para TypeScript
+// TODO: 8. implementar autenticação por token
+// TODO: 9. implementar cadastro de usuários
+// TODO: 10. implementar hash no password
+// TODO: 11. implementar comms com o protocolo https
+// TODO: 12. estudar a criação de uma imagem Docker (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um so Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 13. estudar o uso de pipelines CI, CD e publicação em Nuvem
+// TODO: 14. estudar sobre restrições de entidades (um veículo reservado para uma única viagem, geolocalização (utilizando um bd postgis), cálculo de duração da viagem, restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo), etc.
 
 const express = require('express');
 const bodyParser = require('body-parser');
