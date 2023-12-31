@@ -5,7 +5,7 @@
 // TODO: 2. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
 // TODO: 3. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 // TODO: 4. criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: 5. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
+// TODO: 5. separar os serviços de backend dos submódulos do frontend
 // TODO: 6. definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
 // TODO: 7. migrar os scripts para TypeScript
 // TODO: 8. implementar autenticação por token
