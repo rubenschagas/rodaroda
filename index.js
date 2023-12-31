@@ -10,9 +10,10 @@
 // TODO: 5. resolver os problemas de código do projeto (via Inspect Code)
 // TODO: 6. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
 // TODO: 7. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: 8. criar uma entidade de pedidos, com relacionamentos com as existentes
 
 // Fase 2: Standards:
-// TODO: 8. definir, documentar e implementar:
+// TODO: 9. definir, documentar e implementar:
 //   Design Pattern;
 //   Code Formatters (ESLint, como nos projetos de automação);
 //   Testing Framework (e.g. Cypress) eventually for the frontend;
@@ -21,26 +22,27 @@
 //   Helper Classes, Helper Functions;
 //   use of JDoc;
 //   etc.
-// TODO: 9. migrar os scripts para TypeScript
-// TODO: 10. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
+// TODO: 10. migrar os scripts para TypeScript
+// TODO: 11. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
 
 // Fase 3: Autenticação:
-// TODO: 11. implementar autenticação por token nas APIs
-// TODO: 12. implementar cadastro de usuários
-// TODO: 13. implementar hash no password
-// TODO: 14. implementar perfis de acesso
-// TODO: 15. implementar comms com o protocolo https
+// TODO: 12. implementar autenticação por token nas APIs
+// TODO: 13. implementar cadastro de usuários
+// TODO: 14. implementar hash no password
+// TODO: 15. implementar perfis de acesso
+// TODO: 16. implementar comms com o protocolo https
 
 // Fase 4: Frontend:
-// TODO: 16. criar um projeto de frontend. Desenhar telas e fluxos. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: 17. separar os serviços de backend dos submódulos do frontend
+// TODO: 17. criar um projeto de frontend. Desenhar telas e fluxos, incluindo uma tela de pedidos em que um analista de logística trabalharia.
+//   Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: 18. separar os serviços de backend dos submódulos do frontend
 
 // Fase 5: CI/CD:
-// TODO: 18. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: 19. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+// TODO: 19. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 20. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 // Fase 6: Melhorias de aplicação e regras de negócio:
-// TODO: 20. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// TODO: 21. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar categorias de produtos e associa-las aos produtos;
 //   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 //   criar tipos de veículos e associa-las aos veículos;
@@ -51,6 +53,7 @@
 //   docas de carregamento e descarregamento nas localidades (dias de funcionamento?);
 //   restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo;
 //   cálculo de frete utilizando uma tabela por distancia);
+//   criar entidade de pedidos;
 //   etc.
 
 const express = require('express');
