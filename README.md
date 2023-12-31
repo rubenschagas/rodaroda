@@ -102,7 +102,9 @@ Note: Ansible playbooks are used in automating infrastructure setup.
 
 5. npm: ^8.11.0;
 
-6. node: ^16.16.0.
+6. node: ^16.16.0;
+
+7`TS-Node`: `^10.9.1`.
 
 On the rodaroda project folder, open a terminal and run the following command:
 
@@ -122,12 +124,53 @@ Newman will execute the Postman collection against the backend, and the newman-r
 
 Start the server:
 
-Make sure the Node.js server is running. 
+It has a [Command Line Interface](https://github.com/yargs/yargs) e helping a user or a pipeline cloud to inform specific runtime parameters.
 
 You can start the server by executing the following command in the terminal within the project directory:
 
 ```
-node index.js
+ts-node rodaroda.ts
+```
+
+Make sure the Node.js server is running.
+
+This project supports some customized parameters, such as: both tenant and environment of the <i>YMS</i>; user and password credentials; video generation for the scenarios; and so on.
+
+A useful menu help with all possible parameters can be viewed with following command:
+
+```
+> ts-node e2e-yms.cli.ts --help
+```
+
+Thus, a menu with supported parameters will be showed (some are optional, having a default value):
+
+```
+Usage: ts-node rodaroda.ts --help
+
+   +--------------------------------------+
+   |                                      |
+   |   Running the Rodaroda API server.   |
+   |                                      |
+   +--------------------------------------+
+
+Usage: Usage: ts-node rodaroda.ts [-appp 3000] [-dbh localhost] [-dbp 5432] [-dbn
+rodaroda] [-dbu postgres] [-dbw postgres]
+
+Options:
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -p, --appp     The application server port number. E.G.: 3000
+                                                      [string] [default: "3000"]
+  -h, --dbh      The database server hostname. E.G.: localhost|127.0.0.1
+                                                 [string] [default: "localhost"]
+  -t, --dbp      The database server port number. E.G.: 5432
+                                                      [string] [default: "5432"]
+  -n, --dbn      The database name. E.G.: rodaroda[string] [default: "rodaroda"]
+  -u, --dbu      The database username. E.G.: postgres
+                                                  [string] [default: "postgres"]
+  -w, --dbw      The database username. E.G.: p******s
+                                                  [string] [default: "postgres"]
+
 ```
 
 ## API

@@ -5,19 +5,18 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
 const app = express();
-// TODO: dinamizar a porta
-const port = 3000;
+const port = process.env.APPLICATION_PORT;
 
 app.use(bodyParser.json());
 
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e dinamizar as configurações com o banco de dados
 // Configuração do pool de conexão com o PostgreSQL
 const pool = new Pool({
-  host: 'localhost',
-  database: 'rodaroda',
-  user: 'postgres',
-  password: 'postgres',
-  port: 5432,
+  host: process.env.DATABASE_HOSTNAME,
+  port: process.env.DATABASE_PORT,
+  database: process.env.DATABASE_NAME,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
 });
 
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD
@@ -293,7 +292,6 @@ app.listen(port, () => {
 
 // TODO: criar um projeto de frontend. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
 // TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
-// TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação (exemplos: dinamizar o host, a porta, etc.)
 // TODO: migrar os scripts para TypeScript
 // TODO: implementar autenticação por token
 // TODO: implementar cadastro de usuários

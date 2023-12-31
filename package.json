@@ -5,8 +5,17 @@
   "main": "index.js",
   "license": "public",
   "dependencies": {
+    "@types/yargs": "^13.0.12",
+    "bent": "^7.3.12",
     "body-parser": "^1.20.2",
+    "boxen": "5.1.2",
+    "chalk": "4.1.2",
     "express": "^4.18.2",
-    "pg": "^8.11.3"
+    "moment": "^2.29.4",
+    "path": "^0.12.7",
+    "pg": "^8.11.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3",
+    "yargs": "^17.7.2"
   }
 }
