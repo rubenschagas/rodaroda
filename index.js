@@ -1,31 +1,34 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
+// TODOs list
+//
 // Fase 1: New features and technical debits:
 // TODO: 1. migrar esta lista de TODOs para um arquivo TODO.md
 // TODO: 2. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
 // TODO: 3. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
 // TODO: 4. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: 5. resolver os problemas de código do projeto (via Inspect Code)
 
 // Fase 2: Standards:
-// TODO: 5. definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
-// TODO: 6. migrar os scripts para TypeScript
+// TODO: 6. definir, documentar e implementar: Design Pattern, Code Formatters, Testing Framework (e.g. Cypress) for the frontend, Standardizations and Technical Guidelines, The definition of standards (for variables, files, and so on), Helper Classes, Helper Functions, use of JDoc, etc.
+// TODO: 7. migrar os scripts para TypeScript
 
 // Fase 3: Autenticação:
-// TODO: 7. implementar autenticação por token
-// TODO: 8. implementar cadastro de usuários
-// TODO: 9. implementar hash no password
-// TODO: 10. implementar comms com o protocolo https
+// TODO: 8. implementar autenticação por token
+// TODO: 9. implementar cadastro de usuários
+// TODO: 10. implementar hash no password
+// TODO: 11. implementar comms com o protocolo https
 
 // Fase 4: Frontend:
-// TODO: 11. criar um projeto de frontend. Desenhar telas e fluxos. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: 12. separar os serviços de backend dos submódulos do frontend
+// TODO: 12. criar um projeto de frontend. Desenhar telas e fluxos. Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
+// TODO: 13. separar os serviços de backend dos submódulos do frontend
 
 // Fase 5: CI/CD:
-// TODO: 13. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: 14. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+// TODO: 14. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 15. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 // Fase 6: Melhorias de aplicação e regras de negócio:
-// TODO: 15. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// TODO: 16. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar categorias de produtos e associa-las aos produtos;
 //   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 //   criar tipos de veículos e associa-las aos veículos;
