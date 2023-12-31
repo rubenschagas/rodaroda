@@ -11,7 +11,7 @@
 // TODO: implementar autenticação por token
 // TODO: implementar cadastro de usuários
 // TODO: implementar hash no password
-// TODO: estudar a criação de uma imagem Docker contendo a aplicação, banco de dados, base de dados, um so Alpine, assim como as dependências técnicas
+// TODO: estudar a criação de uma imagem Docker contendo a aplicação, banco de dados, base de dados, um so Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
 // TODO: estudar o uso de pipelines CI, CD e publicação em Nuvem
 
 const express = require('express');
