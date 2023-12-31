@@ -14,7 +14,7 @@
 // TODO: 11. implementar comms com o protocolo https
 // TODO: 12. estudar a criação de uma imagem Docker (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um so Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
 // TODO: 13. estudar o uso de pipelines CI, CD e publicação em Nuvem
-// TODO: 14. estudar sobre restrições de entidades (um veículo reservado para uma única viagem, geolocalização (utilizando um bd postgis), cálculo de duração da viagem, restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo), etc.
+// TODO: 14. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal) (criar uma frota de veículo e associá-la a uma transportadora, um único veículo por vez reservado para uma única viagem, geolocalização (utilizando um bd postgis) para cáluclo de rota via API do Google, cálculo de duração da viagem, restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo), etc.
 
 const express = require('express');
 const bodyParser = require('body-parser');
