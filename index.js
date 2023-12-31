@@ -3,6 +3,7 @@
 // TODOs list
 //
 // Fase 1: New features and technical debits:
+// TODO: 0. manter o README.md constantemente atualizado!
 // TODO: 1. migrar esta lista de TODOs para um arquivo TODO.md
 // TODO: 2. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
 // TODO: 3. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
