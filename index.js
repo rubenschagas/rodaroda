@@ -51,6 +51,7 @@
 //   criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 //   docas de carregamento e descarregamento nas localidades (dias de funcionamento?);
 //   restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo;
+//   criar um tabela de papéis/tipos logísticos de localidade e associá-los com os registros de localidade existentes
 //   cálculo de frete utilizando uma tabela por distancia);
 //   geolocalização (utilizando um bd postgis) para cálculo de rota via API do Google, e;
 //   cálculo de duração da viagem;
