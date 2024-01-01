@@ -100,11 +100,11 @@ Note: Ansible playbooks automate the infrastructure setup of the rodaroda applic
 
 4. a postgres dbms client, like DBeaver: >=23.x (optional);
 
-5. npm: ^8.11.0;
+5. npm: ^8.11;
 
-6. node: ^16.16.0;
+6. node: ^16.16;
 
-7`TS-Node`: `^10.9.1`.
+7. ts-node: ^10.9.
 
 On the rodaroda project folder, open a terminal and run the following command:
 
@@ -145,15 +145,7 @@ A useful menu help with all possible parameters can be viewed with following com
 Thus, a menu with supported parameters will be showed (some are optional, having a default value):
 
 ```
-Usage: ts-node rodaroda.ts --help
-
-   +--------------------------------------+
-   |                                      |
-   |   Running the Rodaroda API server.   |
-   |                                      |
-   +--------------------------------------+
-
-Usage: Usage: ts-node rodaroda.ts [-appp 3000] [-dbh localhost] [-dbp 5432] [-dbn
+Usage: ts-node rodaroda.ts [-appp 3000] [-dbh localhost] [-dbp 5432] [-dbn
 rodaroda] [-dbu postgres] [-dbw postgres]
 
 Options:
@@ -185,7 +177,7 @@ Open the Postman application.
 
 Import the collection file available at assets/collections folder.
 
-Open the `Consulta de Produtos` request.
+Open the `Consulta de Localidades` request.
 
 ---
 
