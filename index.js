@@ -9,7 +9,7 @@
 // TODO: 2. migrar esta lista de TODOs para um arquivo TODO.md
 // TODO: 3. se abituar a criar branches separadas por features/melhorias, criando PRs para a main
 // TODO: 4. traduzir todo o projeto para o Inglês, incluindo a padronização de código, endpoints, collection, etc.
-// TODO: 5. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
+// TODO: 5. modularizar (com os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
 // TODO: 6. resolver os problemas de código do projeto (via Inspect Code), pesquisando
 // TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável (e.g. in post method)
 // TODO: 8. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
