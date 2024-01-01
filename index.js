@@ -19,7 +19,6 @@
 // TODO: 10. definir, documentar e implementar:
 //   Design Pattern;
 //   Code Formatters (ESLint, como nos projetos de automação);
-//   Testing Framework (e.g. Cypress) eventually for the frontend;
 //   Standardizations and Technical Guidelines;
 //   The definition of standards (for variables, files, and so on);
 //   Helper Classes, Helper Functions;
@@ -39,16 +38,17 @@
 // TODO: 18. criar um projeto de frontend. Desenhar telas e fluxos, incluindo uma tela de pedidos em que um analista de logística trabalharia.
 //   Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
 // TODO: 19. separar os serviços de backend dos submódulos do frontend
+// TODO: 20. implementar um testing Framework (e.g. Cypress) eventually for the frontend;
 
 // Fase 6: Devops CI/CD:
-// TODO: 20. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: 21. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+// TODO: 21. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 22. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 // Fase 7: SRE Observality:
-// TODO: 22. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
+// TODO: 23. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
 
 // Fase 8: Melhorias de aplicação e regras de negócio:
-// TODO: 23. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// TODO: 24. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar uma tabela de placas e respectivo relacionamento com veículo
 //   criar tipos de veículos e associa-las aos veículos;
 //   criar uma frota de veículo e associá-la a uma transportadora;
