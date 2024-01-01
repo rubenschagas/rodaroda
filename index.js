@@ -10,8 +10,8 @@
 // TODO: 3. se abituar a criar branches separadas por features/melhorias, criando PRs para a main
 // TODO: 4. traduzir todo o projeto para o Inglês, incluindo a padronização de código, endpoints, collection, etc.
 // TODO: 5. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
-// TODO: 6. resolver os problemas de código do projeto (via Inspect Code)
-// TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
+// TODO: 6. resolver os problemas de código do projeto (via Inspect Code), pesquisando
+// TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável (e.g. in post method)
 // TODO: 8. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 // TODO: 9. criar uma entidade de pedidos, com relacionamentos com as existentes, alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection
 
@@ -19,13 +19,13 @@
 // TODO: 10. definir, documentar e implementar:
 //   Design Pattern;
 //   Code Formatters (ESLint, como nos projetos de automação);
-//   Standardizations and Technical Guidelines;
-//   The definition of standards (for variables, files, and so on);
+//   Standardizations and Technical Guidelines (como nos README.md das automações);
+//   The definition of standards (camelCase for variables, kabab-case for files, and so on);
 //   Helper Classes, Helper Functions;
-//   use of JDoc;
+//   use of JDoc in functions;
 //   etc.
 // TODO: 11. migrar os scripts para TypeScript
-// TODO: 12. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
+// TODO: 12. pesquisar implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
 
 // Fase 4: Autenticação:
 // TODO: 13. implementar autenticação por token nas APIs
@@ -38,9 +38,9 @@
 // TODO: 18. criar um projeto de frontend. Desenhar telas e fluxos, incluindo uma tela de pedidos em que um analista de logística trabalharia.
 //   Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
 // TODO: 19. separar os serviços de backend dos submódulos do frontend
-// TODO: 20. implementar um testing Framework (e.g. Cypress) eventually for the frontend;
+// TODO: 20. implementar um testing Framework (e.g. Cypress) eventually for the frontend
 
-// Fase 6: Devops CI/CD:
+// Fase 6: DevOps CI/CD:
 // TODO: 21. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
 // TODO: 22. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
