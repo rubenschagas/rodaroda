@@ -45,10 +45,11 @@
 // TODO: 22. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 // Fase 7: SRE Observality:
-// TODO: 23. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
+// TODO: 23. implementar um sistema de logs de aplicação em arquivo
+// TODO: 24. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
 
 // Fase 8: Melhorias de aplicação e regras de negócio:
-// TODO: 24. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// TODO: 25. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar uma tabela de placas e respectivo relacionamento com veículo
 //   criar tipos de veículos e associa-las aos veículos;
 //   criar uma frota de veículo e associá-la a uma transportadora;
@@ -61,6 +62,8 @@
 //   cálculo de frete utilizando uma tabela por distancia);
 //   geolocalização (utilizando um bd postgis) para cálculo de rota via API do Google, e;
 //   cálculo de duração da viagem;
+//   introduzir status de viagem;
+//   criar uma tela para monitoramento de status de viagens;
 //   etc.
 
 const express = require('express');
