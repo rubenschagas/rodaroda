@@ -2,18 +2,21 @@
 
 // TODOs list
 //
-// Fase 1: New features and technical debits:
+// Fase 1: Creating the automated Devop infrastructure (database, app, endpoints, automated API testing, html report, etc.) - DONE
+//
+// Fase 2: New features and technical debits:
 // TODO: 1. manter o README.md constantemente atualizado!
 // TODO: 2. migrar esta lista de TODOs para um arquivo TODO.md
 // TODO: 3. se abituar a criar branches separadas por features/melhorias, criando PRs para a main
-// TODO: 4. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
-// TODO: 5. resolver os problemas de código do projeto (via Inspect Code)
-// TODO: 6. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
-// TODO: 7. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
-// TODO: 8. criar uma entidade de pedidos, com relacionamentos com as existentes
+// TODO: 4. traduzir todo o projeto para o Inglês, incluindo a padronização de código, endpoints, collection, etc.
+// TODO: 5. modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
+// TODO: 6. resolver os problemas de código do projeto (via Inspect Code)
+// TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável
+// TODO: 8. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+// TODO: 9. criar uma entidade de pedidos, com relacionamentos com as existentes, alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection
 
-// Fase 2: Standards:
-// TODO: 9. definir, documentar e implementar:
+// Fase 3: Standards:
+// TODO: 10. definir, documentar e implementar:
 //   Design Pattern;
 //   Code Formatters (ESLint, como nos projetos de automação);
 //   Testing Framework (e.g. Cypress) eventually for the frontend;
@@ -22,27 +25,30 @@
 //   Helper Classes, Helper Functions;
 //   use of JDoc;
 //   etc.
-// TODO: 10. migrar os scripts para TypeScript
-// TODO: 11. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
+// TODO: 11. migrar os scripts para TypeScript
+// TODO: 12. implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
 
-// Fase 3: Autenticação:
-// TODO: 12. implementar autenticação por token nas APIs
-// TODO: 13. implementar cadastro de usuários
-// TODO: 14. implementar hash no password
-// TODO: 15. implementar perfis de acesso
-// TODO: 16. implementar comms com o protocolo https
+// Fase 4: Autenticação:
+// TODO: 13. implementar autenticação por token nas APIs
+// TODO: 14. implementar cadastro de usuários
+// TODO: 15. implementar hash no password
+// TODO: 16. implementar perfis de acesso
+// TODO: 17. implementar comms com o protocolo https
 
-// Fase 4: Frontend:
-// TODO: 17. criar um projeto de frontend. Desenhar telas e fluxos, incluindo uma tela de pedidos em que um analista de logística trabalharia.
+// Fase 5: Frontend:
+// TODO: 18. criar um projeto de frontend. Desenhar telas e fluxos, incluindo uma tela de pedidos em que um analista de logística trabalharia.
 //   Se basear em: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: 18. separar os serviços de backend dos submódulos do frontend
+// TODO: 19. separar os serviços de backend dos submódulos do frontend
 
-// Fase 5: CI/CD:
-// TODO: 19. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
-// TODO: 20. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+// Fase 6: Devops CI/CD:
+// TODO: 20. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, banco de dados, base de dados, um SO Alpine, os testes integrados de API e a publicação do respectivo relatório, assim como as outras dependências técnicas
+// TODO: 21. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
-// Fase 6: Melhorias de aplicação e regras de negócio:
-// TODO: 21. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+// Fase 7: SRE Observality:
+// TODO: 22. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
+
+// Fase 8: Melhorias de aplicação e regras de negócio:
+// TODO: 23. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 //   criar uma tabela de placas e respectivo relacionamento com veículo
 //   criar tipos de veículos e associa-las aos veículos;
 //   criar uma frota de veículo e associá-la a uma transportadora;
