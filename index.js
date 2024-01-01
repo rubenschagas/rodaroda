@@ -2,7 +2,7 @@
 
 // TODOs list
 //
-// Fase 1: Creating the automated Devop infrastructure (database, app, endpoints, automated API testing, html report, etc.) - DONE
+// Fase 1: Creating the automated Devop infrastructure (database, app, endpoints, automated API testing, html report, CLI, etc.) - DONE
 //
 // Fase 2: New features and technical debits:
 // TODO: 1. manter o README.md constantemente atualizado!
