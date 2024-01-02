@@ -105,7 +105,7 @@ app.post('/localities', async (req, res) => {
       return res.status(404).json({ error: 'Failed to register locality.' });
    }
   const { name, type } = req.body;
-  const result = await pool.query('INSERT INTO localities (name, type) VALUES ($1, $2) RETURNING *', [name, type]);
+  const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [name, type]);
    if (result.rows.length === 0) {
      return res.status(404).json({ error: 'Failed to register locality.' });
    }
