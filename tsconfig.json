@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES6",
+    "lib": [
+      "ES6",
+      "dom"
+    ],
+    "strict": false,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "**/*.js",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": [
+      "node",
+      "lodash"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "src", "typings.d.ts",
+  ],
+}

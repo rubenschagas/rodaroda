@@ -1,185 +1,292 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
-    const express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
+const applicationPort = process.env.APPLICATION_PORT || '3000';
+const databaseHostname = process.env.DATABASE_HOSTNAME || 'localhost';
+const databasePort = process.env.DATABASE_PORT || '5432';
+const databaseName = process.env.DATABASE_NAME || 'rodaroda';
+const databaseUsername = process.env.DATABASE_USER || 'postgres';
+const databasePassword = process.env.DATABASE_PASSWORD || 'postgres';
+
 const app = express();
-// TODO: dinamizar a porta
-const port = 3000;
+const port = applicationPort;
 
 app.use(bodyParser.json());
 
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e dinamizar as configurações com o banco de dados
 // Configuração do pool de conexão com o PostgreSQL
 const pool = new Pool({
-  host: 'localhost',
-  database: 'rodaroda',
-  user: 'postgres',
-  password: 'postgres',
-  port: 5432,
+  host: databaseHostname,
+  port: databasePort,
+  database: databaseName,
+  user: databaseUsername,
+  password: databasePassword,
 });
 
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) cada CRUD
-// TODO: refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload
-
 // CRUD para localidade
-app.get('/localidades', async (req, res) => {
-  const result = await pool.query('SELECT * FROM localidade');
+app.get('/localities', async (req, res) => {
+  const result = await pool.query('SELECT * FROM locality');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find localities.' });
+  }
   res.json(result.rows);
 });
 
-app.post('/localidades', async (req, res) => {
-  const { nome, tipo } = req.body;
-  const result = await pool.query('INSERT INTO localidade (nome, tipo) VALUES ($1, $2) RETURNING *', [nome, tipo]);
+app.post('/localities', async (req, res) => {
+   if(!req.body.name || !req.body.type){
+      return res.status(404).json({ error: 'Failed to register locality.' });
+   }
+  const { name, type } = req.body;
+  const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [name, type]);
+   if (result.rows.length === 0) {
+     return res.status(404).json({ error: 'Failed to register locality.' });
+   }
   res.json(result.rows[0]);
 });
 
-app.get('/localidades/:id', async (req, res) => {
+app.get('/localities/:id', async (req, res) => {
   const { id } = req.params;
-  const result = await pool.query('SELECT * FROM localidade WHERE id = $1', [id]);
+  const result = await pool.query('SELECT * FROM locality WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Localidade não encontrada.' });
+    return res.status(404).json({ error: 'Cannot find locality.' });
   }
   res.json(result.rows[0]);
 });
 
-app.put('/localidades/:id', async (req, res) => {
+app.put('/localities/:id', async (req, res) => {
+  if(!req.body.name || !req.body.type){
+        return res.status(404).json({ error: 'Failed to update locality.' });
+  }
   const { id } = req.params;
-  const { nome, tipo } = req.body;
-  const result = await pool.query('UPDATE localidade SET nome = $1, tipo = $2 WHERE id = $3 RETURNING *', [nome, tipo, id]);
+  const { name, type } = req.body;
+  const result = await pool.query('UPDATE locality SET name = $1, type = $2 WHERE id = $3 RETURNING *', [name, type, id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Localidade não encontrada.' });
+    return res.status(404).json({ error: 'Cannot find locality.' });
   }
   res.json(result.rows[0]);
 });
 
-app.delete('/localidades/:id', async (req, res) => {
+app.delete('/localities/:id', async (req, res) => {
   const { id } = req.params;
-  const result = await pool.query('DELETE FROM localidade WHERE id = $1 RETURNING *', [id]);
+  const result = await pool.query('DELETE FROM locality WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Localidade não encontrada.' });
+    return res.status(404).json({ error: 'Cannot find locality.' });
   }
-  res.json({ message: 'Localidade excluída com sucesso.' });
+  res.json({ message: 'Locality successfully deleted.' });
 });
 
 // CRUD para produto
-app.get('/produtos', async (req, res) => {
-  const result = await pool.query('SELECT * FROM produto');
+app.get('/products', async (req, res) => {
+  const result = await pool.query('SELECT * FROM product');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find products.' });
+  }
   res.json(result.rows);
 });
 
-app.post('/produtos', async (req, res) => {
-  const { nome, descricao } = req.body;
-  const result = await pool.query('INSERT INTO produto (nome, descricao) VALUES ($1, $2) RETURNING *', [nome, descricao]);
+app.post('/products', async (req, res) => {
+  if(!req.body.name || !req.body.description){
+        return res.status(404).json({ error: 'Failed to register product.' });
+  }
+  const { name, description } = req.body;
+  const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *', [name, description]);
+  if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Failed to register product.' });
+    }
   res.json(result.rows[0]);
 });
 
-app.get('/produtos/:id', async (req, res) => {
+app.get('/products/:id', async (req, res) => {
   const { id } = req.params;
-  const result = await pool.query('SELECT * FROM produto WHERE id = $1', [id]);
+  const result = await pool.query('SELECT * FROM product WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Produto não encontrado.' });
+    return res.status(404).json({ error: 'Cannot find product.' });
   }
   res.json(result.rows[0]);
 });
 
-app.put('/produtos/:id', async (req, res) => {
+app.put('/products/:id', async (req, res) => {
+  if(!req.body.name || !req.body.description){
+    return res.status(404).json({ error: 'Failed to update product.' });
+  }
   const { id } = req.params;
-  const { nome, descricao } = req.body;
-  const result = await pool.query('UPDATE produto SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
+  const { name, description } = req.body;
+  const result = await pool.query('UPDATE product SET name = $1, description = $2 WHERE id = $3 RETURNING *', [name, description, id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Produto não encontrado.' });
+    return res.status(404).json({ error: 'Cannot find product.' });
   }
   res.json(result.rows[0]);
 });
 
-app.delete('/produtos/:id', async (req, res) => {
+app.delete('/products/:id', async (req, res) => {
   const { id } = req.params;
-  const result = await pool.query('DELETE FROM produto WHERE id = $1 RETURNING *', [id]);
+  const result = await pool.query('DELETE FROM product WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Produto não encontrado.' });
+    return res.status(404).json({ error: 'Cannot find product.' });
   }
-  res.json({ message: 'Produto excluído com sucesso.' });
+  res.json({ message: 'Product successfully deleted.' });
 });
 
 // CRUD para transportadora
-app.get('/transportadoras', async (req, res) => {
-  const result = await pool.query('SELECT * FROM transportadora');
+app.get('/carriers', async (req, res) => {
+  const result = await pool.query('SELECT * FROM carrier');
+   if (result.rows.length === 0) {
+     return res.status(404).json({ error: 'Cannot find carriers.' });
+   }
   res.json(result.rows);
 });
 
-app.post('/transportadoras', async (req, res) => {
-  const { nome, contato } = req.body;
-  const result = await pool.query('INSERT INTO transportadora (nome, contato) VALUES ($1, $2) RETURNING *', [nome, contato]);
-  res.json(result.rows[0]);
-});
-
-app.get('/transportadoras/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM transportadora WHERE id = $1', [id]);
+app.post('/carriers', async (req, res) => {
+  if(!req.body.name || !req.body.contact){
+    return res.status(404).json({ error: 'Failed to register carrier.' });
+  }
+  const { name, contact } = req.body;
+  const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [name, contact]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Transportadora não encontrada.' });
+    return res.status(404).json({ error: 'Failed to register carrier.' });
   }
   res.json(result.rows[0]);
 });
 
-app.put('/transportadoras/:id', async (req, res) => {
+app.get('/carriers/:id', async (req, res) => {
   const { id } = req.params;
-  const { nome, descricao } = req.body;
-  const result = await pool.query('UPDATE transportadora SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', [nome, descricao, id]);
+  const result = await pool.query('SELECT * FROM carrier WHERE id = $1', [id]);
   if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Transportadora não encontrada.' });
+    return res.status(404).json({ error: 'Cannot find carrier.' });
   }
   res.json(result.rows[0]);
 });
 
-app.delete('/transportadoras/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM transportadora WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Transportadora não encontrada.' });
+app.put('/carriers/:id', async (req, res) => {
+  if(!req.body.name || !req.body.contact){
+    return res.status(404).json({ error: 'Failed to update carrier.' });
   }
-  res.json({ message: 'Transportadora excluída com sucesso.' });
+  const { id } = req.params;
+  const { name, contact } = req.body;
+  const result = await pool.query('UPDATE carrier SET name = $1, contact = $2 WHERE id = $3 RETURNING *', [name, contact, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find carrier.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/carriers/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM carrier WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find carrier.' });
+  }
+  res.json({ message: 'Carrier successfully deleted.' });
 });
 
 // CRUD para veículo
-app.get('/veiculos', async (req, res) => {
-  const result = await pool.query('SELECT * FROM veiculo');
+app.get('/vehicles', async (req, res) => {
+  const result = await pool.query('SELECT * FROM vehicle');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicles.' });
+  }
   res.json(result.rows);
 });
 
-app.post('/veiculos', async (req, res) => {
-  const { modelo, placa } = req.body;
-  const result = await pool.query('INSERT INTO veiculo (modelo, placa) VALUES ($1, $2) RETURNING *', [modelo, placa]);
+app.post('/vehicles', async (req, res) => {
+  if(!req.body.name || !req.body.model || !req.body.license_plate){
+    return res.status(404).json({ error: 'Failed to register vehicle.' });
+  }
+  const { name, model, license_plate } = req.body;
+  const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *', [name, model, license_plate]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Failed to register vehicle.' });
+  }
   res.json(result.rows[0]);
 });
 
-// TODO: Adicione rotas semelhantes para atualização, exclusão e visualização individual para veiculo
+app.get('/vehicles/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM vehicle WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/vehicles/:id', async (req, res) => {
+  if(!req.body.name || !req.body.model || !req.body.license_plate){
+    return res.status(404).json({ error: 'Failed to update vehicle.' });
+  }
+  const { id } = req.params;
+  const { name, model, license_plate } = req.body;
+  const result = await pool.query('UPDATE vehicle SET name = $1, model = $2, license_plate = $3 WHERE id = $4 RETURNING *', [name, model, license_plate, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/vehicles/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM vehicle WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle.' });
+  }
+  res.json({ message: 'Vehicle successfully deleted.' });
+});
 
 // CRUD para viagem
-app.get('/viagens', async (req, res) => {
-  const result = await pool.query('SELECT * FROM viagem');
+app.get('/trips', async (req, res) => {
+  const result = await pool.query('SELECT * FROM trip');
+  if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Cannot find trips.' });
+  }
   res.json(result.rows);
 });
 
-app.post('/viagens', async (req, res) => {
-  const { origem_id, destino_id, produto_id, transportadora_id, veiculo_id, data_partida, data_chegada } = req.body;
-  const result = await pool.query('INSERT INTO viagem (origem_id, destino_id, produto_id, transportadora_id, veiculo_id, data_partida, data_chegada) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-    [origem_id, destino_id, produto_id, transportadora_id, veiculo_id, data_partida, data_chegada]);
+app.post('/trips', async (req, res) => {
+  if(!req.body.origin_id || !req.body.destination_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.leaving_date || !req.body.arrival_date){
+      return res.status(404).json({ error: 'Failed to register trip.' });
+  }
+  const { origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_date } = req.body;
+  const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+  [origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_date]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Failed to register trip.' });
+    }
   res.json(result.rows[0]);
 });
 
-// TODO: Adicione rotas semelhantes para atualização, exclusão e visualização individual para viagem
+app.get('/trips/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM trip WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find trip.' });
+  }
+  res.json(result.rows[0]);
+});
 
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) a escuta
-// TODO: realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
+app.put('/trips/:id', async (req, res) => {
+  if(!req.body.origin_id || !req.body.destination_id_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.leaving_date || !req.body.arrival_date){
+    return res.status(404).json({ error: 'Failed to register trip.' });
+  }
+  const { id } = req.params;
+  const { origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date } = req.body;
+  const result = await pool.query('UPDATE viagem SET origem_id = $1, destino_id = $2, produto_id = $3, transportadora_id = $4, veiculo_id = $5, data_partida = $6, data_chegada = $7  WHERE id = $8 RETURNING *',
+  [origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find trip.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/trips/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM trip WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find trip.' });
+  }
+  res.json({ message: 'Trip successfully deleted.' });
+});
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
-
-// TODO: criar um projeto de frontend. Base: https://chat.openai.com/share/e5aa4258-e063-4002-956d-ec6b4fbbbb81
-// TODO: modularizar (com PageObject e os mesmos paradigmas dos projetos de automação) e separar os serviços de backend dos submódulos do frontend
-// TODO: criar um script de CLI como gateway para informar parâmetros semelhante aos outros projetos de automação
-// TODO: migrar os scripts para TypeScript
-// TODO: implementar autenticação por token
