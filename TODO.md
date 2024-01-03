@@ -34,7 +34,7 @@ TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no me
 
 TODO: 8. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 
-TODO: 9. criar uma entidade de pedidos, com relacionamentos com as existentes, alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection
+TODO: 9. criar uma entidade de pedidos, com uma coluna code única, com relacionamentos com as entidades existentes, alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection
 
 ## Standards
 
@@ -74,19 +74,21 @@ TODO: 20. implementar um testing Framework (e.g. Cypress) eventually for the fro
 
 ## DevOps-CI-CD
 
-TODO: 21. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação, b
+TODO: 21. instalar a aplicação e o frontend em um Tomcat? server
 
-TODO: 22. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
+TODO: 22. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação
+
+TODO: 23. estudar o uso de pipelines CI, CD (utilizando uma imagem Jenkins?) e publicação em Nuvem (GCP?/AWS? com cotas grátis)
 
 ## SRE-Observality
 
-TODO: 23. implementar um sistema de logs de aplicação em arquivo
+TODO: 24. implementar um sistema de logs de aplicação em arquivo
 
-TODO: 24. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
+TODO: 245. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elastich search, etc.) para ficar testando a disponibilidade e saúde da aplicação, banco de dados, portas, etc.
 
 ## Melhorias-de-aplicação-e-regras-de-negócio
 
-TODO: 25. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
+TODO: 26. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 modificar o método de exclusão de registros de entidades para, caso for excluído, não seja excluído de fato da base de dados, mas apenas inativado (uma nova coluna de status em todas as entidades);
 modificar a estrutura da tabela localities, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes);
 modificar a estrutura da tabela vehicles, de forma a possuir um código identificador de veículo único (como um renavam) (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos válidos automaticamente para os testes);
