@@ -92,6 +92,7 @@ TODO: 26. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elas
 
 TODO: 27. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
 modificar o método de exclusão de registros de entidades para, caso for excluído, não seja excluído de fato da base de dados, mas apenas inativado (uma nova coluna de status em todas as entidades);
+implementar nos filtros como parâmetros nas consultas de get das entidades a possibilidade de trazer opcionalmente os registros inativos;
 modificar a estrutura da tabela localities, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes);
 modificar a estrutura da tabela vehicles, de forma a possuir um código identificador de veículo único (como um renavam) (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos válidos automaticamente para os testes);
 modificar a estrutura da tabela carriers, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes);
