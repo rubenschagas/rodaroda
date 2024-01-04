@@ -22,7 +22,7 @@ TODO: 1. manter o README.md constantemente atualizado!
 
 2. migrar esta lista de TODOs para um arquivo TODO.md - DONE
 
-TODO: 3. se abituar a criar branches separadas por features/melhorias, criando PRs para a main
+TODO: 3. se abituar a criar branches separadas por features/melhorias, criando PRs para a main, excluindo as branches posteriormente
 
 TODO: 4. traduzir todo o projeto para o Inglês, incluindo a padronização de código, endpoints, collection, etc.
 
