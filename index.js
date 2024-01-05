@@ -35,15 +35,53 @@ app.get('/localities', async (req, res) => {
 });
 
 app.post('/localities', async (req, res) => {
-   if(!req.body.name || !req.body.type){
-      return res.status(404).json({ error: 'Failed to register locality.' });
-   }
-  const { name, type } = req.body;
-  const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [name, type]);
-   if (result.rows.length === 0) {
-     return res.status(404).json({ error: 'Failed to register locality.' });
-   }
-  res.json(result.rows[0]);
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.name || !register.type){
+          errors.push({ error: 'Failed to register locality.'});
+      }
+    }
+
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [register.name, register.type]);
+      return result.rows[0];
+    });
+
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register locality.'});
+      }
+
+      res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting localities:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.name || !request.type){
+        errors.push({ error: 'Failed to register locality.'});
+    }
+
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+
+    const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [request.name, request.type]);
+
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register locality.'});
+    }
+    res.json(result.rows[0]);
+  }
 });
 
 app.get('/localities/:id', async (req, res) => {
@@ -95,19 +133,22 @@ app.post('/products', async (req, res) => {
         if(!register.name || !register.description){
             errors.push({ error: 'Failed to register product.'});
         }
+      }
 
       if(errors.length > 0){
         return res.status(400).json(errors);
+      }
 
       const promises = request.map(async (register) => {
-        const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *', [register.name, register.description]);
+      const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [register.name, register.description]);
         return result.rows[0];
-      })
+      });
+
       try{
-        const insertedProducts = await Promise.all(promises)
+      const insertedProducts = await Promise.all(promises)
         if(insertedProducts.length === 0){
             return res.status(404).json({ error: 'Failed to register product.'});
-
+        }
         res.json(insertedProducts);
       }catch(error){
         console.error('Error inserting products:', error);
@@ -116,11 +157,14 @@ app.post('/products', async (req, res) => {
   }else{
     if(!request.name || !request.description){
         errors.push({ error: 'Failed to register product.'});
+    }
 
     if(errors.length > 0){
         return res.status(400).json(errors);
+    }
 
-    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *', [request.name, request.description])
+    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.description]);
+
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register product.'});
     }
@@ -267,19 +311,19 @@ app.post('/vehicles', async (req, res) => {
       if(!register.name || !register.model || !register.license_plate){
           errors.push({ error: 'Failed to register vehicle.'});
       }
-
+    }
     if(errors.length > 0){
       return res.status(400).json(errors);
-
+    }
     const promises = request.map(async (register) => {
       const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.model, register.license_plate]);
       return result.rows[0];
-
+    });
     try{
-      const insertedVehicles = await Promise.all(promise
+      const insertedVehicles = await Promise.all(promises)
       if(insertedVehicles.length === 0){
           return res.status(404).json({ error: 'Failed to register vehicle.'});
-
+      }
       res.json(insertedVehicles);
     }catch(error){
       console.error('Error inserting vehicles:', error);
