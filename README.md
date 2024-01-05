@@ -22,11 +22,18 @@
 
 ## OVERVIEW
 
-The objective of this README.md document file is to provide help on how to run the automated deployment of a CRUD project, as hackathon, running a backend service that supports CRUD operations.
+This README.md document aims to guide you through the automated deployment of a DevOps project, specifically 
+a hackathon featuring a backend service supporting CRUD operations.
 
-The purpose of this app is to build a basic structure for a backend application, along with an automated database, where, upon sending requests to the backend, we can query and insert data into it.
+The purpose of this app is to build a basic structure for a backend application, along with an automated database,
+where, upon sending requests to the backend, we can query and insert data into it.
 
-The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and destination types), product, and carrier.
+The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and 
+destination types), product, vehicle and carrier.
+
+Furthermore, there is a goal of objectives to achieve, like use standards, design patterns, code formatters, JDoc, 
+building an authentication process, frontend, CI-CD, observality, application and business rules enhancements, 
+and so on. Thus, the goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
 
 ## ARCHITECTURE
 
