@@ -151,7 +151,7 @@ app.post('/products', async (req, res) => {
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.description]);
+    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [request.name, request.description]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register product.'});
     }
@@ -364,16 +364,47 @@ app.get('/trips', async (req, res) => {
 });
 
 app.post('/trips', async (req, res) => {
-  if(!req.body.origin_id || !req.body.destination_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.leaving_date || !req.body.arrival_date){
-      return res.status(404).json({ error: 'Failed to register trip.' });
-  }
-  const { origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_date } = req.body;
-  const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-  [origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_date]);
-    if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Failed to register trip.' });
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.origin_id || !register.destination_id || !register.product_id || !register.carrier_id || !register.vehicle_id || !register.leaving_date || !register.arrival_date){
+            errors.push({ error: 'Failed to register trip.'});
+      }
     }
-  res.json(result.rows[0]);
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [register.origin_id, register.destination_id, register.product_id, register.carrier_id, register.vehicle_id, register.leaving_date, register.arrival_date]);
+      return result.rows[0];
+    });
+    try{
+      const insertedTrips = await Promise.all(promises)
+      if(insertedTrips.length === 0){
+          return res.status(404).json({ error: 'Failed to register trip.'});
+      }
+      res.json(insertedTrips);
+    }catch(error){
+      console.error('Error inserting trips:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+    }else{
+      if(!request.origin_id || !request.destination_id || !request.product_id || !request.carrier_id || !request.vehicle_id || !request.leaving_date || !request.arrival_date){
+         errors.push({ error: 'Failed to register trip.'});
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    [request.origin_id, request.destination_id, request.product_id, request.carrier_id, request.vehicle_id, request.leaving_date, request.arrival_date]);
+    if(result.rows.length === 0){
+      return res.status(404).json({ error: 'Failed to register trip.'});
+    }
+    res.json(result.rows[0]);
+    }
 });
 
 app.get('/trips/:id', async (req, res) => {
