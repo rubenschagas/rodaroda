@@ -34,9 +34,10 @@ destination types), product, vehicle and carrier.
 Additionally, it will execute Postman collection tests against the backend and generate a visually appealing 
 HTML report for the test run.
 
-Furthermore, there is a goal of objectives to achieve, like use standards, design patterns, code formatters, JDoc, 
-building an authentication process, frontend, CI-CD, observality, application and business rules enhancements, 
-and so on. Thus, the goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
+Furthermore, there are specific objectives to achieve, such as implementing standards, design patterns, 
+code formatters, JDoc, building an authentication process, frontend development, introducing new entities, 
+CI-CD, observability, and enhancements to application and business rules, among others. Thus, the overall goal 
+is to develop skills in the domains of DevOps, Development, QA, and SRE.
 
 ## ARCHITECTURE
 
