@@ -22,7 +22,7 @@
 
 ## OVERVIEW
 
-The objective of this README.md document file is to provide help on how to run the automated deployment of a CRUD project, as a Proof of Concept (POC), running a backend service that supports CRUD operations.
+The objective of this README.md document file is to provide help on how to run the automated deployment of a CRUD project, as hackathon, running a backend service that supports CRUD operations.
 
 The purpose of this app is to build a basic structure for a backend application, along with an automated database, where, upon sending requests to the backend, we can query and insert data into it.
 
