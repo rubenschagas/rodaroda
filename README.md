@@ -31,6 +31,9 @@ where, upon sending requests to the backend, we can query and insert data into i
 The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and 
 destination types), product, vehicle and carrier.
 
+Additionally, it will execute Postman collection tests against the backend and generate a visually appealing 
+HTML report for the test run.
+
 Furthermore, there is a goal of objectives to achieve, like use standards, design patterns, code formatters, JDoc, 
 building an authentication process, frontend, CI-CD, observality, application and business rules enhancements, 
 and so on. Thus, the goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
