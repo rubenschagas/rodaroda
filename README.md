@@ -25,19 +25,20 @@
 This README.md document aims to guide you through the automated deployment of a DevOps project, specifically 
 a hackathon featuring a backend service supporting CRUD operations.
 
-The purpose of this app is to build a basic structure for a backend application, along with an automated database,
-where, upon sending requests to the backend, we can query and insert data into it.
+The purpose of this app is to build a basic structure for a backend application, along with an automated database.
+Upon sending requests to the backend, we can query and insert data into it.
 
-The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and 
+The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and
 destination types), product, vehicle and carrier.
 
-Additionally, it will execute Postman collection tests against the backend and generate a visually appealing 
+Additionally, it will execute Postman collection tests against the backend and generate a visually appealing
 HTML report for the test run.
 
-Furthermore, there are specific objectives to achieve, such as implementing standards, design patterns, 
-code formatters, JDoc, building an authentication process, frontend development, introducing new entities, 
-CI-CD, cloud, observability, and enhancements to application and business rules, among others. Thus, the overall goal 
-is to develop skills in the domains of DevOps, Development, QA, and SRE.
+Furthermore, there are specific objectives to achieve, including the implementation of standards, design patterns,
+code formatters, JDoc, building an authentication process, frontend development, introducing new entities, CI-CD,
+cloud, observability, and enhancements to application and business rules, among others.
+
+Thus, the overall goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
 
 ## ARCHITECTURE
 
