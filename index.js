@@ -191,15 +191,53 @@ app.get('/vehicles', async (req, res) => {
 });
 
 app.post('/vehicles', async (req, res) => {
-  if(!req.body.name || !req.body.model || !req.body.license_plate){
-    return res.status(404).json({ error: 'Failed to register vehicle.' });
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+      for(const register of request){
+        if(!register.name || !register.model || !register.license_plate){
+            errors.push({ error: 'Failed to register vehicle.'});
+        }
+      }
+
+      if(errors.length > 0){
+        return res.status(400).json(errors);
+      }
+
+      const promises = request.map(async (register) => {
+        const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.model, register.license_plate]);
+        return result.rows[0];
+      });
+
+      try{
+        const insertedVehicles = await Promise.all(promises);
+
+        if(insertedVehicles.length === 0){
+            return res.status(404).json({ error: 'Failed to register vehicle.'});
+        }
+
+        res.json(insertedVehicles);
+      }catch(error){
+        console.error('Error inserting vehicles:', error);
+        res.status(500).json({error: 'Internal server error.'})
+      }
+  }else{
+    if(!request.name || !request.model || !request.license_plate){
+        errors.push({ error: 'Failed to register vehicle.'});
+    }
+
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+
+    const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.model, request.license_plate]);
+
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register vehicle.'});
+    }
+    res.json(result.rows[0]);
   }
-  const { name, model, license_plate } = req.body;
-  const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *', [name, model, license_plate]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Failed to register vehicle.' });
-  }
-  res.json(result.rows[0]);
 });
 
 app.get('/vehicles/:id', async (req, res) => {
