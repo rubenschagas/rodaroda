@@ -30,7 +30,7 @@ TODO: 5. modularizar (com os mesmos paradigmas dos projetos de automação) cada
 
 TODO: 6. resolver os problemas de código do projeto (via Inspect Code), pesquisando
 
-TODO: 7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável (e.g. in post method) WORKING !
+7. refatorar de forma que os endpoints suportem um ou mais registros no mesmo payload, quando aplicável (e.g. in post method) - DONE
 
 TODO: 8. realizar tratamentos de violações de integridade dos relacionamentos da base de dados de forma que o server não caia quando, por exemplo, deixarmos de enviar um campo não nulo em uma integração
 
