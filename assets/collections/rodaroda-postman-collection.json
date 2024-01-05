@@ -246,7 +246,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n\n\n\n",
+									"raw": "[\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n},\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -336,7 +336,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"destination\"\n}\n",
+									"raw": "[\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n},\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -952,7 +952,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\"\n}\n",
+									"raw": "[\n{\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\"\n},\n{\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1445,7 +1445,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n}\n",
+									"raw": "[\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n},\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1990,7 +1990,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n}\n",
+									"raw": "[\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n},\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2151,7 +2151,7 @@
 							"response": []
 						},
 						{
-							"name": "Exclusão de Veiculo por id",
+							"name": "Deleting vehicle by id",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -2713,7 +2713,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n}\n",
+									"raw": "[\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n},\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n}\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2885,14 +2885,15 @@
 											"  }",
 											"};",
 											"",
-											"let ORIGINID = pm.sendRequest(postLocalityOrigin, function (err, response) {",
+											"pm.sendRequest(postLocalityOrigin, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
-											"}).response;",
-											"",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('ORIGINLOCALITY_ID', ID);",
+											"});",
 											"",
 											"const postTrip = {",
 											"url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/trips',",
@@ -2913,8 +2914,7 @@
 											"    })",
 											" }",
 											"};",
-											"",
-											"console.log(ORIGINID)",
+											"console.log(pm.environment.get('ORIGINLOCALITY_ID'))",
 											"console.log(pm.environment.get('DESTINATIONLOCALITY_ID'))",
 											"console.log(pm.environment.get('PRODUCT_ID'))",
 											"console.log(pm.environment.get('CARRIER_ID'))",
@@ -3174,6 +3174,10 @@
 			"key": "APP_DOMAIN_AND_PORT",
 			"value": "http://localhost:3000",
 			"type": "string"
+		},
+		{
+			"key": "ORIGINLOCALITY_ID",
+			"value": ""
 		}
 	]
 }
