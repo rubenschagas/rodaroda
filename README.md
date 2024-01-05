@@ -38,6 +38,8 @@ Furthermore, there are specific objectives to achieve, including the implementat
 code formatters, JDoc, building an authentication process, frontend development, introducing new entities, CI-CD, 
 cloud, observability, and enhancements to application and business rules, among others.
 
+Thus, the overall goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
+
 ## ARCHITECTURE
 
 ### App environment
