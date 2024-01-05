@@ -139,15 +139,53 @@ app.get('/carriers', async (req, res) => {
 });
 
 app.post('/carriers', async (req, res) => {
-  if(!req.body.name || !req.body.contact){
-    return res.status(404).json({ error: 'Failed to register carrier.' });
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+      for(const register of request){
+        if(!register.name || !register.contact){
+            errors.push({ error: 'Failed to register carrier.'});
+        }
+      }
+
+      if(errors.length > 0){
+        return res.status(400).json(errors);
+      }
+
+      const promises = request.map(async (register) => {
+        const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [register.name, register.contact]);
+        return result.rows[0];
+      });
+
+      try{
+        const insertedVehicles = await Promise.all(promises);
+
+        if(insertedVehicles.length === 0){
+            return res.status(404).json({ error: 'Failed to register carrier.'});
+        }
+
+        res.json(insertedVehicles);
+      }catch(error){
+        console.error('Error inserting carriers:', error);
+        res.status(500).json({error: 'Internal server error.'})
+      }
+  }else{
+    if(!request.name || !request.contact){
+        errors.push({ error: 'Failed to register vehicle.'});
+    }
+
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+
+    const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [request.name, request.contact]);
+
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register carrier.'});
+    }
+    res.json(result.rows[0]);
   }
-  const { name, contact } = req.body;
-  const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [name, contact]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Failed to register carrier.' });
-  }
-  res.json(result.rows[0]);
 });
 
 app.get('/carriers/:id', async (req, res) => {
