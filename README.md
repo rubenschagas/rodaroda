@@ -55,44 +55,113 @@ Thus, the overall goal is to develop skills in the domains of DevOps, Developmen
 Below is the code for the creation of the tables as automated in the Ansible Playbooks:
 
 ```
--- Criação da tabela Localidade
-CREATE TABLE Localidade (
-    localidade_id SERIAL PRIMARY KEY,
+-- Creating the Brazil states table
+CREATE TABLE brazilian_states (
+    id SERIAL PRIMARY KEY,
+    uf_code varchar(100) NOT NULL UNIQUE,
+    uf varchar(100) NOT NULL UNIQUE,
+    uf_name varchar(100) NOT NULL UNIQUE,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive'))
+);
+
+-- Creating the Logistic roles table
+CREATE TABLE logistic_roles (
+    id SERIAL PRIMARY KEY,
+    logistic_type varchar(100) CHECK (logistic_type IN ('distribution', 'production', 'reversed', 'supply')) NOT NULL UNIQUE,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive'))
+);
+
+-- Creating the Locality table
+CREATE TABLE locality (
+    id SERIAL PRIMARY KEY,
+    uf_id int REFERENCES brazilian_states(id) ON DELETE NO ACTION,
+    logistic_type_id int REFERENCES logistic_roles(id) ON DELETE NO ACTION,
+    cnpj VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(10) CHECK (type IN ('origin', 'destination')) NOT NULL,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the Product category table
+CREATE TABLE products_category (
+    id SERIAL PRIMARY KEY,
+    category VARCHAR(100) NOT NULL,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the Product table
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    product_category_id int REFERENCES products_category(id) ON DELETE NO ACTION,
     nome VARCHAR(100) NOT NULL,
-    tipo VARCHAR(10) CHECK (tipo IN ('origem', 'destino'))
+    description VARCHAR(100) NOT NULL,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
 );
 
--- Criação da tabela Produto
-CREATE TABLE Produto (
-    produto_id SERIAL PRIMARY KEY,
+-- Creating the License plate table
+CREATE TABLE license_plate (
+    id SERIAL PRIMARY KEY,
+    license_plate VARCHAR(100) NOT NULL,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the Vehicle type table
+CREATE TABLE vehicle_type (
+    id SERIAL PRIMARY KEY,
+    vehicle_type VARCHAR(10) CHECK (vehicle_type IN ('bitrem', 'bau', 'van', 'carreta, 'outros')) NOT NULL UNIQUE,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the Vehicle fleet table
+CREATE TABLE vehicles_fleet (
+    id SERIAL PRIMARY KEY,
+    fleet_name NOT NULL UNIQUE,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the vehicles table
+CREATE TABLE vehicle (
+    id SERIAL PRIMARY KEY,
+    vehicle_license_plate_id int REFERENCES license_plate(id) ON DELETE NO ACTION,
+    vehicle_type_id int REFERENCES vehicle_type(id) ON DELETE NO ACTION
+    vehicle_fleet_id int REFERENCES vehicles_fleet(id) ON DELETE NO ACTION
+    document_number VARCHAR(100) NOT NULL UNIQUE,
+    model VARCHAR(100) NOT NULL,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
+);
+
+-- Creating the Carrier table
+CREATE TABLE carrier (
+    id SERIAL PRIMARY KEY,
+    fleet_id int REFERENCES vehicles_Fleet(id) ON DELETE NO ACTION,
+    uf_id int REFERENCES brazilian_states(id) ON DELETE NO ACTION,
+    cnpj VARCHAR(100) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    descricao TEXT
+    contact VARCHAR(100) not null,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
 );
 
--- Criação da tabela Transportadora
-CREATE TABLE Transportadora (
-    transportadora_id SERIAL PRIMARY KEY,
+-- Creating the Driver table
+CREATE TABLE driver (
+    id SERIAL PRIMARY KEY,
+    cpf VARCHAR(100) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    contato VARCHAR(50)
+    contact VARCHAR(100) not null,
+    state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
 );
 
--- Criação da tabela Veículo
-CREATE TABLE Veiculo (
-    veiculo_id SERIAL PRIMARY KEY,
-    modelo VARCHAR(100) NOT NULL,
-    placa VARCHAR(20)
-);
-
--- Criação da tabela Viagem
-CREATE TABLE Viagem (
-    viagem_id SERIAL PRIMARY KEY,
-    origem_id INT REFERENCES Localidade(localidade_id) ON DELETE NO ACTION,
-    destino_id INT REFERENCES Localidade(localidade_id) ON DELETE NO ACTION,
-    produto_id INT REFERENCES Produto(produto_id),
-    transportadora_id INT REFERENCES Transportadora(transportadora_id),
-    veiculo_id INT REFERENCES Veiculo(veiculo_id),
-    data_partida TIMESTAMP,
-    data_chegada TIMESTAMP
+-- Creating the Trip table
+CREATE TABLE trip (
+    id SERIAL PRIMARY KEY,
+    origin_id INT REFERENCES locality(id) ON DELETE NO ACTION,
+    destination_id INT REFERENCES locality(id) ON DELETE NO ACTION,
+    product_id INT REFERENCES product(id),
+    carrier_id INT REFERENCES carrier(id),
+    vehicle_id INT REFERENCES vehicle(id),
+    driver_id INT REFERENCES driver(id),
+    leaving_date TIMESTAMP NOT NULL,
+    arrival_date TIMESTAMP NOT NULL,
+    status VARCHAR(10) CHECK (state IN ('planned', 'released', 'in execution', 'finished', 'canceled')) NOT NULL
 );
 ```
 
@@ -183,13 +252,13 @@ It is possible to send requests through Postman to test the CRUD endpoints creat
 
 The default port is `3000`.
 
-Here are some steps to test the GET and POST endpoints for the `localidade` entity:
+Here are some steps to test the GET and POST endpoints for the `locality` entity:
 
 Open the Postman application.
 
 Import the collection file available at assets/collections folder.
 
-Open the `Consulta de Localidades` request.
+Open the `Consult localities` request.
 
 ---
 
@@ -197,7 +266,7 @@ Send a GET request to list localities:
 
 Select the GET method.
 
-Enter the URL: http://localhost:3000/localidades
+Enter the URL: http://localhost:3000/localities
 
 Click "Send" to submit the request.
 
@@ -207,7 +276,7 @@ Send a POST request to create a locality:
 
 Select the POST method.
 
-Enter the URL: http://localhost:3000/localidades
+Enter the URL: http://localhost:3000/localities
 
 Go to the "Body" tab and select the raw format.
 
@@ -215,8 +284,8 @@ Insert the locality data in the request body, json, for example:
 
 ```
 {
-"nome": "Localidade Teste",
-"tipo": "origem"
+"name": "Locality Test",
+"type": "origin"
 }
 ```
 
