@@ -91,25 +91,26 @@ TODO: 26. Implementar server e agent de tests de ambiente (e.g. Zabbix, log elas
 ## Melhorias-de-aplicação-e-regras-de-negócio
 
 TODO: 27. estudar sobre restrições de entidades por parâmetros (criando tabelas relacionadas para tal):
-modificar o método de exclusão de registros de entidades para, caso for excluído, não seja excluído de fato da base de dados, mas apenas inativado (uma nova coluna de status em todas as entidades);
+modificar o método de exclusão de registros de entidades para, caso for excluído, não seja excluído de fato da base de dados, mas apenas inativado (uma nova coluna de status em todas as entidades); DONE
+modificar a estrutura da tabela localities, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes); DONE
+modificar a estrutura da tabela carriers, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes); DONE
+modificar a estrutura da tabela vehicles, de forma a possuir um código identificador de veículo único (como um renavam) (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos válidos automaticamente para os testes); DONE
+criar uma tabela de placas e respectivo relacionamento com veículo DONE
+criar tipos de veículos e associa-las aos veículos; DONE
+criar uma frota de veículo e associá-la a uma transportadora; DONE
+criar categorias de produtos e associa-las aos produtos; DONE
+criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades; DONE
+criar uma tabela de motoristas e respectivo relacionamento com a viagem (em execução), de forma a possuir um código de cpf único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cpfs válidos automaticamente para os testes); DONE
+criar um tabela de papéis/tipos logísticos de localidade e associá-los com os registros de localidade existentes DONE
+introduzir status de viagem (planejada, liberada, em execução, concluída, cancelada); DONE
+
 implementar nos filtros como parâmetros nas consultas de get das entidades a possibilidade de trazer opcionalmente os registros inativos;
-modificar a estrutura da tabela localities, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes);
-modificar a estrutura da tabela vehicles, de forma a possuir um código identificador de veículo único (como um renavam) (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos válidos automaticamente para os testes);
-modificar a estrutura da tabela carriers, de forma a possuir um código de cnpj único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cnpjs válidos automaticamente para os testes);
-modificar a estrutura da tabela trips, de forma a possuir um código numérico único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos númericos válidos automaticamente para os testes, incremental, consultando o último código existente e incrementando um número) (o id da entidade não precisa e nem deve ter o mesmo código de viagem, porém este último deve ser sequencial);
-criar uma tabela de placas e respectivo relacionamento com veículo
-criar tipos de veículos e associa-las aos veículos;
-criar uma frota de veículo e associá-la a uma transportadora;
-criar categorias de produtos e associa-las aos produtos;
+modificar a estrutura da tabela trips, de forma a possuir um código numérico único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando códigos númericos válidos automaticamente para os testes, incremental, consultando o último código existente e incrementando um número) (o id da entidade não precisa e nem deve ter o mesmo código de viagem, porém este último deve ser sequencial); DOUBT?
+criar uma tela para monitoramento de status de viagens;
 restrição de um único veículo por vez reservado para uma única viagem;
-criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades;
 docas de carregamento e descarregamento nas localidades (dias de funcionamento?);
 restrições de localidade (por exemplo, recorte de ZMRV) por uma transportadora/veículo;
-criar um tabela de papéis/tipos logísticos de localidade e associá-los com os registros de localidade existentes
 cálculo de frete utilizando uma tabela por distancia);
 geolocalização (utilizando um bd postgis) para cálculo de rota via API do Google, e;
 cálculo de duração da viagem;
-introduzir status de viagem (planejada, liberada, em execução, concluída, cancelada);
-criar uma tabela de motoristas e respectivo relacionamento com a viagem (em execução), de forma a possuir um código de cpf único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cpfs válidos automaticamente para os testes);
-criar uma tela para monitoramento de status de viagens;
 etc.
