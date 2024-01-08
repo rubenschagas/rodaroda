@@ -119,7 +119,7 @@ CREATE TABLE vehicles_fleet (
     state VARCHAR(10) CHECK (state IN ('active', 'inactive')) NOT NULL
 );
 
--- Creating the vehicles table
+-- Creating the Vehicles table
 CREATE TABLE vehicle (
     id SERIAL PRIMARY KEY,
     vehicle_license_plate_id int REFERENCES license_plate(id) ON DELETE NO ACTION,
