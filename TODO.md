@@ -51,7 +51,7 @@ etc.
 
 TODO: 12. migrar os scripts para TypeScript
 
-TODO: 13. pesquisar implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL
+TODO: 13. pesquisar implementar uma tabela de controle de versionamento de banco de dados de forma que, a cada atualização na estrutura de base de dados, cresça um id de versão, e estas atualizações de versão sejam por queries PostgreSQL (consultar: https://medium.com/totvsdevelopers/liquibase-como-ele-ajuda-no-desenvolvimento-c8e3dd768a8e)
 
 ## Autenticação
 
