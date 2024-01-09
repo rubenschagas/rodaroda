@@ -40,7 +40,7 @@ app.post('/localities', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-      if(!register.name || !register.type){
+      if(!register.uf_id || !register.logistic_type_id || !register.cnpj || !register.name || !register.type || !register.state){
           errors.push({ error: 'Failed to register locality.'});
       }
     }
@@ -48,7 +48,7 @@ app.post('/localities', async (req, res) => {
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [register.name, register.type]);
+      const result = await pool.query('INSERT INTO locality (uf_id, logistic_type_id, cnpj, name, type, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [register.uf_id, register.logistic_type_id, register.cnpj, register.name, register.type, register.state]);
       return result.rows[0];
     });
     try{
@@ -57,19 +57,19 @@ app.post('/localities', async (req, res) => {
       if(insertedLocalities.length === 0){
           return res.status(404).json({ error: 'Failed to register locality.'});
       }
-      res.json(insertedLocalities);
+       res.json(insertedLocalities);
     }catch(error){
       console.error('Error inserting localities:', error);
       res.status(500).json({error: 'Internal server error.'})
     }
   }else{
-    if(!request.name || !request.type){
+    if(!request.uf_id || !request.logistic_type_id || !request.cnpj || !request.name || !request.type || !request.state){
         errors.push({ error: 'Failed to register locality.'});
     }
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [request.name, request.type]);
+    const result = await pool.query('INSERT INTO locality (uf_id, logistic_type_id, cnpj, name, type, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [register.uf_id, register.logistic_type_id, register.cnpj, register.name, register.type, register.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register locality.'});
     }
@@ -87,12 +87,12 @@ app.get('/localities/:id', async (req, res) => {
 });
 
 app.put('/localities/:id', async (req, res) => {
-  if(!req.body.name || !req.body.type){
+  if(!req.body.uf_id || !req.body.logistic_type_id || !req.body.cnpj || !req.body.name || !req.body.type || !req.body.state){
         return res.status(404).json({ error: 'Failed to update locality.' });
   }
   const { id } = req.params;
-  const { name, type } = req.body;
-  const result = await pool.query('UPDATE locality SET name = $1, type = $2 WHERE id = $3 RETURNING *', [name, type, id]);
+  const { uf_id, logistic_type_id, cnpj, name, type, state } = req.body;
+  const result = await pool.query('UPDATE locality SET uf_id = $1, logistic_type_id = $2, cnpj = $3, name = $4, type = $5, state = $6 WHERE id = $7 RETURNING *', [uf_id, logistic_type_id, cnpj, name, type, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find locality.' });
   }
@@ -123,7 +123,7 @@ app.post('/products', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-        if(!register.name || !register.description){
+        if(!register.product_category_id || !register.name || !register.description || !register.state){
             errors.push({ error: 'Failed to register product.'});
         }
     }
@@ -131,7 +131,7 @@ app.post('/products', async (req, res) => {
         return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-        const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [register.name, register.description]);
+        const result = await pool.query('INSERT INTO product (product_category_id, name, description, state) VALUES ($1, $2, $3, $4) RETURNING *',  [register.product_category_id, register.name, register.description, register.state]);
         return result.rows[0];
     });
     try{
@@ -145,13 +145,13 @@ app.post('/products', async (req, res) => {
         res.status(500).json({error: 'Internal server error.'})
       }
   }else{
-    if(!request.name || !request.description){
+    if(!request.product_category_id || !request.name || !request.description || !request.state){
         errors.push({ error: 'Failed to register product.'});
     }
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [request.name, request.description]);
+    const result = await pool.query('INSERT INTO product (product_category_id, name, description, state) VALUES ($1, $2, $3, $4) RETURNING *',  [request.product_category_id, request.name, request.description, request.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register product.'});
     }
@@ -169,12 +169,12 @@ app.get('/products/:id', async (req, res) => {
 });
 
 app.put('/products/:id', async (req, res) => {
-  if(!req.body.name || !req.body.description){
+  if(!req.body.product_category_id || !req.body.name || !req.body.description || !req.body.state){
     return res.status(404).json({ error: 'Failed to update product.' });
   }
   const { id } = req.params;
   const { name, description } = req.body;
-  const result = await pool.query('UPDATE product SET name = $1, description = $2 WHERE id = $3 RETURNING *', [name, description, id]);
+  const result = await pool.query('UPDATE product SET product_category_id = $1, name = $2, description = $3, state = $4 WHERE id = $5 RETURNING *', [product_category_id, name, description, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find product.' });
   }
@@ -205,7 +205,7 @@ app.post('/carriers', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-      if(!register.name || !register.contact){
+      if(!register.fleet_id || !register.uf_id || !register.cnpj || !register.name || !register.contact || !register.state){
           errors.push({ error: 'Failed to register carrier.'});
       }
     }
@@ -213,7 +213,7 @@ app.post('/carriers', async (req, res) => {
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [register.name, register.contact]);
+      const result = await pool.query('INSERT INTO carrier (fleet_id, uf_id, cnpj, name, contact, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [register.fleet_id, register.uf_id, register.cnpj, register.name, register.contact, register.state]);
       return result.rows[0];
     });
     try{
@@ -227,13 +227,13 @@ app.post('/carriers', async (req, res) => {
       res.status(500).json({error: 'Internal server error.'})
     }
   }else{
-    if(!request.name || !request.contact){
+    if(!request.fleet_id || !request.uf_id || !request.cnpj || !request.name || !request.contact || !request.state){
         errors.push({ error: 'Failed to register carrier.'});
     }
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [request.name, request.contact]);
+    const result = await pool.query('INSERT INTO carrier (fleet_id, uf_id, cnpj, name, contact, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [request.fleet_id, request.uf_id, request.cnpj, request.name, request.contact, request.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register carrier.'});
     }
@@ -251,12 +251,12 @@ app.get('/carriers/:id', async (req, res) => {
 });
 
 app.put('/carriers/:id', async (req, res) => {
-  if(!req.body.name || !req.body.contact){
+  if(!req.body.fleet_id || !req.body.uf_id || !req.body.cnpj || !req.body.name || !req.body.contact || !req.body.state){
     return res.status(404).json({ error: 'Failed to update carrier.' });
   }
   const { id } = req.params;
   const { name, contact } = req.body;
-  const result = await pool.query('UPDATE carrier SET name = $1, contact = $2 WHERE id = $3 RETURNING *', [name, contact, id]);
+  const result = await pool.query('UPDATE carrier SET fleet_id = $1, uf_id = $2, cnpj = $3, name = $4, contact = $5, state = $6  WHERE id = $7 RETURNING *', [fleet_id, uf_id, cnpj, name, contact, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find carrier.' });
   }
@@ -287,7 +287,7 @@ app.post('/vehicles', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-      if(!register.name || !register.model || !register.license_plate){
+      if(!register.vehicle_license_plate_id || !register.vehicle_type_id || !register.vehicle_fleet_id || !register.document_number || !register.model || !register.state){
           errors.push({ error: 'Failed to register vehicle.'});
       }
     }
@@ -295,7 +295,7 @@ app.post('/vehicles', async (req, res) => {
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.model, register.license_plate]);
+      const result = await pool.query('INSERT INTO vehicle (vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',  [register.vehicle_license_plate_id, register.vehicle_type_id, register.fleet_id, register.document_number, register.model, register.state]);
       return result.rows[0];
     });
     try{
@@ -309,13 +309,13 @@ app.post('/vehicles', async (req, res) => {
       res.status(500).json({error: 'Internal server error.'})
     }
   }else{
-    if(!request.name || !request.model || !request.license_plate){
+    if(!request.vehicle_license_plate_id || !request.vehicle_type_id || !request.vehicle_fleet_id || !request.document_number || !request.model || !request.state){
        errors.push({ error: 'Failed to register vehicle.'});
   }
   if(errors.length > 0){
     return res.status(400).json(errors);
   }
-  const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.model, request.license_plate]);
+  const result = await pool.query('INSERT INTO vehicle (vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',  [request.vehicle_license_plate_id, request.vehicle_type_id, request.fleet_id, request.document_number, request.model, request.state]);
   if(result.rows.length === 0){
     return res.status(404).json({ error: 'Failed to register vehicle.'});
   }
@@ -333,12 +333,12 @@ app.get('/vehicles/:id', async (req, res) => {
 });
 
 app.put('/vehicles/:id', async (req, res) => {
-  if(!req.body.name || !req.body.model || !req.body.license_plate){
+  if(!req.body.vehicle_license_plate_id || !req.body.vehicle_type_id || !req.body.vehicle_fleet_id || !req.body.document_number || !req.body.model || !req.body.state){
     return res.status(404).json({ error: 'Failed to update vehicle.' });
   }
   const { id } = req.params;
   const { name, model, license_plate } = req.body;
-  const result = await pool.query('UPDATE vehicle SET name = $1, model = $2, license_plate = $3 WHERE id = $4 RETURNING *', [name, model, license_plate, id]);
+  const result = await pool.query('UPDATE vehicle SET vehicle_license_plate_id = $1, vehicle_type_id = $2, vehicle_fleet_id = $3, document_number = $4, model = $5, state = $6 WHERE id = $7 RETURNING *', [vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle.' });
   }
@@ -369,7 +369,7 @@ app.post('/trips', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-      if(!register.origin_id || !register.destination_id || !register.product_id || !register.carrier_id || !register.vehicle_id || !register.leaving_date || !register.arrival_date){
+      if(!register.origin_id || !register.destination_id || !register.product_id || !register.carrier_id || !register.vehicle_id || !register.driver_id || !register.leaving_date || !register.arrival_date || !register.status){
             errors.push({ error: 'Failed to register trip.'});
       }
     }
@@ -377,8 +377,8 @@ app.post('/trips', async (req, res) => {
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [register.origin_id, register.destination_id, register.product_id, register.carrier_id, register.vehicle_id, register.leaving_date, register.arrival_date]);
+      const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, driver_id, leaving_date, arrival_date, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+      [register.origin_id, register.destination_id, register.product_id, register.carrier_id, register.vehicle_id, register.driver_id, register.leaving_date, register.arrival_date, register.status]);
       return result.rows[0];
     });
     try{
@@ -392,14 +392,14 @@ app.post('/trips', async (req, res) => {
       res.status(500).json({error: 'Internal server error.'})
     }
     }else{
-      if(!request.origin_id || !request.destination_id || !request.product_id || !request.carrier_id || !request.vehicle_id || !request.leaving_date || !request.arrival_date){
+      if(!request.origin_id || !request.destination_id || !request.product_id || !request.carrier_id || !request.vehicle_id || !request.driver_id || !request.leaving_date || !request.arrival_date || !request.status){
          errors.push({ error: 'Failed to register trip.'});
     }
     if(errors.length > 0){
       return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-    [request.origin_id, request.destination_id, request.product_id, request.carrier_id, request.vehicle_id, request.leaving_date, request.arrival_date]);
+    const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, driver_id, leaving_date, arrival_date, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+    [request.origin_id, request.destination_id, request.product_id, request.carrier_id, request.vehicle_id, request.driver_id, request.leaving_date, request.arrival_date, request.status]);
     if(result.rows.length === 0){
       return res.status(404).json({ error: 'Failed to register trip.'});
     }
@@ -417,13 +417,13 @@ app.get('/trips/:id', async (req, res) => {
 });
 
 app.put('/trips/:id', async (req, res) => {
-  if(!req.body.origin_id || !req.body.destination_id_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.leaving_date || !req.body.arrival_date){
+  if(!req.body.origin_id || !req.body.destination_id_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.driver_id || !req.body.leaving_date || !req.body.arrival_date || !req.body.status){
     return res.status(404).json({ error: 'Failed to register trip.' });
   }
   const { id } = req.params;
-  const { origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date } = req.body;
-  const result = await pool.query('UPDATE viagem SET origem_id = $1, destino_id = $2, produto_id = $3, transportadora_id = $4, veiculo_id = $5, data_partida = $6, data_chegada = $7  WHERE id = $8 RETURNING *',
-  [origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date]);
+  const { origin_id, destination_id, product_id, carrier_idr, vehicle_id, driver_id, leaving_date, arrival_date, status } = req.body;
+  const result = await pool.query('UPDATE trip SET origin_id = $1, destination_id = $2, product_id = $3, carrier_id = $4, vehicle_id = $5, driver_id = $6 leaving_date = $7, arrival_date = $8, status = $9  WHERE id = $10 RETURNING *',
+  [origin_id, destination_id, product_id, carrier_idr, vehicle_id, driver_id, leaving_date, arrival_date, status]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find trip.' });
   }
