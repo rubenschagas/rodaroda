@@ -25,6 +25,594 @@ const pool = new Pool({
   password: databasePassword,
 });
 
+// CRUD para estados brasileiros
+
+app.get('/brazilian-states', async (req, res) => {
+  const result = await pool.query('SELECT * FROM brazilian_states');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find brazilian states.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/brazilian-states', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.uf_code || !register.uf || !register.uf_name || !register.state){
+          errors.push({ error: 'Failed to register brazilian state.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO brazilian_states (uf_code, uf, uf_name, state) VALUES ($1, $2, $3, $4) RETURNING *', [register.uf_code, register.uf, register.uf_name, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register brazilian state.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting brazilian states:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.uf_code || !request.uf || !request.uf_name || !request.state){
+        errors.push({ error: 'Failed to register brazilian state.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO brazilian_states (uf_code, uf, uf_name, state) VALUES ($1, $2, $3, $4) RETURNING *', [request.uf_code, request.uf, request.uf_name, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register brazilian state.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/brazilian-states/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM brazilian_states WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find brazilian state.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/brazilian-states/:id', async (req, res) => {
+  if(!req.body.uf_code || !req.body.uf || !req.body.cnpj || !req.body.uf_name || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update brazilian state.' });
+  }
+  const { id } = req.params;
+  const { uf_code, uf, uf_name, state } = req.body;
+  const result = await pool.query('UPDATE brazilian_states SET uf_code = $1, uf = $2, uf_name = $3, state = $4 WHERE id = $5 RETURNING *', [uf_code, uf, uf_name, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find brazilian_state.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/brazilian-states/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM brazilian_states WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find brazilian state.' });
+  }
+  res.json({ message: 'Brazilian state successfully deleted.' });
+});
+
+// CRUD para motorista
+
+app.get('/drivers', async (req, res) => {
+  const result = await pool.query('SELECT * FROM driver');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find driver.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/drivers', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.cpf || !register.name || !register.contact || !register.state){
+          errors.push({ error: 'Failed to register driver.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO driver (cpf, name, contact, state) VALUES ($1, $2, $3, $4) RETURNING *', [register.cpf, register.name, register.contact, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register driver.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting drivers:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.cpf || !request.name || !request.contact || !request.state){
+        errors.push({ error: 'Failed to register driver.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO driver (cpf, name, contact, state) VALUES ($1, $2, $3, $4) RETURNING *', [request.cpf, request.name, request.contact, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register driver.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/drivers/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM driver WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find driver.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/drivers/:id', async (req, res) => {
+  if(!req.body.cpf || !req.body.name || !req.body.contact || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update driver.' });
+  }
+  const { id } = req.params;
+  const { cpf, name, contact, state } = req.body;
+  const result = await pool.query('UPDATE driver SET cpf = $1, name = $2, contact = $3, state = $4 WHERE id = $5 RETURNING *', [cpf, name, contact, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find driver.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/drivers/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM driver WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find driver.' });
+  }
+  res.json({ message: 'Driver successfully deleted.' });
+});
+
+// CRUD para placa
+
+app.get('/license-plates', async (req, res) => {
+  const result = await pool.query('SELECT * FROM license_plate');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find license plates.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/license-plates', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.license_plate || !register.state){
+          errors.push({ error: 'Failed to register license plate.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO license_plate (license_plate, state) VALUES ($1, $2) RETURNING *', [register.license_plate, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register license plate.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting license plates:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.license_plate || !request.state){
+        errors.push({ error: 'Failed to register license plate.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO license_plate (license_plate, state) VALUES ($1, $2) RETURNING *', [request.license_plate, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register license plate.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/license-plates/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM license_plate WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find license plate.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/license-plates/:id', async (req, res) => {
+  if(!req.body.license_plate || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update license plate.' });
+  }
+  const { id } = req.params;
+  const { license_plate, state } = req.body;
+  const result = await pool.query('UPDATE license_plate SET license_plate = $1, state = $2 WHERE id = $3 RETURNING *', [license_plate, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find license plate.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/license-plates/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM license_plate WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find license plate.' });
+  }
+  res.json({ message: 'License plate successfully deleted.' });
+});
+
+// CRUD para papeis logisticos
+
+app.get('/logistic-roles', async (req, res) => {
+  const result = await pool.query('SELECT * FROM logistic_roles');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find logistic roles.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/logistic-roles', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.logistic_type || !register.state){
+          errors.push({ error: 'Failed to register logistic roles.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO logistic_roles (logistic_type, state) VALUES ($1, $2) RETURNING *', [register.logistic_type, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register logistic role.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting license plates:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.logistic_type || !request.state){
+        errors.push({ error: 'Failed to register logistic role.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO logistic_roles (logistic_type, state) VALUES ($1, $2) RETURNING *', [request.logistic_type, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register logistic role.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/logistic-roles/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM logistic_roles WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find logistic role.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/logistic-roles/:id', async (req, res) => {
+  if(!req.body.logistic_type || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update logistic role.' });
+  }
+  const { id } = req.params;
+  const { logistic_type, state } = req.body;
+  const result = await pool.query('UPDATE logistic_roles SET logistic_type = $1, state = $2 WHERE id = $3 RETURNING *', [logistic_type, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find logistic role.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/logistic-roles/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM logistic_roles WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find logistic role.' });
+  }
+  res.json({ message: 'Logistic role successfully deleted.' });
+});
+
+// CRUD para categoria de produto
+
+app.get('/products-category', async (req, res) => {
+  const result = await pool.query('SELECT * FROM products_category');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find product categories.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/products-category', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.category || !register.state){
+          errors.push({ error: 'Failed to register vehicle type.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO products_category (category, state) VALUES ($1, $2) RETURNING *', [register.category, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register product category'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting product categories:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.category || !request.state){
+        errors.push({ error: 'Failed to register product category'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO products_category (category, state) VALUES ($1, $2) RETURNING *', [request.category, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register product category'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/products-category/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM products_category WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find product category' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/products-category/:id', async (req, res) => {
+  if(!req.body.category || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update product category' });
+  }
+  const { id } = req.params;
+  const { category, state } = req.body;
+  const result = await pool.query('UPDATE products_category SET category = $1, state = $2 WHERE id = $3 RETURNING *', [category, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find product category' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/products-category/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM products_category WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find product category' });
+  }
+  res.json({ message: 'Product category successfully deleted.' });
+});
+
+// CRUD para tipo de veiculo
+
+app.get('/vehicle-types', async (req, res) => {
+  const result = await pool.query('SELECT * FROM vehicle_type');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle types.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/vehicle-types', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.vehicle_type || !register.state){
+          errors.push({ error: 'Failed to register vehicle type.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO vehicle_type (vehicle_type, state) VALUES ($1, $2) RETURNING *', [register.vehicle_type, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register vehicle type.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting vehicle types:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.vehicle_type || !request.state){
+        errors.push({ error: 'Failed to register vehicle type.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO vehicle_type (vehicle_type, state) VALUES ($1, $2) RETURNING *', [request.vehicle_type, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register vehicle type.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/vehicle-types/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM vehicle_type WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle type.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/vehicle-types/:id', async (req, res) => {
+  if(!req.body.vehicle_type || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update vehicle type.' });
+  }
+  const { id } = req.params;
+  const { vehicle_type, state } = req.body;
+  const result = await pool.query('UPDATE vehicle_type SET vehicle_type = $1, state = $2 WHERE id = $3 RETURNING *', [vehicle_type, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle type.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/vehicle-types/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM vehicle_type WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle type.' });
+  }
+  res.json({ message: 'Vehicle type successfully deleted.' });
+});
+
+// CRUD para frota de veiculos
+
+app.get('/vehicles-fleet', async (req, res) => {
+  const result = await pool.query('SELECT * FROM vehicle_fleet');
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle fleets.' });
+  }
+  res.json(result.rows);
+});
+
+app.post('/vehicles-fleet', async (req, res) => {
+  const request = req.body;
+  const errors = [];
+
+  if(request.length > 1){
+    for(const register of request){
+      if(!register.vehicle_type || !register.state){
+          errors.push({ error: 'Failed to register vehicle fleet.'});
+      }
+    }
+    if(errors.length > 0){
+      return res.status(400).json(errors);
+    }
+    const promises = request.map(async (register) => {
+      const result = await pool.query('INSERT INTO vehicle_fleet (fleet_name, state) VALUES ($1, $2) RETURNING *', [register.fleet_name, register.state]);
+      return result.rows[0];
+    });
+    try{
+      const insertedLocalities = await Promise.all(promises);
+
+      if(insertedLocalities.length === 0){
+          return res.status(404).json({ error: 'Failed to register vehicle fleet.'});
+      }
+       res.json(insertedLocalities);
+    }catch(error){
+      console.error('Error inserting vehicle fleets:', error);
+      res.status(500).json({error: 'Internal server error.'})
+    }
+  }else{
+    if(!request.fleet_name || !request.state){
+        errors.push({ error: 'Failed to register vehicle fleet.'});
+    }
+    if(errors.length > 0){
+        return res.status(400).json(errors);
+    }
+    const result = await pool.query('INSERT INTO vehicle_fleet (vehicle_type, state) VALUES ($1, $2) RETURNING *', [request.fleet_name, request.state]);
+    if(result.rows.length === 0){
+        return res.status(404).json({ error: 'Failed to register vehicle fleet.'});
+    }
+    res.json(result.rows[0]);
+  }
+});
+
+app.get('/vehicles-fleet/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('SELECT * FROM vehicle_fleet WHERE id = $1', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle fleet.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.put('/vehicles-fleet/:id', async (req, res) => {
+  if(!req.body.fleet_name || !req.body.state){
+        return res.status(404).json({ error: 'Failed to update vehicle fleet.' });
+  }
+  const { id } = req.params;
+  const { fleet_name, state } = req.body;
+  const result = await pool.query('UPDATE vehicle_fleet SET vehicle_type = $1, state = $2 WHERE id = $3 RETURNING *', [fleet_name, state, id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle fleet.' });
+  }
+  res.json(result.rows[0]);
+});
+
+app.delete('/vehicles-fleet/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query('DELETE FROM vehicle_fleet WHERE id = $1 RETURNING *', [id]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ error: 'Cannot find vehicle fleet.' });
+  }
+  res.json({ message: 'Vehicle fleet successfully deleted.' });
+});
+
 // CRUD para localidade
 app.get('/localities', async (req, res) => {
   const result = await pool.query('SELECT * FROM locality');
