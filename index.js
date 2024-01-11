@@ -6,7 +6,7 @@ const dataBase = require('./data-base-config/db-config');
 //exporting the app controllers
 const brazilianStatesController = require('./controllers/brazilian-states/brazilian-states-controller');
 const driversController = require('./controllers/drivers/drivers-controller');
-const licensePlatesController = require('./controllers/drivers/drivers-controller');
+const licensePlatesController = require('./controllers/license-plates/license-plates-controller');
 const logisticRolesController = require('./controllers/logistic-roles/logistic-roles-controller');
 const productCategoriesController = require('./controllers/product-categories/product-categories-controller');
 const vehicleTypesController = require('./controllers/vehicle-types/vehicle-types-controller');
