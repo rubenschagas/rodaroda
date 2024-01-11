@@ -123,7 +123,7 @@ app.post('/products', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-        if(!register.name || !register.description){
+        if(!register.name || !register.description || !register.state){
             errors.push({ error: 'Failed to register product.'});
         }
     }
@@ -131,7 +131,7 @@ app.post('/products', async (req, res) => {
         return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-        const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [register.name, register.description]);
+        const result = await pool.query('INSERT INTO product (name, description, state) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.description, register.state]);
         return result.rows[0];
     });
     try{
@@ -145,13 +145,13 @@ app.post('/products', async (req, res) => {
         res.status(500).json({error: 'Internal server error.'})
       }
   }else{
-    if(!request.name || !request.description){
+    if(!request.name || !request.description || !request.state ){
         errors.push({ error: 'Failed to register product.'});
     }
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO product (name, description) VALUES ($1, $2) RETURNING *',  [request.name, request.description]);
+    const result = await pool.query('INSERT INTO product (name, description, state) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.description, request.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register product.'});
     }
@@ -169,12 +169,12 @@ app.get('/products/:id', async (req, res) => {
 });
 
 app.put('/products/:id', async (req, res) => {
-  if(!req.body.name || !req.body.description){
+  if(!req.body.nome || !req.body.description){
     return res.status(404).json({ error: 'Failed to update product.' });
   }
   const { id } = req.params;
-  const { name, description } = req.body;
-  const result = await pool.query('UPDATE product SET name = $1, description = $2 WHERE id = $3 RETURNING *', [name, description, id]);
+  const { nome, description } = req.body;
+  const result = await pool.query('UPDATE product SET nome = $1, description = $2 WHERE id = $3 RETURNING *', [nome, description, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find product.' });
   }
@@ -205,7 +205,7 @@ app.post('/carriers', async (req, res) => {
 
   if(request.length > 1){
     for(const register of request){
-      if(!register.name || !register.contact){
+      if(!register.nome || !register.contact){
           errors.push({ error: 'Failed to register carrier.'});
       }
     }
