@@ -32,7 +32,7 @@ exports.postOne = async (req, res) =>{
   const request = req.body;
   const errors = [];
 
-  if(request.length > 1){
+  if(request.length > 1 || request.length === 1){
     for(const register of request){
       if(!register.vehicle_type || !register.state){
           errors.push({ error: 'Failed to register vehicle type.'});

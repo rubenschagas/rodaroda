@@ -32,7 +32,7 @@ exports.postOne = async (req, res) =>{
   const request = req.body;
   const errors = [];
 
-  if(request.length > 1){
+  if(request.length > 1 || request.length === 1){
   for(const register of request){
     if(!register.origin_id || !register.destination_id || !register.product_id || !register.carrier_id || !register.vehicle_id || !register.driver_id || !register.leaving_date || !register.arrival_date || !register.status){
           errors.push({ error: 'Failed to register trip.'});
