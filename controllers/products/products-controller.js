@@ -75,7 +75,7 @@ exports.updateOne = async (req, res) =>{
     return res.status(404).json({ error: 'Failed to update product.' });
   }
   const { id } = req.params;
-  const { name, description } = req.body;
+  const { product_category_id, name, description, state } = req.body;
   const result = await pool.query('UPDATE product SET product_category_id = $1, name = $2, description = $3, state = $4 WHERE id = $5 RETURNING *', [product_category_id, name, description, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find product.' });
