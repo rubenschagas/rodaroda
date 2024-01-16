@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e807bc5d-2a35-4ab1-8306-ce43698e4a59",
+		"_postman_id": "e10c5486-6ada-4360-95be-0d80d0d46c49",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31900519"
+		"_exporter_id": "14986445"
 	},
 	"item": [
 		{
@@ -246,7 +246,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"uf_id\": 1,\n  \"logistic_type_id\": 1,\n  \"cnpj\": \"12223641170001\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"origin\",\n  \"state\": \"active\"\n},\n{\n  \"uf_id\": 4,\n  \"logistic_type_id\": 2,\n  \"cnpj\": \"23733644000001\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"origin\",\n  \"state\": \"active\"\n}\n]\n",
+									"raw": "[\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n},\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -873,13 +873,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{APP_DOMAIN_AND_PORT}}/produtos/1",
+									"raw": "{{APP_DOMAIN_AND_PORT}}/products/50",
 									"host": [
 										"{{APP_DOMAIN_AND_PORT}}"
 									],
 									"path": [
-										"produtos",
-										"1"
+										"products",
+										"50"
 									]
 								}
 							},
@@ -952,7 +952,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"product_category_id\": 1,\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n},\n{\n  \"product_category_id\": 1,\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n}\n]\n",
+									"raw": "[\n{\n  \"name\": \"Produto 1\",\n  \"description\": \"Descrição do Produto 1\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 2\",\n  \"description\": \"Descrição do Produto 2\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 3\",\n  \"description\": \"Descrição do Produto 3\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 4\",\n  \"description\": \"Descrição do Produto 4\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 5\",\n  \"description\": \"Descrição do Produto 5\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 6\",\n  \"description\": \"Descrição do Produto 6\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 7\",\n  \"description\": \"Descrição do Produto 7\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 8\",\n  \"description\": \"Descrição do Produto 8\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 9\",\n  \"description\": \"Descrição do Produto 9\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 10\",\n  \"description\": \"Descrição do Produto 10\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 11\",\n  \"description\": \"Descrição do Produto 11\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 12\",\n  \"description\": \"Descrição do Produto 12\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 13\",\n  \"description\": \"Descrição do Produto 13\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 14\",\n  \"description\": \"Descrição do Produto 14\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 15\",\n  \"description\": \"Descrição do Produto 15\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 16\",\n  \"description\": \"Descrição do Produto 16\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 17\",\n  \"description\": \"Descrição do Produto 17\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 18\",\n  \"description\": \"Descrição do Produto 18\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 19\",\n  \"description\": \"Descrição do Produto 19\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 20\",\n  \"description\": \"Descrição do Produto 20\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 21\",\n  \"description\": \"Descrição do Produto 21\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 22\",\n  \"description\": \"Descrição do Produto 22\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 23\",\n  \"description\": \"Descrição do Produto 23\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 24\",\n  \"description\": \"Descrição do Produto 24\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 25\",\n  \"description\": \"Descrição do Produto 25\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 26\",\n  \"description\": \"Descrição do Produto 26\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 27\",\n  \"description\": \"Descrição do Produto 27\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 28\",\n  \"description\": \"Descrição do Produto 28\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 29\",\n  \"description\": \"Descrição do Produto 29\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 30\",\n  \"description\": \"Descrição do Produto 30\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 31\",\n  \"description\": \"Descrição do Produto 31\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 32\",\n  \"description\": \"Descrição do Produto 32\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 33\",\n  \"description\": \"Descrição do Produto 33\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 34\",\n  \"description\": \"Descrição do Produto 34\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 35\",\n  \"description\": \"Descrição do Produto 35\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 36\",\n  \"description\": \"Descrição do Produto 36\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 37\",\n  \"description\": \"Descrição do Produto 37\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 38\",\n  \"description\": \"Descrição do Produto 38\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 39\",\n  \"description\": \"Descrição do Produto 39\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 40\",\n  \"description\": \"Descrição do Produto 40\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 41\",\n  \"description\": \"Descrição do Produto 41\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 42\",\n  \"description\": \"Descrição do Produto 42\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 43\",\n  \"description\": \"Descrição do Produto 43\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 44\",\n  \"description\": \"Descrição do Produto 44\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 45\",\n  \"description\": \"Descrição do Produto 45\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 46\",\n  \"description\": \"Descrição do Produto 46\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 47\",\n  \"description\": \"Descrição do Produto 47\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 48\",\n  \"description\": \"Descrição do Produto 48\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 49\",\n  \"description\": \"Descrição do Produto 49\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 50\",\n  \"description\": \"Descrição do Produto 50\",\n  \"state\": \"active\"\n}\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1445,7 +1445,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"fleet_id\": 1,\n  \"uf_id\": 1,\n  \"cnpj\": \"987746518460001\",\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\",\n  \"state\": \"active\"\n},\n{\n  \"fleet_id\": 1,\n  \"uf_id\": 1,\n  \"cnpj\": \"117746518460001\",\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\",\n  \"state\": \"active\"\n}\n]\n",
+									"raw": "[\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n},\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1976,31 +1976,6 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postVehicle = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/license_plate',",
-											"  method: 'POST',",
-											"  header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Vehicle name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'model': 'Vehicle model' + pm.environment.get('RANDOM_NAME'),",
-											"    'license_plate': pm.environment.get('RANDOM_VEHICLEID')",
-											"    })",
-											"  }",
-											"};",
-											"",
-											"pm.sendRequest(postVehicle, function (err, response) {",
-											"  if (err){",
-											"      console.log(err);",
-											"      return false;",
-											"  }",
-											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('VEHICLE_ID', ID);",
-											"});",
 											""
 										],
 										"type": "text/javascript"
@@ -2015,7 +1990,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"vehicle_license_plate_id\": 1,\n  \"vehicle_type_id\": 1,\n  \"vehicle_fleet_id\": 1,\n  \"document_number\": \"7482747172\",  \n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n},\n{\n  \"vehicle_license_plate_id\": 1,\n  \"vehicle_type_id\": 1,\n  \"vehicle_fleet_id\": 1,\n  \"document_number\": \"7482747172\",  \n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n},\n]\n",
+									"raw": "[\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n},\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2738,7 +2713,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"driver_id\": 1,\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\",\n  \"status\": \"planned\"\n},\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"driver_id\": 1,\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\",\n  \"status\": \"planned\"\n}\n]",
+									"raw": "[\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n},\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n}\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3025,97 +3000,6 @@
 									"path": [
 										"trips",
 										"{{TRIP_ID}}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Brazilian States",
-					"item": [
-						{
-							"name": "Consult brazilian states",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const responseJson = pm.response.json();",
-											"",
-											"pm.test(\"Test: Status code equals to 200\", function() {",
-											"    pm.expect(pm.response.code).to.equal(200);",
-											"});",
-											"",
-											"pm.test(\"Test: Status equals to OK\", function() {",
-											"    pm.response.to.have.status(\"OK\");",
-											"});",
-											"",
-											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
-											"});",
-											"",
-											"pm.test(\"Test: Should exist a body and be valid\", function () {",
-											"    pm.response.to.be.ok;",
-											"    pm.response.to.be.withBody;",
-											"});",
-											"",
-											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
-											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.leaving_date).to.have.lengthOf.below(4096);",
-											"    });",
-											"});",
-											"",
-											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
-											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.arrival_date).to.have.lengthOf.below(4096);",
-											"    });",
-											"});",
-											"",
-											"pm.test(\"Test: Response JSON format\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"",
-											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
-											"});",
-											"",
-											"pm.test(\"Test: Performance (maximum response time)\", function () {",
-											"    pm.expect(pm.response.responseTime).to.be.below(200);",
-											"});",
-											"",
-											"pm.test(\"Test: Validate not null field leaving date for each object\", function () {",
-											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.leaving_date).to.not.include(null);",
-											"    });",
-											"});",
-											"",
-											"pm.test(\"Test: Validate not null field arrival date for each object\", function () {",
-											"    _.each(responseJson, function (obj) {",
-											"        pm.expect(obj.arrival_date).to.not.include(null);",
-											"    });",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicle-types/1",
-									"host": [
-										"{{APP_DOMAIN_AND_PORT}}"
-									],
-									"path": [
-										"vehicle-types",
-										"1"
 									]
 								}
 							},
