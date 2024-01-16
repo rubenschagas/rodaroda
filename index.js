@@ -1,443 +1,394 @@
 // noinspection JSStringConcatenationToES6Template,SpellCheckingInspection
 
+//exporting the data base configs
+const dataBase = require('./data-base-config/db-config');
+
+//exporting the app controllers
+const brazilianStatesController = require('./controllers/brazilian-states/brazilian-states-controller');
+const driversController = require('./controllers/drivers/drivers-controller');
+const licensePlatesController = require('./controllers/license-plates/license-plates-controller');
+const logisticRolesController = require('./controllers/logistic-roles/logistic-roles-controller');
+const productCategoriesController = require('./controllers/product-categories/product-categories-controller');
+const vehicleTypesController = require('./controllers/vehicle-types/vehicle-types-controller');
+const vehiclesFleetController = require('./controllers/vehicles-fleet/vehicles-fleet-controller');
+const localitiesController = require('./controllers/localities/localities-controller');
+const productsController = require('./controllers/products/products-controller'// CRUD logistic roles
+56
+ 
+app.get('/logistic-roles', logisticRolesController.getAll);
+57
+ 
+app.get('/logistic-roles/:id', logisticRolesController.getOne);
+58
+ 
+app.post('/logistic-roles', logisticRolesController.postOne);
+59
+ 
+app.put('/logistic-roles/:id', logisticRolesController.updateOne);
+60
+ 
+app.delete('/logistic-roles/:id', logisticRolesController.deleteOne);
+61
+ 
+​
+62
+ 
+// CRUD product categories
+63
+ 
+app.get('/product-categories', productCategoriesController.getAll);
+64
+ 
+app.get('/product-categories/:id', productCategoriesController.getOne);
+65
+ 
+app.post('/product-categories', productCategoriesController.postOne);
+66
+ 
+app.put('/product-categories/:id', productCategoriesController.updateOne);
+67
+ 
+app.delete('/product-categories/:id', productCategoriesController.deleteOne);
+68
+ 
+​
+69
+ 
+// CRUD vehicle types
+70
+ 
+app.get('/vehicle-types', vehicleTypesController.getAll);
+71
+ 
+app.get('/vehicle-types/:id', vehicleTypesController.getOne);
+72
+ 
+app.post('/vehicle-types', vehicleTypesController.postOne);
+73
+ 
+app.put('/vehicle-types/:id', vehicleTypesController.updateOne);
+74
+ 
+app.delete('/vehicle-types/:id', vehicleTypesController.deleteOne);
+75
+ 
+​
+76
+ 
+// CRUD vehicles fleet
+77
+ 
+app.get('/vehicles-fleet', vehiclesFleetController.getAll);
+78
+ 
+app.get('/vehicles-fleet/:id', vehiclesFleetController.getOne);
+79
+ 
+app.post('/vehicles-fleet', vehiclesFleetController.postOne);
+80
+ 
+app.put('/vehicles-fleet/:id', vehiclesFleetController.updateOne);
+81
+ 
+app.delete('/vehicles-fleet/:id', vehiclesFleetController.deleteOne);
+82
+ 
+​
+83
+ 
+// CRUD localities
+84
+ 
+app.get('/localities', localitiesController.getAll);
+85
+ 
+app.get('/localities/:id', localitiesController.getOne);
+86
+ 
+app.post('/localities', localitiesController.postOne);
+87
+ 
+app.put('/localities/:id', localitiesController.updateOne);
+88
+ 
+app.delete('/localities/:id', localitiesController.deleteOne);
+89
+ 
+​
+90
+ 
+// CRUD products
+91
+ 
+app.get('/products', productsController.getAll);
+92
+ 
+app.get('/products/:id', productsController.getOne);
+93
+ 
+app.post('/products', productsController.postOne);
+94
+ 
+app.put('/products/:id', productsController.updateOne);
+95
+ 
+app.delete('/products/:id', productsController.deleteOne);
+96
+ 
+​
+97
+ 
+// CRUD carriers
+98
+ 
+app.get('/carriers', carriersController.getAll);
+99
+ 
+app.get('/carriers/:id', carriersController.getOne);
+100
+ 
+app.post('/carriers', carriersController.postOne);
+101
+ 
+app.put('/carriers/:id', carriersController.updateOne);
+102
+ 
+app.delete('/carriers/:id', carriersController.deleteOne);
+103
+ 
+​
+104
+ 
+// CRUD vehicles
+105
+ 
+app.get('/vehicles', vehiclesController.getAll);
+106
+ 
+app.get('/vehicles/:id', vehiclesController.getOne);
+107
+ 
+app.post('/vehicles', vehiclesController.postOne);
+108
+ 
+app.put('/vehicles/:id', vehiclesController.updateOne);
+109
+ 
+app.delete('/vehicles/:id', vehiclesController.deleteOne);
+110
+ 
+​
+111
+ 
+// CRUD trips
+112
+ 
+app.get('/trips', tripsController.getAll);
+113
+ 
+app.get('/trips/:id', tripsController.getOne);
+114
+ 
+app.post('/trips', tripsController.postOne);
+115
+ 
+app.put('/trips/:id', tripsController.updateOne);
+116
+ 
+app.delete('/trips/:id', tripsController.deleteOne);
+117
+ 
+=======
+118
+ 
+// Configuração do pool de conexão com o PostgreSQL
+119
+ 
+const pool = new Pool({
+120
+ 
+  host: databaseHostname,
+121
+ 
+  port: databasePort,
+122
+ 
+  database: databaseName,
+123
+ 
+  user: databaseUsername,
+124
+ 
+  password: databasePassword,
+125
+ 
+});
+126
+ 
+​
+127
+ 
+// CRUD para localidade
+128
+ 
+app.get('/localities', async (req, res) => {
+129
+ 
+  const result = await pool.query('SELECT * FROM locality');
+130
+ 
+  if (result.rows.length === 0) {
+131
+ 
+    return res.status(404).json({ error: 'Cannot find localities.' });
+132
+ 
+  }
+133
+ 
+  res.json(result.rows);
+134
+ 
+});
+135
+ 
+​
+136
+ 
+app.post('/localities', async (req, res) => {
+137
+ 
+  const request = req.body;
+138
+ 
+  const errors = [];
+139
+ 
+​
+140
+ 
+  if(request.length > 1){
+141
+ 
+    for(const register of request){
+142
+ 
+      if(!register.name || !register.type){
+143
+ 
+          errors.push({ error: 'Failed to register locality.'});
+144
+ 
+      }
+145
+ 
+    }
+146
+ 
+    if(errors.length > 0){
+147
+ 
+      return res.status(400).json(errors););
+const carriersController = require('./controllers/carriers/carriers-controller');
+const vehiclesController = require('./controllers/vehicles/vehicles-controller');
+const tripsController = require('./controllers/trips/trips-controller');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 
-const applicationPort = process.env.APPLICATION_PORT || '3000';
-const databaseHostname = process.env.DATABASE_HOSTNAME || 'localhost';
-const databasePort = process.env.DATABASE_PORT || '5432';
-const databaseName = process.env.DATABASE_NAME || 'rodaroda';
-const databaseUsername = process.env.DATABASE_USER || 'postgres';
-const databasePassword = process.env.DATABASE_PASSWORD || 'postgres';
-
 const app = express();
-const port = applicationPort;
 
 app.use(bodyParser.json());
 
-// Configuração do pool de conexão com o PostgreSQL
-const pool = new Pool({
-  host: databaseHostname,
-  port: databasePort,
-  database: databaseName,
-  user: databaseUsername,
-  password: databasePassword,
-});
+const port = dataBase.dbAppPort;
 
-// CRUD para localidade
-app.get('/localities', async (req, res) => {
-  const result = await pool.query('SELECT * FROM locality');
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find localities.' });
-  }
-  res.json(result.rows);
-});
+//Configurating the db connection
+const pool = new Pool(dataBase.dbConfig);
 
-app.post('/localities', async (req, res) => {
-  const request = req.body;
-  const errors = [];
+// CRUD brazilian States
+app.get('/brazilian-states', brazilianStatesController.getAll);
+app.get('/brazilian-states/:id', brazilianStatesController.getOne);
+app.post('/brazilian-states', brazilianStatesController.postOne);
+app.put('/brazilian-states/:id', brazilianStatesController.updateOne);
+app.delete('/brazilian-states/:id', brazilianStatesController.deleteOne);
 
-  if(request.length > 1){
-    for(const register of request){
-      if(!register.name || !register.type){
-          errors.push({ error: 'Failed to register locality.'});
-      }
-    }
-    if(errors.length > 0){
-      return res.status(400).json(errors);
-    }
-    const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [register.name, register.type]);
-      return result.rows[0];
-    });
-    try{
-      const insertedLocalities = await Promise.all(promises);
+// CRUD drivers
+app.get('/drivers', driversController.getAll);
+app.get('/drivers/:id', driversController.getOne);
+app.post('/drivers', driversController.postOne);
+app.put('/drivers/:id', driversController.updateOne);
+app.delete('/drivers/:id', driversController.deleteOne);
 
-      if(insertedLocalities.length === 0){
-          return res.status(404).json({ error: 'Failed to register locality.'});
-      }
-      res.json(insertedLocalities);
-    }catch(error){
-      console.error('Error inserting localities:', error);
-      res.status(500).json({error: 'Internal server error.'})
-    }
-  }else{
-    if(!request.name || !request.type){
-        errors.push({ error: 'Failed to register locality.'});
-    }
-    if(errors.length > 0){
-        return res.status(400).json(errors);
-    }
-    const result = await pool.query('INSERT INTO locality (name, type) VALUES ($1, $2) RETURNING *', [request.name, request.type]);
-    if(result.rows.length === 0){
-        return res.status(404).json({ error: 'Failed to register locality.'});
-    }
-    res.json(result.rows[0]);
-  }
-});
+// CRUD license plates
+app.get('/license-plates', licensePlatesController.getAll);
+app.get('/license-plates/:id', licensePlatesController.getOne);
+app.post('/license-plates', licensePlatesController.postOne);
+app.put('/license-plates/:id', licensePlatesController.updateOne);
+app.delete('/license-plates/:id', licensePlatesController.deleteOne);
 
-app.get('/localities/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM locality WHERE id = $1', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find locality.' });
-  }
-  res.json(result.rows[0]);
-});
+// CRUD logistic roles
+app.get('/logistic-roles', logisticRolesController.getAll);
+app.get('/logistic-roles/:id', logisticRolesController.getOne);
+app.post('/logistic-roles', logisticRolesController.postOne);
+app.put('/logistic-roles/:id', logisticRolesController.updateOne);
+app.delete('/logistic-roles/:id', logisticRolesController.deleteOne);
 
-app.put('/localities/:id', async (req, res) => {
-  if(!req.body.name || !req.body.type){
-        return res.status(404).json({ error: 'Failed to update locality.' });
-  }
-  const { id } = req.params;
-  const { name, type } = req.body;
-  const result = await pool.query('UPDATE locality SET name = $1, type = $2 WHERE id = $3 RETURNING *', [name, type, id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find locality.' });
-  }
-  res.json(result.rows[0]);
-});
+// CRUD product categories
+app.get('/product-categories', productCategoriesController.getAll);
+app.get('/product-categories/:id', productCategoriesController.getOne);
+app.post('/product-categories', productCategoriesController.postOne);
+app.put('/product-categories/:id', productCategoriesController.updateOne);
+app.delete('/product-categories/:id', productCategoriesController.deleteOne);
 
-app.delete('/localities/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM locality WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find locality.' });
-  }
-  res.json({ message: 'Locality successfully deleted.' });
-});
+// CRUD vehicle types
+app.get('/vehicle-types', vehicleTypesController.getAll);
+app.get('/vehicle-types/:id', vehicleTypesController.getOne);
+app.post('/vehicle-types', vehicleTypesController.postOne);
+app.put('/vehicle-types/:id', vehicleTypesController.updateOne);
+app.delete('/vehicle-types/:id', vehicleTypesController.deleteOne);
 
-// CRUD para produto
-app.get('/products', async (req, res) => {
-  const result = await pool.query('SELECT * FROM product');
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find products.' });
-  }
-  res.json(result.rows);
-});
+// CRUD vehicles fleet
+app.get('/vehicles-fleet', vehiclesFleetController.getAll);
+app.get('/vehicles-fleet/:id', vehiclesFleetController.getOne);
+app.post('/vehicles-fleet', vehiclesFleetController.postOne);
+app.put('/vehicles-fleet/:id', vehiclesFleetController.updateOne);
+app.delete('/vehicles-fleet/:id', vehiclesFleetController.deleteOne);
 
-app.post('/products', async (req, res) => {
-  const request = req.body;
-  const errors = [];
+// CRUD localities
+app.get('/localities', localitiesController.getAll);
+app.get('/localities/:id', localitiesController.getOne);
+app.post('/localities', localitiesController.postOne);
+app.put('/localities/:id', localitiesController.updateOne);
+app.delete('/localities/:id', localitiesController.deleteOne);
 
-  if(request.length > 1){
-    for(const register of request){
-        if(!register.name || !register.description || !register.state){
-            errors.push({ error: 'Failed to register product.'});
-        }
-    }
-    if(errors.length > 0){
-        return res.status(400).json(errors);
-    }
-    const promises = request.map(async (register) => {
-        const result = await pool.query('INSERT INTO product (name, description, state) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.description, register.state]);
-        return result.rows[0];
-    });
-    try{
-      const insertedProducts = await Promise.all(promises)
-      if(insertedProducts.length === 0){
-        return res.status(404).json({ error: 'Failed to register product.'});
-      }
-        res.json(insertedProducts);
-      }catch(error){
-        console.error('Error inserting products:', error);
-        res.status(500).json({error: 'Internal server error.'})
-      }
-  }else{
-    if(!request.name || !request.description || !request.state ){
-        errors.push({ error: 'Failed to register product.'});
-    }
-    if(errors.length > 0){
-        return res.status(400).json(errors);
-    }
-    const result = await pool.query('INSERT INTO product (name, description, state) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.description, request.state]);
-    if(result.rows.length === 0){
-        return res.status(404).json({ error: 'Failed to register product.'});
-    }
-    res.json(result.rows[0]);
-  }
-});
+// CRUD products
+app.get('/products', productsController.getAll);
+app.get('/products/:id', productsController.getOne);
+app.post('/products', productsController.postOne);
+app.put('/products/:id', productsController.updateOne);
+app.delete('/products/:id', productsController.deleteOne);
 
-app.get('/products/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM product WHERE id = $1', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find product.' });
-  }
-  res.json(result.rows[0]);
-});
+// CRUD carriers
+app.get('/carriers', carriersController.getAll);
+app.get('/carriers/:id', carriersController.getOne);
+app.post('/carriers', carriersController.postOne);
+app.put('/carriers/:id', carriersController.updateOne);
+app.delete('/carriers/:id', carriersController.deleteOne);
 
-app.put('/products/:id', async (req, res) => {
-  if(!req.body.nome || !req.body.description){
-    return res.status(404).json({ error: 'Failed to update product.' });
-  }
-  const { id } = req.params;
-  const { nome, description } = req.body;
-  const result = await pool.query('UPDATE product SET nome = $1, description = $2 WHERE id = $3 RETURNING *', [nome, description, id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find product.' });
-  }
-  res.json(result.rows[0]);
-});
+// CRUD vehicles
+app.get('/vehicles', vehiclesController.getAll);
+app.get('/vehicles/:id', vehiclesController.getOne);
+app.post('/vehicles', vehiclesController.postOne);
+app.put('/vehicles/:id', vehiclesController.updateOne);
+app.delete('/vehicles/:id', vehiclesController.deleteOne);
 
-app.delete('/products/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM product WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find product.' });
-  }
-  res.json({ message: 'Product successfully deleted.' });
-});
-
-// CRUD para transportadora
-app.get('/carriers', async (req, res) => {
-  const result = await pool.query('SELECT * FROM carrier');
-   if (result.rows.length === 0) {
-     return res.status(404).json({ error: 'Cannot find carriers.' });
-   }
-  res.json(result.rows);
-});
-
-app.post('/carriers', async (req, res) => {
-  const request = req.body;
-  const errors = [];
-
-  if(request.length > 1){
-    for(const register of request){
-      if(!register.nome || !register.contact){
-          errors.push({ error: 'Failed to register carrier.'});
-      }
-    }
-    if(errors.length > 0){
-      return res.status(400).json(errors);
-    }
-    const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [register.name, register.contact]);
-      return result.rows[0];
-    });
-    try{
-      const insertedCarriers = await Promise.all(promises);
-      if(insertedCarriers.length === 0){
-          return res.status(404).json({ error: 'Failed to register carrier.'});
-      }
-      res.json(insertedCarriers);
-    }catch(error){
-      console.error('Error inserting carriers:', error);
-      res.status(500).json({error: 'Internal server error.'})
-    }
-  }else{
-    if(!request.name || !request.contact){
-        errors.push({ error: 'Failed to register carrier.'});
-    }
-    if(errors.length > 0){
-        return res.status(400).json(errors);
-    }
-    const result = await pool.query('INSERT INTO carrier (name, contact) VALUES ($1, $2) RETURNING *', [request.name, request.contact]);
-    if(result.rows.length === 0){
-        return res.status(404).json({ error: 'Failed to register carrier.'});
-    }
-    res.json(result.rows[0]);
-  }
-});
-
-app.get('/carriers/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM carrier WHERE id = $1', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find carrier.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.put('/carriers/:id', async (req, res) => {
-  if(!req.body.name || !req.body.contact){
-    return res.status(404).json({ error: 'Failed to update carrier.' });
-  }
-  const { id } = req.params;
-  const { name, contact } = req.body;
-  const result = await pool.query('UPDATE carrier SET name = $1, contact = $2 WHERE id = $3 RETURNING *', [name, contact, id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find carrier.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.delete('/carriers/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM carrier WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find carrier.' });
-  }
-  res.json({ message: 'Carrier successfully deleted.' });
-});
-
-// CRUD para veículo
-app.get('/vehicles', async (req, res) => {
-  const result = await pool.query('SELECT * FROM vehicle');
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find vehicles.' });
-  }
-  res.json(result.rows);
-});
-
-app.post('/vehicles', async (req, res) => {
-  const request = req.body;
-  const errors = [];
-
-  if(request.length > 1){
-    for(const register of request){
-      if(!register.name || !register.model || !register.license_plate){
-          errors.push({ error: 'Failed to register vehicle.'});
-      }
-    }
-    if(errors.length > 0){
-      return res.status(400).json(errors);
-    }
-    const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [register.name, register.model, register.license_plate]);
-      return result.rows[0];
-    });
-    try{
-      const insertedVehicles = await Promise.all(promises)
-      if(insertedVehicles.length === 0){
-          return res.status(404).json({ error: 'Failed to register vehicle.'});
-      }
-      res.json(insertedVehicles);
-    }catch(error){
-      console.error('Error inserting vehicles:', error);
-      res.status(500).json({error: 'Internal server error.'})
-    }
-  }else{
-    if(!request.name || !request.model || !request.license_plate){
-       errors.push({ error: 'Failed to register vehicle.'});
-  }
-  if(errors.length > 0){
-    return res.status(400).json(errors);
-  }
-  const result = await pool.query('INSERT INTO vehicle (name, model, license_plate) VALUES ($1, $2, $3) RETURNING *',  [request.name, request.model, request.license_plate]);
-  if(result.rows.length === 0){
-    return res.status(404).json({ error: 'Failed to register vehicle.'});
-  }
-  res.json(result.rows[0]);
-  }
-});
-
-app.get('/vehicles/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM vehicle WHERE id = $1', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find vehicle.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.put('/vehicles/:id', async (req, res) => {
-  if(!req.body.name || !req.body.model || !req.body.license_plate){
-    return res.status(404).json({ error: 'Failed to update vehicle.' });
-  }
-  const { id } = req.params;
-  const { name, model, license_plate } = req.body;
-  const result = await pool.query('UPDATE vehicle SET name = $1, model = $2, license_plate = $3 WHERE id = $4 RETURNING *', [name, model, license_plate, id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find vehicle.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.delete('/vehicles/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM vehicle WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find vehicle.' });
-  }
-  res.json({ message: 'Vehicle successfully deleted.' });
-});
-
-// CRUD para viagem
-app.get('/trips', async (req, res) => {
-  const result = await pool.query('SELECT * FROM trip');
-  if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Cannot find trips.' });
-  }
-  res.json(result.rows);
-});
-
-app.post('/trips', async (req, res) => {
-  const request = req.body;
-  const errors = [];
-
-  if(request.length > 1){
-    for(const register of request){
-      if(!register.origin_id || !register.destination_id || !register.product_id || !register.carrier_id || !register.vehicle_id || !register.leaving_date || !register.arrival_date){
-            errors.push({ error: 'Failed to register trip.'});
-      }
-    }
-    if(errors.length > 0){
-      return res.status(400).json(errors);
-    }
-    const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [register.origin_id, register.destination_id, register.product_id, register.carrier_id, register.vehicle_id, register.leaving_date, register.arrival_date]);
-      return result.rows[0];
-    });
-    try{
-      const insertedTrips = await Promise.all(promises)
-      if(insertedTrips.length === 0){
-          return res.status(404).json({ error: 'Failed to register trip.'});
-      }
-      res.json(insertedTrips);
-    }catch(error){
-      console.error('Error inserting trips:', error);
-      res.status(500).json({error: 'Internal server error.'})
-    }
-    }else{
-      if(!request.origin_id || !request.destination_id || !request.product_id || !request.carrier_id || !request.vehicle_id || !request.leaving_date || !request.arrival_date){
-         errors.push({ error: 'Failed to register trip.'});
-    }
-    if(errors.length > 0){
-      return res.status(400).json(errors);
-    }
-    const result = await pool.query('INSERT INTO trip (origin_id, destination_id, product_id, carrier_id, vehicle_id, leaving_date, arrival_Date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-    [request.origin_id, request.destination_id, request.product_id, request.carrier_id, request.vehicle_id, request.leaving_date, request.arrival_date]);
-    if(result.rows.length === 0){
-      return res.status(404).json({ error: 'Failed to register trip.'});
-    }
-    res.json(result.rows[0]);
-    }
-});
-
-app.get('/trips/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('SELECT * FROM trip WHERE id = $1', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find trip.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.put('/trips/:id', async (req, res) => {
-  if(!req.body.origin_id || !req.body.destination_id_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.leaving_date || !req.body.arrival_date){
-    return res.status(404).json({ error: 'Failed to register trip.' });
-  }
-  const { id } = req.params;
-  const { origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date } = req.body;
-  const result = await pool.query('UPDATE viagem SET origem_id = $1, destino_id = $2, produto_id = $3, transportadora_id = $4, veiculo_id = $5, data_partida = $6, data_chegada = $7  WHERE id = $8 RETURNING *',
-  [origin_id, destination_id, product_id, carrier_idr, vehicle_id, leaving_date, arrival_date]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find trip.' });
-  }
-  res.json(result.rows[0]);
-});
-
-app.delete('/trips/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query('DELETE FROM trip WHERE id = $1 RETURNING *', [id]);
-  if (result.rows.length === 0) {
-    return res.status(404).json({ error: 'Cannot find trip.' });
-  }
-  res.json({ message: 'Trip successfully deleted.' });
-});
+// CRUD trips
+app.get('/trips', tripsController.getAll);
+app.get('/trips/:id', tripsController.getOne);
+app.post('/trips', tripsController.postOne);
+app.put('/trips/:id', tripsController.updateOne);
+app.delete('/trips/:id', tripsController.deleteOne);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);

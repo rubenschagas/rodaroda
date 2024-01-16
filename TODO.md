@@ -26,7 +26,7 @@ TODO: 3. se abituar a criar branches separadas por features/melhorias, criando P
 
 TODO: 4. traduzir todo o projeto para o Inglês, incluindo a padronização de código, endpoints, collection, etc.
 
-TODO: 5. modularizar (com os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor
+TODO: 5. modularizar (com os mesmos paradigmas dos projetos de automação) cada CRUD e a escuta do servidor. usamos:https://blog.4linux.com.br/como-organizar-e-manipular-rotas-com-node-js-e-express/ DONE
 
 TODO: 6. resolver os problemas de código do projeto (via Inspect Code), pesquisando
 
