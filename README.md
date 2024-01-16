@@ -29,7 +29,7 @@ The purpose of this app is to build a basic structure for a backend application,
 Upon sending requests to the backend, we can query and insert data into it.
 
 The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and 
-destination types), product, vehicle and carrier.
+destination types), product, driver, vehicle and carrier.
 
 Additionally, it will execute Postman collection tests against the backend and generate a visually appealing 
 HTML report for the test run.
