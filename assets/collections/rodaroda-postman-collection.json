@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e10c5486-6ada-4360-95be-0d80d0d46c49",
+		"_postman_id": "0138573c-1a1f-4335-9507-06395d986442",
 		"name": "Rodaroda",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14986445"
+		"_exporter_id": "31900519"
 	},
 	"item": [
 		{
@@ -246,7 +246,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n},\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n]\n",
+									"raw": "[\n{\n  \"uf_id\": 1,\n  \"logistic_type_id\": 1,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"origin\",\n  \"state\": \"active\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -336,7 +336,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n},\n{\n  \"name\": \"Locality name {{RANDOM_NAME}}\",\n  \"type\": \"origin\"\n}\n]\n",
+									"raw": "[\n{\n  \"uf_id\": 1,\n  \"logistic_type_id\": 1,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"destination\",\n  \"state\": \"active\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -362,7 +362,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postProduct = {",
+											"const postLocality = {",
 											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localities',",
 											"  method: 'POST',",
 											"  header: {",
@@ -371,13 +371,17 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
-											"    'name': 'Locality name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'type': 'destination'",
+											"    'uf_id': 1,",
+											"    'logistic_type_id': 1,",
+											"    'cnpj': pm.environment.get('RANDOM_CNPJ'),",
+											"    'name': 'Locality '+pm.environment.get('RANDOM_NAME'),",
+											"    'type': 'destination',",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postProduct, function (err, response) {",
+											"pm.sendRequest(postLocality, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
@@ -463,7 +467,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Locality {{RANDOM_NAME}} updated\",\n  \"type\": \"origin\"\n}\n\n",
+									"raw": "{\n  \"uf_id\": 1,\n  \"logistic_type_id\": 1,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"origin\",\n  \"state\": \"active\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -490,7 +494,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postProduct = {",
+											"const postLocality = {",
 											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localities',",
 											"  method: 'POST',",
 											"  header: {",
@@ -499,13 +503,17 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
-											"    'name': 'Locality name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'type': 'origin'",
+											"    'uf_id': 1,",
+											"    'logistic_type_id': 1,",
+											"    'cnpj': pm.environment.get('RANDOM_CNPJ'),",
+											"    'name': 'Locality '+pm.environment.get('RANDOM_NAME'),",
+											"    'type': 'destination',",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postProduct, function (err, response) {",
+											"pm.sendRequest(postLocality, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
@@ -591,7 +599,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Locality {{RANDOM_NAME}} updated\",\n  \"type\": \"destination\"\n}\n",
+									"raw": "{\n  \"uf_id\": 1,\n  \"logistic_type_id\": 1,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Locality {{RANDOM_NAME}}\",\n  \"type\": \"destination\",\n  \"state\": \"active\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -618,7 +626,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postProduct = {",
+											"const postLocality = {",
 											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localities',",
 											"  method: 'POST',",
 											"  header: {",
@@ -627,13 +635,17 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
-											"    'name': 'Locality name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'type': 'destination'",
+											"    'uf_id': 1,",
+											"    'logistic_type_id': 1,",
+											"    'cnpj': pm.environment.get('RANDOM_CNPJ'),",
+											"    'name': 'Locality '+pm.environment.get('RANDOM_NAME'),",
+											"    'type': 'destination',",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postProduct, function (err, response) {",
+											"pm.sendRequest(postLocality, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
@@ -873,13 +885,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{APP_DOMAIN_AND_PORT}}/products/50",
+									"raw": "{{APP_DOMAIN_AND_PORT}}/products/1",
 									"host": [
 										"{{APP_DOMAIN_AND_PORT}}"
 									],
 									"path": [
 										"products",
-										"50"
+										"1"
 									]
 								}
 							},
@@ -952,7 +964,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"name\": \"Produto 1\",\n  \"description\": \"Descrição do Produto 1\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 2\",\n  \"description\": \"Descrição do Produto 2\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 3\",\n  \"description\": \"Descrição do Produto 3\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 4\",\n  \"description\": \"Descrição do Produto 4\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 5\",\n  \"description\": \"Descrição do Produto 5\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 6\",\n  \"description\": \"Descrição do Produto 6\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 7\",\n  \"description\": \"Descrição do Produto 7\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 8\",\n  \"description\": \"Descrição do Produto 8\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 9\",\n  \"description\": \"Descrição do Produto 9\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 10\",\n  \"description\": \"Descrição do Produto 10\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 11\",\n  \"description\": \"Descrição do Produto 11\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 12\",\n  \"description\": \"Descrição do Produto 12\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 13\",\n  \"description\": \"Descrição do Produto 13\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 14\",\n  \"description\": \"Descrição do Produto 14\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 15\",\n  \"description\": \"Descrição do Produto 15\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 16\",\n  \"description\": \"Descrição do Produto 16\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 17\",\n  \"description\": \"Descrição do Produto 17\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 18\",\n  \"description\": \"Descrição do Produto 18\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 19\",\n  \"description\": \"Descrição do Produto 19\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 20\",\n  \"description\": \"Descrição do Produto 20\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 21\",\n  \"description\": \"Descrição do Produto 21\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 22\",\n  \"description\": \"Descrição do Produto 22\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 23\",\n  \"description\": \"Descrição do Produto 23\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 24\",\n  \"description\": \"Descrição do Produto 24\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 25\",\n  \"description\": \"Descrição do Produto 25\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 26\",\n  \"description\": \"Descrição do Produto 26\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 27\",\n  \"description\": \"Descrição do Produto 27\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 28\",\n  \"description\": \"Descrição do Produto 28\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 29\",\n  \"description\": \"Descrição do Produto 29\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 30\",\n  \"description\": \"Descrição do Produto 30\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 31\",\n  \"description\": \"Descrição do Produto 31\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 32\",\n  \"description\": \"Descrição do Produto 32\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 33\",\n  \"description\": \"Descrição do Produto 33\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 34\",\n  \"description\": \"Descrição do Produto 34\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 35\",\n  \"description\": \"Descrição do Produto 35\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 36\",\n  \"description\": \"Descrição do Produto 36\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 37\",\n  \"description\": \"Descrição do Produto 37\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 38\",\n  \"description\": \"Descrição do Produto 38\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 39\",\n  \"description\": \"Descrição do Produto 39\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 40\",\n  \"description\": \"Descrição do Produto 40\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 41\",\n  \"description\": \"Descrição do Produto 41\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 42\",\n  \"description\": \"Descrição do Produto 42\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 43\",\n  \"description\": \"Descrição do Produto 43\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 44\",\n  \"description\": \"Descrição do Produto 44\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 45\",\n  \"description\": \"Descrição do Produto 45\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 46\",\n  \"description\": \"Descrição do Produto 46\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 47\",\n  \"description\": \"Descrição do Produto 47\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 48\",\n  \"description\": \"Descrição do Produto 48\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 49\",\n  \"description\": \"Descrição do Produto 49\",\n  \"state\": \"active\"\n},\n{\n  \"name\": \"Produto 50\",\n  \"description\": \"Descrição do Produto 50\",\n  \"state\": \"active\"\n}\n]",
+									"raw": "[\n{\n  \"product_category_id\": 1,\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n},\n{\n  \"product_category_id\": 1,\n  \"name\": \"Product name {{RANDOM_NAME}}\",\n  \"description\": \"Product description {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -987,8 +999,10 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
+											"    'product_category_id': 1,",
 											"    'name': 'Product name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'description': 'Product description ' + pm.environment.get('RANDOM_NAME')",
+											"    'description': 'Product description ' + pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
@@ -1079,7 +1093,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Product {{RANDOM_NAME}} updated\",\n  \"description\": \"Product description {{RANDOM_NAME}} updated\"\n}\n",
+									"raw": "{\n  \"product_category_id\": 2,\n  \"name\": \"Product {{RANDOM_NAME}} updated\",\n  \"description\": \"Product description {{RANDOM_NAME}} updated\",\n  \"state\": \"inactive\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1115,8 +1129,10 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
+											"    'product_category_id': 1,",
 											"    'name': 'Product name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'description': 'Product description ' + pm.environment.get('RANDOM_NAME')",
+											"    'description': 'Product description ' + pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
@@ -1445,7 +1461,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n},\n{\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\"\n}\n]\n",
+									"raw": "[\n{\n  \"fleet_id\": 1,\n  \"uf_id\": 1,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Carrier name {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com\",\n  \"state\": \"active\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1480,8 +1496,12 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
+											"    'fleet_id': 1,",
+											"    'uf_id': 1,",
+											"    'cnpj': pm.environment.get('RANDOM_CNPJ'),",
 											"    'name': 'Carrier name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'contact': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
+											"    'contact': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com',",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
@@ -1572,7 +1592,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Carrier {{RANDOM_NAME}} updated\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com.br\"\n}\n",
+									"raw": "{\n  \"fleet_id\": 1,\n  \"uf_id\": 2,\n  \"cnpj\": \"{{RANDOM_CNPJ}}\",\n  \"name\": \"Carrier {{RANDOM_NAME}} updated\",\n  \"contact\": \"{{RANDOM_NAME}}@{{RANDOM_NAME}}.com.br\",\n  \"state\": \"inactive\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1608,8 +1628,12 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
+											"    'fleet_id': 1,",
+											"    'uf_id': 1,",
+											"    'cnpj': pm.environment.get('RANDOM_CNPJ'),",
 											"    'name': 'Carrier name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'contact': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
+											"    'contact': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com',",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
@@ -1976,6 +2000,81 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/license-plates',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'license_plate': pm.environment.get('VEHICLE_PLATE'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LICENSE_PLATE_ID', ID);",
+											"});",
+											"",
+											"function generateVehicleDocument(){",
+											"  let create_array = (total, number) => Array.from(Array(total), () => number_random(number));",
+											"  let number_random = (number) => Math.round(Math.random() * number);",
+											"  let mod = (dividend, divider) => Math.round(dividend - Math.floor(dividend / divider) * divider);",
+											"  let total_array = 8;",
+											"  let n = 9;",
+											"  let [n1, n2, n3, n4, n5, n6, n7, n8] = create_array(total_array, n);",
+											"  let n9 = 0;",
+											"  let n10 = 0;",
+											"  let n11 = 0;",
+											"  let n12 = 1;",
+											"",
+											"  let d1 =",
+											"    n12 * 2 +",
+											"    n11 * 3 +",
+											"    n10 * 4 +",
+											"    n9 * 5 +",
+											"    n8 * 6 +",
+											"    n7 * 7 +",
+											"    n6 * 8 +",
+											"    n5 * 9 +",
+											"    n4 * 2 +",
+											"    n3 * 3 +",
+											"    n2 * 4 +",
+											"    n1 * 5;",
+											"  d1 = 11 - mod(d1, 11);",
+											"  if (d1 >= 10) d1 = 0;",
+											"",
+											"  let d2 =",
+											"    d1 * 2 +",
+											"    n12 * 3 +",
+											"    n11 * 4 +",
+											"    n10 * 5 +",
+											"    n9 * 6 +",
+											"    n8 * 7 +",
+											"    n7 * 8 +",
+											"    n6 * 9 +",
+											"    n5 * 2 +",
+											"    n4 * 3 +",
+											"    n3 * 4 +",
+											"    n2 * 5 +",
+											"    n1 * 6;",
+											"  d2 = 11 - mod(d2, 11);",
+											"  if (d2 >= 10) d2 = 0;",
+											"",
+											"  return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}`;",
+											"}",
+											"",
+											"const vehicleDocumentNumber = generateVehicleDocument();",
+											"pm.environment.set(\"RANDOM_VEHICLE_DOCUMENT\", vehicleDocumentNumber);",
 											""
 										],
 										"type": "text/javascript"
@@ -1990,7 +2089,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n},\n{\n  \"name\": \"Vehicle name {{RANDOM_NAME}}\",\n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n}\n]\n",
+									"raw": "[\n{\n  \"vehicle_license_plate_id\": {{LICENSE_PLATE_ID}},\n  \"vehicle_type_id\": 1,\n  \"vehicle_fleet_id\": 1,\n  \"document_number\": \"{{RANDOM_VEHICLE_DOCUMENT}}\",  \n  \"model\": \"Vehicle model {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n}\n]\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2016,8 +2115,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postVehicle = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles',",
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/license-plates',",
 											"  method: 'POST',",
 											"  header: {",
 											"    'Content-Type': 'application/json; charset=utf-8',",
@@ -2025,20 +2124,89 @@
 											"  body: {",
 											"    mode: 'raw',",
 											"    raw: JSON.stringify({",
-											"    'name': 'Vehicle name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'model': 'Vehicle model' + pm.environment.get('RANDOM_NAME'),",
-											"    'license_plate': pm.environment.get('RANDOM_VEHICLEID')",
+											"    'license_plate': pm.environment.get('VEHICLE_PLATE'),",
+											"    'state': 'active'",
 											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postVehicle, function (err, response) {",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
 											"  let ID = responseJson.id;",
+											"  pm.environment.set('LICENSE_PLATE_ID', ID);",
+											"});",
+											"",
+											"function generateVehicleDocument(){",
+											"  let create_array = (total, number) => Array.from(Array(total), () => number_random(number));",
+											"  let number_random = (number) => Math.round(Math.random() * number);",
+											"  let mod = (dividend, divider) => Math.round(dividend - Math.floor(dividend / divider) * divider);",
+											"  let total_array = 8;",
+											"  let n = 9;",
+											"  let [n1, n2, n3, n4, n5, n6, n7, n8] = create_array(total_array, n);",
+											"  let n9 = 0;",
+											"  let n10 = 0;",
+											"  let n11 = 0;",
+											"  let n12 = 1;",
+											"",
+											"  let d1 =",
+											"    n12 * 2 +",
+											"    n11 * 3 +",
+											"    n10 * 4 +",
+											"    n9 * 5 +",
+											"    n8 * 6 +",
+											"    n7 * 7 +",
+											"    n6 * 8 +",
+											"    n5 * 9 +",
+											"    n4 * 2 +",
+											"    n3 * 3 +",
+											"    n2 * 4 +",
+											"    n1 * 5;",
+											"  d1 = 11 - mod(d1, 11);",
+											"  if (d1 >= 10) d1 = 0;",
+											"",
+											"  let d2 =",
+											"    d1 * 2 +",
+											"    n12 * 3 +",
+											"    n11 * 4 +",
+											"    n10 * 5 +",
+											"    n9 * 6 +",
+											"    n8 * 7 +",
+											"    n7 * 8 +",
+											"    n6 * 9 +",
+											"    n5 * 2 +",
+											"    n4 * 3 +",
+											"    n3 * 4 +",
+											"    n2 * 5 +",
+											"    n1 * 6;",
+											"  d2 = 11 - mod(d2, 11);",
+											"  if (d2 >= 10) d2 = 0;",
+											"",
+											"  return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}`;",
+											"}",
+											"",
+											"const vehicleDocumentNumber = generateVehicleDocument();",
+											"pm.environment.set(\"RANDOM_VEHICLE_DOCUMENT\", vehicleDocumentNumber);",
+											"",
+											"const getVehicles = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles',",
+											"  method: 'GET',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(getVehicles, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  const lastItemResponse = responseJson[responseJson.length - 1];",
+											"  let ID = lastItemResponse.id ",
 											"  pm.environment.set('VEHICLE_ID', ID);",
 											"});",
 											""
@@ -2130,7 +2298,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Vehicle {{RANDOM_NAME}} updated\",\n  \"model\": \"Model {{RANDOM_NAME}} updated\",\n  \"license_plate\": \"{{RANDOM_VEHICLEID}}\"\n}\n",
+									"raw": "{\n  \"vehicle_license_plate_id\": {{LICENSE_PLATE_ID}},\n  \"vehicle_type_id\": 1,\n  \"vehicle_fleet_id\": 1,\n  \"document_number\": \"{{RANDOM_VEHICLE_DOCUMENT}}\",  \n  \"model\": \"Vehicle model {{RANDOM_NAME}} updated\",\n  \"state\": \"active\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2157,29 +2325,22 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"const postVehicle = {",
+											"const getVehicles = {",
 											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles',",
-											"  method: 'POST',",
+											"  method: 'GET',",
 											"  header: {",
 											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Vehicle name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'model': 'Vehicle model' + pm.environment.get('RANDOM_NAME'),",
-											"    'license_plate': pm.environment.get('RANDOM_VEHICLEID')",
-											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postVehicle, function (err, response) {",
+											"pm.sendRequest(getVehicles, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
+											"  const lastItemResponse = responseJson[responseJson.length - 1];",
+											"  let ID = lastItemResponse.id ",
 											"  pm.environment.set('VEHICLE_ID', ID);",
 											"});",
 											""
@@ -2713,7 +2874,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n},\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\"\n}\n]",
+									"raw": "[\n{\n  \"origin_id\": \"{{ORIGINLOCALITY_ID}}\",\n  \"destination_id\": \"{{DESTINATIONLOCALITY_ID}}\",\n  \"product_id\": \"{{PRODUCT_ID}}\",\n  \"carrier_id\": \"{{CARRIER_ID}}\",\n  \"vehicle_id\": \"{{VEHICLE_ID}}\",\n  \"driver_id\": 1,\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\",\n  \"status\": \"planned\"\n}\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2733,201 +2894,29 @@
 							"response": []
 						},
 						{
-							"name": "Exclusão de Viagem por id",
+							"name": "Deleting trip by id",
 							"event": [
 								{
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											" //STILL WORKING IN THAT TEST!",
-											" ",
-											" function generateVehicleIdentification(){",
-											"  const ALPHABET = [",
-											"    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',",
-											"  ];",
-											"  let letter = [];",
-											"  for (let i = 0; i < 4; i++) {",
-											"    const number = (Math.random() * 100).toFixed(0);",
-											"    const numberResult = parseFloat(number);",
-											"    numberResult <= 25 ? letter.push(ALPHABET[numberResult]) : i--;",
-											"  }",
-											"  let number = [];",
-											"  for (let i = 0; i < 3; i++) {",
-											"    number.push(Math.floor(Math.random() * 9));",
-											"  }",
-											"  return `${letter[0]}${letter[1]}${letter[2]}${number[0]}${letter[3]}${number[1]}${number[2]}`;",
-											"}",
-											"",
-											"const randomVehicleId = generateVehicleIdentification();",
-											"pm.environment.set(\"RANDOM_VEHICLEID\", randomVehicleId);",
-											"",
-											"const postVehicle = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles',",
-											"  method: 'POST',",
+											"const getTrips = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/trips',",
+											"  method: 'GET',",
 											"  header: {",
 											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Vehicle name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'model': 'Vehicle model' + pm.environment.get('RANDOM_NAME'),",
-											"    'license_plate': pm.environment.get('RANDOM_VEHICLEID')",
-											"    })",
 											"  }",
 											"};",
 											"",
-											"pm.sendRequest(postVehicle, function (err, response) {",
+											"pm.sendRequest(getTrips, function (err, response) {",
 											"  if (err){",
 											"      console.log(err);",
 											"      return false;",
 											"  }",
 											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('VEHICLE_ID', ID);",
-											"});",
-											"",
-											"// ----",
-											"",
-											"const postCarrier = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/carriers',",
-											"  method: 'POST',",
-											"  header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Carrier name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'contact': pm.environment.get('RANDOM_NAME') + '@' + pm.environment.get('RANDOM_NAME') + '.com'",
-											"    })",
-											"  }",
-											"};",
-											"",
-											"pm.sendRequest(postCarrier, function (err, response) {",
-											"  if (err){",
-											"      console.log(err);",
-											"      return false;",
-											"  }",
-											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('CARRIER_ID', ID);",
-											"});",
-											"",
-											"// ----",
-											"",
-											"const postProduct = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/products',",
-											"  method: 'POST',",
-											"  header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Product ' + pm.environment.get('RANDOM_NAME'),",
-											"    'description': 'Product description' + pm.environment.get('RANDOM_NAME')",
-											"    })",
-											"  }",
-											"};",
-											"",
-											"pm.sendRequest(postProduct, function (err, response) {",
-											"  if (err){",
-											"      console.log(err);",
-											"      return false;",
-											"  }",
-											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('PRODUCT_ID', ID);",
-											"});",
-											"",
-											"// ----",
-											"",
-											"const postLocalityDestination = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localities',",
-											"  method: 'POST',",
-											"  header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Locality name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'type': 'destination'",
-											"    })",
-											"  }",
-											"};",
-											"",
-											"pm.sendRequest(postLocalityDestination, function (err, response) {",
-											"  if (err){",
-											"      console.log(err);",
-											"      return false;",
-											"  }",
-											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('DESTINATIONLOCALITY_ID', ID);",
-											"});",
-											"",
-											"// ----",
-											"",
-											"const postLocalityOrigin = {",
-											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/localities',",
-											"  method: 'POST',",
-											"  header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"  },",
-											"  body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'name': 'Locality name ' + pm.environment.get('RANDOM_NAME'),",
-											"    'type': 'origin'",
-											"    })",
-											"  }",
-											"};",
-											"",
-											"pm.sendRequest(postLocalityOrigin, function (err, response) {",
-											"  if (err){",
-											"      console.log(err);",
-											"      return false;",
-											"  }",
-											"  const responseJson = response.json();",
-											"  let ID = responseJson.id;",
-											"  pm.environment.set('ORIGINLOCALITY_ID', ID);",
-											"});",
-											"",
-											"const postTrip = {",
-											"url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/trips',",
-											"method: 'POST',",
-											"header: {",
-											"    'Content-Type': 'application/json; charset=utf-8',",
-											"},",
-											"body: {",
-											"    mode: 'raw',",
-											"    raw: JSON.stringify({",
-											"    'origin_id': pm.environment.get('ORIGINLOCALITY_ID'),",
-											"    'destination_id': pm.environment.get('DESTINATIONLOCALITY_ID'),",
-											"    'product_id': pm.environment.get('PRODUCT_ID'),",
-											"    'carrier_id': pm.environment.get('CARRIER_ID'),",
-											"    'vehicle_id': pm.environment.get('VEHICLE_ID'),",
-											"    'leaving_date': '2024-08-20 08:00:00.00Z',",
-											"    'arrival_date': '2024-08-25 08:00:00.00Z'",
-											"    })",
-											" }",
-											"};",
-											"console.log(pm.environment.get('ORIGINLOCALITY_ID'))",
-											"console.log(pm.environment.get('DESTINATIONLOCALITY_ID'))",
-											"console.log(pm.environment.get('PRODUCT_ID'))",
-											"console.log(pm.environment.get('CARRIER_ID'))",
-											"console.log(pm.environment.get('VEHICLE_ID'))",
-											"",
-											"pm.sendRequest(postTrip, function (err, response) {",
-											"if (err){",
-											"    console.log(err);",
-											"    return false;",
-											"}",
-											"const responseJson = response.json();",
-											"let ID = responseJson.id;",
-											"pm.environment.set('TRIP_ID', ID);",
+											"  const lastItemResponse = responseJson[responseJson.length - 1];",
+											"  let ID = lastItemResponse.id ",
+											"  pm.environment.set('TRIP_ID', ID);",
 											"});",
 											""
 										],
@@ -3000,6 +2989,3752 @@
 									"path": [
 										"trips",
 										"{{TRIP_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating trip by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"",
+											"",
+											"const getTrips = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles',",
+											"  method: 'GET',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(getTrips, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  const lastItemResponse = responseJson[responseJson.length - 1];",
+											"  let ID = lastItemResponse.id ",
+											"  pm.environment.set('TRIP_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"origin_id\": 1,\n  \"destination_id\": 1,\n  \"product_id\": 1,\n  \"carrier_id\": 1,\n  \"vehicle_id\": 1,\n  \"driver_id\":1,\n  \"leaving_date\": \"2024-08-20 08:00:00.00Z\",\n  \"arrival_date\": \"2024-08-25 08:00:00.00Z\",\n  \"status\": \"in execution\"\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/trips/{{TRIP_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"trips",
+										"{{TRIP_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Brazilian States",
+					"item": [
+						{
+							"name": "Inserting brazillian states",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Type under 4096 characters\", function() {",
+											"        pm.expect(responseJson.type).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"uf_code\": \"60\",\n  \"uf\": \"TST\",\n  \"uf_name\": \"Teste\",\n  \"state\": \"active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/brazilian-states",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"brazilian-states"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult brazillian states",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/brazilian-states",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"brazilian-states"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult brazilian state by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/brazilian-states/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"brazilian-states",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating brazilian state by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postBrazilianState = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/brazillian-states',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'uf_code': '80',",
+											"    'uf': 'tst',",
+											"    'uf_name': 'teste',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postBrazilianState, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('BRAZILIAN_STATE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"uf_code\": \"80\",\n  \"uf\": \"tst\",\n  \"uf_name\": \"teste{{RANDOM_NAME}}\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/brazilian-states/{{BRAZILIAN_STATE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"brazilian-states",
+										"{{BRAZILIAN_STATE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting brazilian state by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postBrazilianState = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/brazillian-states',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'uf_code': '80',",
+											"    'uf': 'tst',",
+											"    'uf_name': 'teste',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postBrazilianState, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('BRAZILIAN_STATE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/brazilian-states/{{BRAZILIAN_STATE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"brazilian-states",
+										"{{BRAZILIAN_STATE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "License plates",
+					"item": [
+						{
+							"name": "Inserting drivers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Type under 4096 characters\", function() {",
+											"        pm.expect(responseJson.type).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"license_plate\": \"{{VEHICLE_PLATE}}\",\n  \"state\": \"active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/license-plates",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"license-plates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult brazillian states",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/license-plates",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"license-plates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult brazilian state by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/license-plates/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"license-plates",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating brazilian state by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/license-plates',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'license_plate': pm.environment.get('VEHICLE_PLATE'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LICENSE_PLATE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"license_plate\": \"{{VEHICLE_PLATE}}\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/license-plates/{{LICENSE_PLATE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"license-plates",
+										"{{LICENSE_PLATE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting brazilian state by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/license-plates',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'license_plate': pm.environment.get('VEHICLE_PLATE'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LICENSE_PLATE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/license-plates/{{LICENSE_PLATE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"license-plates",
+										"{{LICENSE_PLATE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logistic roles",
+					"item": [
+						{
+							"name": "Inserting logistic roles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Type under 4096 characters\", function() {",
+											"        pm.expect(responseJson.type).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"logistic_type\": \"test {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/logistic-roles",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"logistic-roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult logistic roles",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/logistic-roles",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"logistic-roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult logistic role by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/logistic-roles/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"logistic-roles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating logistic role by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/logistic-roles',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'logistic_type': pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOGISTIC_ROLE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"license_plate\": \"{{VEHICLE_PLATE}}\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/logistic-roles/{{LOGISTIC_ROLE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"logistic-roles",
+										"{{LOGISTIC_ROLE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting logistic role by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postLicensePlate = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/logistic-roles',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'logistic_type': pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postLicensePlate, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('LOGISTIC_ROLE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/logistic-roles/{{LOGISTIC_ROLE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"logistic-roles",
+										"{{LOGISTIC_ROLE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicles Fleet",
+					"item": [
+						{
+							"name": "Consult vehicle fleet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-fleet",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-fleet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult vehicle fleet by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-fleet/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-fleet",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating vehicle fleet by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleFleet = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles-fleet',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'fleet_name': 'test '+pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleFleet, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLE_FLEET_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"fleet_name\": \"test {{RANDOM_NAME}} updated\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-fleet/{{VEHICLE_FLEET_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-fleet",
+										"{{VEHICLE_FLEET_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting vehicle fleet by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleFleet = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles-fleet',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'fleet_name': 'test '+pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleFleet, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLE_FLEET_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-fleet/{{VEHICLE_FLEET_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-fleet",
+										"{{VEHICLE_FLEET_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserting vehicle fleet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field fleet_name\", function () {",
+											"        pm.expect(responseJson.fleet_name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle Fleet name registered\", function() {",
+											"    pm.expect(responseJson.fleet_name).to.eql(\"Fleet name \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleFleet = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles-fleet',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    fleet_name: 'Fleet name ' + pm.environment.get('RANDOM_NAME'),",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleFleet, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLEFLEET_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"fleet_name\": \"test {{RANDOM_NAME}}\",\n    \"state\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-fleet",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-fleet"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product categories",
+					"item": [
+						{
+							"name": "Inserting product category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Type under 4096 characters\", function() {",
+											"        pm.expect(responseJson.type).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"category\": \"test {{RANDOM_NAME}}\",\n  \"state\": \"active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/product-categories",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"product-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult product categories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/product-categories",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"product-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult product category by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/product-categories/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"product-categories",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating product category by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProductCategory = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/product-categories',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'category': 'test '+pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProductCategory, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('PRODUCT_CATEGORY_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"category\": \"test {{RANDOM_NAME}} updated\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/product-categories/{{PRODUCT_CATEGORY_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"product-categories",
+										"{{PRODUCT_CATEGORY_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting product category by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postProductCategory = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/product-categories',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'category': 'test '+pm.environment.get('RANDOM_NAME'),",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postProductCategory, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('PRODUCT_CATEGORY_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/product-categories/{{PRODUCT_CATEGORY_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"product-categories",
+										"{{PRODUCT_CATEGORY_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Drivers",
+					"item": [
+						{
+							"name": "Inserting product category",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Type under 4096 characters\", function() {",
+											"        pm.expect(responseJson.type).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cpf\": \"{{RANDOM_CPF}}\",\n  \"name\": \"Driver {{RANDOM_NAME}}\",\n  \"contact\": \"47999999999\",\n  \"state\": \"active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/drivers",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"drivers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult product categories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/drivers",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"drivers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult product category by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/drivers/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"drivers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating product category by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postDriver = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/drivers',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'cpf': pm.environment.get('RANDOM_CPF'),",
+											"    'name': 'Driver '+ pm.environment.get('RANDOM_NAME'),",
+											"    'contact': '47999999999',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postDriver, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('DRIVER_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cpf\": \"{{RANDOM_CPF}}\",\n  \"name\": \"Driver {{RANDOM_NAME}}\",\n  \"contact\": \"{{RANDOM_NAME}} updated\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/drivers/{{DRIVER_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"drivers",
+										"{{DRIVER_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting product category by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postDriver = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/drivers',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'cpf': +pm.environment.get('RANDOM_CPF'),",
+											"    'name': 'Driver '+pm.environment.get('RANDOM_NAME'),",
+											"    'contact': '47999999999',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postDriver, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('DRIVER_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/drivers/{{DRIVER_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"drivers",
+										"{{DRIVER_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicle type",
+					"item": [
+						{
+							"name": "Consult vehicle types",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Description under 4096 characters\", function() {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.have.lengthOf.below(4096);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.name).to.not.include(null);",
+											"    });",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field description for each object\", function () {",
+											"    _.each(responseJson, function (obj) {",
+											"        pm.expect(obj.description).to.not.include(null);",
+											"    });",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicle-types",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicle-types"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult vehicle type by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//TODO EXPAND THE TESTS",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Leaving date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.leaving_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Arrival date under 4096 characters\", function() {",
+											"        pm.expect(responseJson.arrival_date).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field leaving date\", function () {",
+											"        pm.expect(responseJson.leaving_date).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field arrival date\", function () {",
+											"        pm.expect(responseJson.arrival_date).to.not.include(null);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicle-types/1",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicle-types",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Updating vehicle type by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleType = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicle-types',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'vehicle_type': 'bau',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleType, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLE_TYPE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field name\", function () {",
+											"        pm.expect(responseJson.name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field model\", function () {",
+											"        pm.expect(responseJson.model).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field license plate\", function () {",
+											"        pm.expect(responseJson.license_plate).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Teste: Nome do veículo cadastrado\", function() {",
+											"    pm.expect(responseJson.name).to.eql(\"Vehicle \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle model registered\", function() {",
+											"    pm.expect(responseJson.model).to.eql(\"Model \" + pm.environment.get(\"RANDOM_NAME\") + \" updated\");",
+											"});",
+											"",
+											"pm.test(\"Test: License plate registered\", function() {",
+											"    pm.expect(responseJson.license_plate).to.eql(pm.environment.get(\"RANDOM_VEHICLEID\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"vehicle_type\": \"carreta\",\n  \"state\": \"inactive\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicle-types/{{VEHICLE_TYPE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicle-types",
+										"{{VEHICLE_TYPE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deleting vehicle type by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleType = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicle-types',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    'vehicle_type': 'bau',",
+											"    'state': 'active'",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleType, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLE_TYPE_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Message under 4096 characters\", function() {",
+											"    pm.expect(responseJson.message).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate message not null\", function () {",
+											"    pm.expect(responseJson.message).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Message vehicle deleted\", function() {",
+											"    pm.expect(responseJson.message).to.eql(\"Vehicle successfully deleted.\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicle-types/{{VEHICLE_TYPE_ID}}",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicle-types",
+										"{{VEHICLE_TYPE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inserting vehicle type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"Test: Status code equals to 200\", function() {",
+											"    pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Status equals to OK\", function() {",
+											"    pm.response.to.have.status(\"OK\");",
+											"});",
+											"",
+											"pm.test(\"Test: Content-Type contem application/json; charset=utf-8\", function() {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json; charset=utf-8\");",
+											"});",
+											"",
+											"pm.test(\"Test: Should exist a body and be valid\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.response.to.be.withBody;",
+											"});",
+											"",
+											"pm.test(\"Test: Name under 4096 characters\", function() {",
+											"        pm.expect(responseJson.name).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Model under 4096 characters\", function() {",
+											"        pm.expect(responseJson.model).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: License plate under 4096 characters\", function() {",
+											"        pm.expect(responseJson.license_plate).to.have.lengthOf.below(4096);",
+											"});",
+											"",
+											"pm.test(\"Test: Response JSON format\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"pm.test(\"Test: Header Content-Type equals not null\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Performance (maximum response time)\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Test: Validate not null field fleet_name\", function () {",
+											"        pm.expect(responseJson.fleet_name).to.not.include(null);",
+											"});",
+											"",
+											"pm.test(\"Test: Vehicle Fleet name registered\", function() {",
+											"    pm.expect(responseJson.fleet_name).to.eql(\"Fleet name \" + pm.environment.get(\"RANDOM_NAME\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const postVehicleFleet = {",
+											"  url: pm.variables.get('APP_DOMAIN_AND_PORT') + '/vehicles-fleet',",
+											"  method: 'POST',",
+											"  header: {",
+											"    'Content-Type': 'application/json; charset=utf-8',",
+											"  },",
+											"  body: {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify({",
+											"    fleet_name: 'Fleet name ' + pm.environment.get('RANDOM_NAME'),",
+											"    })",
+											"  }",
+											"};",
+											"",
+											"pm.sendRequest(postVehicleFleet, function (err, response) {",
+											"  if (err){",
+											"      console.log(err);",
+											"      return false;",
+											"  }",
+											"  const responseJson = response.json();",
+											"  let ID = responseJson.id;",
+											"  pm.environment.set('VEHICLEFLEET_ID', ID);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"vehicle_type\": \"bau\",\n    \"state\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{APP_DOMAIN_AND_PORT}}/vehicles-types",
+									"host": [
+										"{{APP_DOMAIN_AND_PORT}}"
+									],
+									"path": [
+										"vehicles-types"
 									]
 								}
 							},
@@ -3155,6 +6890,117 @@
 					"",
 					"const randomName = generateANameGenerator();",
 					"pm.environment.set(\"RANDOM_NAME\", randomName);",
+					"",
+					"function generateVehicleIdentification() {",
+					"  const ALPHABET = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];",
+					"  let letter = [];",
+					"  for (let i = 0; i < 4; i++) {",
+					"    const number = (Math.random() * 100).toFixed(0);",
+					"    const numberResult = parseFloat(number);",
+					"    numberResult <= 25 ? letter.push(ALPHABET[numberResult]) : i--;",
+					"  }",
+					"  let number = [];",
+					"  for (let i = 0; i < 3; i++) {",
+					"    number.push(Math.floor(Math.random() * 9));",
+					"  }",
+					"  return `${letter[0]}${letter[1]}${letter[2]}${number[0]}${letter[3]}${number[1]}${number[2]}`;",
+					"}",
+					"",
+					"const vehicleIdentification = generateVehicleIdentification();",
+					"pm.environment.set(\"VEHICLE_PLATE\", vehicleIdentification);",
+					"",
+					"function generateCpf(){",
+					"  let create_array = (total, numero) => Array.from(Array(total), () => number_random(numero));",
+					"  let number_random = (number) => Math.round(Math.random() * number);",
+					"  let mod = (dividendo, divisor) => Math.round(dividendo - Math.floor(dividendo / divisor) * divisor);",
+					"",
+					"  let total_array = 9;",
+					"  let n = 9;",
+					"  let [n1, n2, n3, n4, n5, n6, n7, n8, n9] = create_array(total_array, n);",
+					"",
+					"  let d1 =",
+					"    n9 * 2 +",
+					"    n8 * 3 +",
+					"    n7 * 4 +",
+					"    n6 * 5 +",
+					"    n5 * 6 +",
+					"    n4 * 7 +",
+					"    n3 * 8 +",
+					"    n2 * 9 +",
+					"    n1 * 10;",
+					"  d1 = 11 - mod(d1, 11);",
+					"  if (d1 >= 10) d1 = 0;",
+					"",
+					"  let d2 =",
+					"    d1 * 2 +",
+					"    n9 * 3 +",
+					"    n8 * 4 +",
+					"    n7 * 5 +",
+					"    n6 * 6 +",
+					"    n5 * 7 +",
+					"    n4 * 8 +",
+					"    n3 * 9 +",
+					"    n2 * 10 +",
+					"    n1 * 11;",
+					"  d2 = 11 - mod(d2, 11);",
+					"  if (d2 >= 10) d2 = 0;",
+					"",
+					"  return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${d1}${d2}`;",
+					"}",
+					"",
+					"const cpfNumber = generateCpf();",
+					"pm.environment.set(\"RANDOM_CPF\", cpfNumber);",
+					"",
+					"function generateCnpj(){",
+					"  let create_array = (total, number) => Array.from(Array(total), () => number_random(number));",
+					"  let number_random = (number) => Math.round(Math.random() * number);",
+					"  let mod = (dividend, divider) => Math.round(dividend - Math.floor(dividend / divider) * divider);",
+					"  let total_array = 8;",
+					"  let n = 9;",
+					"  let [n1, n2, n3, n4, n5, n6, n7, n8] = create_array(total_array, n);",
+					"  let n9 = 0;",
+					"  let n10 = 0;",
+					"  let n11 = 0;",
+					"  let n12 = 1;",
+					"",
+					"  let d1 =",
+					"    n12 * 2 +",
+					"    n11 * 3 +",
+					"    n10 * 4 +",
+					"    n9 * 5 +",
+					"    n8 * 6 +",
+					"    n7 * 7 +",
+					"    n6 * 8 +",
+					"    n5 * 9 +",
+					"    n4 * 2 +",
+					"    n3 * 3 +",
+					"    n2 * 4 +",
+					"    n1 * 5;",
+					"  d1 = 11 - mod(d1, 11);",
+					"  if (d1 >= 10) d1 = 0;",
+					"",
+					"  let d2 =",
+					"    d1 * 2 +",
+					"    n12 * 3 +",
+					"    n11 * 4 +",
+					"    n10 * 5 +",
+					"    n9 * 6 +",
+					"    n8 * 7 +",
+					"    n7 * 8 +",
+					"    n6 * 9 +",
+					"    n5 * 2 +",
+					"    n4 * 3 +",
+					"    n3 * 4 +",
+					"    n2 * 5 +",
+					"    n1 * 6;",
+					"  d2 = 11 - mod(d2, 11);",
+					"  if (d2 >= 10) d2 = 0;",
+					"",
+					"  return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${n10}${n11}${n12}${d1}${d2}`;",
+					"}",
+					"",
+					"const cnpjNumber = generateCnpj();",
+					"pm.environment.set(\"RANDOM_CNPJ\", cnpjNumber);",
 					""
 				]
 			}
