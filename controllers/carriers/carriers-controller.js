@@ -75,7 +75,7 @@ exports.updateOne = async (req, res) =>{
     return res.status(404).json({ error: 'Failed to update carrier.' });
   }
   const { id } = req.params;
-  const { name, contact } = req.body;
+  const { fleet_id, uf_id, cnpj, name, contact, state } = req.body;
   const result = await pool.query('UPDATE carrier SET fleet_id = $1, uf_id = $2, cnpj = $3, name = $4, contact = $5, state = $6  WHERE id = $7 RETURNING *', [fleet_id, uf_id, cnpj, name, contact, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find carrier.' });

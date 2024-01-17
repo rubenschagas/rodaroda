@@ -63,7 +63,7 @@ exports.postOne = async (req, res) =>{
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO locality (uf_id, logistic_type_id, cnpj, name, type, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [register.uf_id, register.logistic_type_id, register.cnpj, register.name, register.type, register.state]);
+    const result = await pool.query('INSERT INTO locality (uf_id, logistic_type_id, cnpj, name, type, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [request.uf_id, request.logistic_type_id, request.cnpj, request.name, request.type, request.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register locality.'});
     }

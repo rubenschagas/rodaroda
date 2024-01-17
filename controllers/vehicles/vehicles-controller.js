@@ -42,7 +42,7 @@ exports.postOne = async (req, res) =>{
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO vehicle (vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',  [register.vehicle_license_plate_id, register.vehicle_type_id, register.fleet_id, register.document_number, register.model, register.state]);
+      const result = await pool.query('INSERT INTO vehicle (vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',  [register.vehicle_license_plate_id, register.vehicle_type_id, register.vehicle_fleet_id, register.document_number, register.model, register.state]);
       return result.rows[0];
     });
     try{
@@ -75,7 +75,7 @@ exports.updateOne = async (req, res) =>{
     return res.status(404).json({ error: 'Failed to update vehicle.' });
   }
   const { id } = req.params;
-  const { name, model, license_plate } = req.body;
+  const { vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state } = req.body;
   const result = await pool.query('UPDATE vehicle SET vehicle_license_plate_id = $1, vehicle_type_id = $2, vehicle_fleet_id = $3, document_number = $4, model = $5, state = $6 WHERE id = $7 RETURNING *', [vehicle_license_plate_id, vehicle_type_id, vehicle_fleet_id, document_number, model, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle.' });

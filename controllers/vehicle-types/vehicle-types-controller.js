@@ -76,11 +76,12 @@ exports.updateOne = async (req, res) =>{
         return res.status(404).json({ error: 'Failed to update vehicle type.' });
   }
   const { id } = req.params;
-  const result = await pool.query('DELETE FROM vehicle_type WHERE id = $1 RETURNING *', [id]);
+  const { vehicle_type, state } = req.body;
+  const result = await pool.query('UPDATE vehicle_type SET vehicle_type = $1, state = $2 WHERE id = $3 RETURNING *', [vehicle_type, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle type.' });
   }
-  res.json({ message: 'Vehicle type successfully deleted.' });
+  res.json(result.rows[0]);
 }
 
 exports.deleteOne = async (req, res) =>{

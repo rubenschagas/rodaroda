@@ -73,8 +73,8 @@ exports.postOne = async (req, res) =>{
 }
 
 exports.updateOne = async (req, res) =>{
-  if(!req.body.origin_id || !req.body.destination_id_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.driver_id || !req.body.leaving_date || !req.body.arrival_date || !req.body.status){
-    return res.status(404).json({ error: 'Failed to register trip.' });
+  if(!req.body.origin_id || !req.body.destination_id || !req.body.product_id || !req.body.carrier_id || !req.body.vehicle_id || !req.body.driver_id || !req.body.leaving_date || !req.body.arrival_date || !req.body.status){
+    return res.status(404).json({ error: 'Failed to update trip.' });
   }
   const { id } = req.params;
   const { origin_id, destination_id, product_id, carrier_idr, vehicle_id, driver_id, leaving_date, arrival_date, status } = req.body;

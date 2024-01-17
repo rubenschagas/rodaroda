@@ -12,7 +12,7 @@ const port = dataBase.dbAppPort;
 const pool = new Pool(dataBase.dbConfig);
 
 exports.getAll = async (req, res) =>{
-  const result = await pool.query('SELECT * FROM vehicle_fleet');
+  const result = await pool.query('SELECT * FROM vehicles_fleet');
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle fleets.' });
   }
@@ -21,7 +21,7 @@ exports.getAll = async (req, res) =>{
 
 exports.getOne = async (req, res) =>{
   const { id } = req.params;
-  const result = await pool.query('SELECT * FROM vehicle_fleet WHERE id = $1', [id]);
+  const result = await pool.query('SELECT * FROM vehicles_fleet WHERE id = $1', [id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle fleet.' });
   }
@@ -34,7 +34,7 @@ exports.postOne = async (req, res) =>{
 
   if(request.length > 1 || request.length === 1){
     for(const register of request){
-      if(!register.vehicle_type || !register.state){
+      if(!register.fleet_name || !register.state){
           errors.push({ error: 'Failed to register vehicle fleet.'});
       }
     }
@@ -42,7 +42,7 @@ exports.postOne = async (req, res) =>{
       return res.status(400).json(errors);
     }
     const promises = request.map(async (register) => {
-      const result = await pool.query('INSERT INTO vehicle_fleet (fleet_name, state) VALUES ($1, $2) RETURNING *', [register.fleet_name, register.state]);
+      const result = await pool.query('INSERT INTO vehicles_fleet (fleet_name, state) VALUES ($1, $2) RETURNING *', [register.fleet_name, register.state]);
       return result.rows[0];
     });
     try{
@@ -63,7 +63,7 @@ exports.postOne = async (req, res) =>{
     if(errors.length > 0){
         return res.status(400).json(errors);
     }
-    const result = await pool.query('INSERT INTO vehicle_fleet (vehicle_type, state) VALUES ($1, $2) RETURNING *', [request.fleet_name, request.state]);
+    const result = await pool.query('INSERT INTO vehicles_fleet (fleet_name, state) VALUES ($1, $2) RETURNING *', [request.fleet_name, request.state]);
     if(result.rows.length === 0){
         return res.status(404).json({ error: 'Failed to register vehicle fleet.'});
     }
@@ -77,7 +77,7 @@ exports.updateOne = async (req, res) =>{
   }
   const { id } = req.params;
   const { fleet_name, state } = req.body;
-  const result = await pool.query('UPDATE vehicle_fleet SET vehicle_type = $1, state = $2 WHERE id = $3 RETURNING *', [fleet_name, state, id]);
+  const result = await pool.query('UPDATE vehicles_fleet SET fleet_name = $1, state = $2 WHERE id = $3 RETURNING *', [fleet_name, state, id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle fleet.' });
   }
@@ -86,7 +86,7 @@ exports.updateOne = async (req, res) =>{
 
 exports.deleteOne = async (req, res) =>{
   const { id } = req.params;
-  const result = await pool.query('DELETE FROM vehicle_type WHERE id = $1 RETURNING *', [id]);
+  const result = await pool.query('DELETE FROM vehicles_fleet WHERE id = $1 RETURNING *', [id]);
   if (result.rows.length === 0) {
     return res.status(404).json({ error: 'Cannot find vehicle type.' });
   }
