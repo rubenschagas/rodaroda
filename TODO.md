@@ -98,7 +98,7 @@ modificar a estrutura da tabela vehicles, de forma a possuir um código identifi
 criar uma tabela de placas e respectivo relacionamento com veículo DONE
 criar tipos de veículos e associa-las aos veículos; DONE
 criar uma frota de veículo e associá-la a uma transportadora; DONE
-criar categorias de produtos e associa-las aos produtos;  DONE
+criar categorias de produtos e associa-las aos produtos; DONE
 criar tabelas com todos os estados e cidades do Brasil e associa-las às localidades; DONE
 criar uma tabela de motoristas e respectivo relacionamento com a viagem (em execução), de forma a possuir um código de cpf único (primary key), alterando a estrutura de automação de criação de banco de dados (Ansible playbooks) e incrementando a Postman collection (neste caso, gerando cpfs válidos automaticamente para os testes); DONE
 criar um tabela de papéis/tipos logísticos de localidade e associá-los com os registros de localidade existentes DONE
