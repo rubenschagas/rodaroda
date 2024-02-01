@@ -74,7 +74,7 @@ TODO: 20. implementar um testing Framework (e.g. Cypress) eventually for the fro
 
 ## DevOps-CI-CD
 
-TODO: 21. instalar a aplicação e o frontend em um Tomcat? server
+TODO: 21. instalar a aplicação e o frontend em um Tomcat?/Nginx server
 
 TODO: 22. estudar a criação de uma imagem Docker para ser publicada em um Docker Registry (no Docker Hub?) contendo a aplicação
 
