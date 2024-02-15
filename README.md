@@ -231,7 +231,7 @@ A folder named `Newman`will be created with a html report file as follows:
 
 ## LICENSE
 
-This project is release with a public license.
+This project is released with a generic public license.
 
 ## REFERENCES
 
