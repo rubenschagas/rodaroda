@@ -220,7 +220,7 @@ This project supports some customized parameters, such as: both tenant and envir
 A useful menu help with all possible parameters can be viewed with following command:
 
 ```
-> ts-node e2e-yms.cli.ts --help
+> ts-node rodaroda.ts --help
 ```
 
 Thus, a menu with supported parameters will be showed (some are optional, having a default value):
