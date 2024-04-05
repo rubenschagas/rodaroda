@@ -22,23 +22,22 @@
 
 ## OVERVIEW
 
-This README.md document aims to guide you through the automated deployment of a DevOps project, specifically 
-a hackathon featuring a backend service supporting CRUD operations.
+This README.md document guides you through the automated deployment of a DevOps project for a hackathon. 
+The project focuses on a backend service supporting CRUD operations, aiming to establish a 
+basic backend application structure with an automated database. This enables querying and data insertion.
 
-The purpose of this app is to build a basic structure for a backend application, along with an automated database. 
-Upon sending requests to the backend, we can query and insert data into it.
+The application architecture centers on managing trips, incorporating entities such as locations 
+(with origin and destination types), products, drivers, vehicles, and carriers.
 
-The master carrier's structure revolves around trips, with dependencies on entities such as location (origin and 
-destination types), product, driver, vehicle and carrier.
+Key features include:
 
-Additionally, it will execute Postman collection tests against the backend and generate a visually appealing 
-HTML report for the test run.
+Running Postman collection tests against the backend and generating detailed HTML reports, and;
 
-Furthermore, there are specific objectives to achieve, including the implementation of standards, design patterns, 
-code formatters, JDoc, building an authentication process, frontend development, introducing new entities, CI-CD, 
-cloud, observability, and enhancements to application and business rules, among others.
+Objectives encompass adopting standards and design patterns, utilizing code formatters, implementing Javadoc, 
+securing the app through authentication, developing the frontend, expanding with new entities, and integrating CI-CD, 
+cloud solutions, observability, and enhancements in application logic and business rules.
 
-Thus, the overall goal is to develop skills in the domains of DevOps, Development, QA, and SRE.
+The ultimate goal is to bolster skills across DevOps, Development, QA, and SRE domains.
 
 ## ARCHITECTURE
 
