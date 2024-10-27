@@ -22,22 +22,26 @@
 
 ## OVERVIEW
 
-This README.md document guides you through the automated deployment of a DevOps project for a hackathon. 
-The project focuses on a backend service supporting CRUD operations, aiming to establish a 
-basic backend application structure with an automated database. This enables querying and data insertion.
+This README.md document provides guidance for the automated deployment of a DevOps project designed for a hackathon.
 
-The application architecture centers on managing trips, incorporating entities such as locations 
-(with origin and destination types), products, drivers, vehicles, and carriers.
+The project focuses on creating a backend service with CRUD operations, establishing a basic application structure and an automated database for data querying and insertion.
 
-Key features include:
+The application's architecture revolves around managing trips and includes entities such as locations (origin and destination types), products, drivers, vehicles, and carriers.
 
-Running Postman collection tests against the backend and generating detailed HTML reports, and;
+**Key Features:**
 
-Objectives encompass adopting standards and design patterns, utilizing code formatters, implementing Javadoc, 
-securing the app through authentication, developing the frontend, expanding with new entities, and integrating CI-CD, 
-cloud solutions, observability, and enhancements in application logic and business rules.
+- Running Postman collection tests against the backend with detailed HTML report generation.
+Objectives:
 
-The ultimate goal is to bolster skills across DevOps, Development, QA, and SRE domains.
+- Adopting coding standards and design patterns.
+- Utilizing code formatters.
+- Implementing Javadoc.
+- Securing the application with authentication.
+- Developing the frontend.
+- Expanding with new entities.
+- Integrating CI/CD, cloud solutions, observability, and enhancing application logic and business rules.
+
+The ultimate goal is to enhance skills across DevOps, Development, QA, and SRE domains.
 
 ## ARCHITECTURE
 
